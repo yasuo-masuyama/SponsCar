@@ -29,6 +29,9 @@ $ rails s
 ## カタログ設計・テーブル設計
 https://docs.google.com/spreadsheets/d/1m4Y8Vv_pEBZE8l1sofptIowc5ldCFYp7hrSFwubHU6s/edit?usp=sharing
 
+## ワイヤーフレーム
+https://cacoo.com/diagrams/xDgSzMB6Nu9BdHyR/DCD65
+
 ## ER図
 
 ![ER図](app/assets/images/ER.png)
