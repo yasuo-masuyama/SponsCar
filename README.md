@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 開発言語
+* Ruby 3.0.1
+* Ruby on Rails 6.1.6
 
-Things you may want to cover:
+## 就業Termの技術
+* devise
+* メッセージ機能（Ajaxによる非同期通信）
+* お気に入り機能（Ajaxによる非同期通信）
+* フォロー機能
+* AWS EC2へのデプロイ
 
-* Ruby version
+## カリキュラム外の技術
+* チャット機能（Action Cableによるリアルタイム通信）
+* 地図表示機能（Google Map API）
 
-* System dependencies
+## 実行手順
+```
+$ https://github.com/yasuo-masuyama/SponsCar.git
+$ cd SponsCar
+$ bundle
+$ yarn
+$ rails db:create
+$ rails db:migrate
+$ rails db:seed
+$ rails s
+```
+## カタログ設計・テーブル設計
+https://docs.google.com/spreadsheets/d/1m4Y8Vv_pEBZE8l1sofptIowc5ldCFYp7hrSFwubHU6s/edit?usp=sharing
 
-* Configuration
+## ER図
 
-* Database creation
+![ER図](app/assets/images/ER.png)
 
-* Database initialization
+##　画面遷移図
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![画面遷移図](app/assets/images/Screen_transition_diagram.png)
