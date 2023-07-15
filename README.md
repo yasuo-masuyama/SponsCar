@@ -33,6 +33,6 @@ https://docs.google.com/spreadsheets/d/1m4Y8Vv_pEBZE8l1sofptIowc5ldCFYp7hrSFwubH
 
 ![ER図](app/assets/images/ER.png)
 
-##　画面遷移図
+## 画面遷移図
 
 ![画面遷移図](app/assets/images/Screen_transition_diagram.png)
