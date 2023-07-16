@@ -34,7 +34,7 @@ https://cacoo.com/diagrams/xDgSzMB6Nu9BdHyR/DCD65
 
 ## ER図
 
-![ER図](app/assets/images/ER_correction.png)
+![ER図](app/assets/images/ER.png)
 
 ## 画面遷移図
 
