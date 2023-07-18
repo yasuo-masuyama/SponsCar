@@ -1,0 +1,19 @@
+<h3>管理者 ログインページ</h3>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <table class="table" id="noneborder">
+    <tbody>
+      <tr>
+        <td><%= f.label :メールアドレス %></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :パスワード %></td>
+        <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "ログイン", class: "btn3" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
