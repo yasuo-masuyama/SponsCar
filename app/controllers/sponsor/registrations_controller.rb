@@ -14,10 +14,18 @@ class Sponsor::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def after_sign_in_path_for(resource)
+    # リダイレクト先が決まったら記入する。
+  end
+
   # GET /resource/edit
   # def edit
   #   super
   # end
+
+  def after_sign_out_path_for(resource)
+      new_sponsor_session_path
+  end
 
   # PUT /resource
   # def update

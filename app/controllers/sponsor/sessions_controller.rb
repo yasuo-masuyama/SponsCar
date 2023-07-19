@@ -13,6 +13,12 @@ class Sponsor::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def guest_sign_in
+    sponsor = Sponsor.guest
+    sign_in sponsor
+    # リダイレクト先を記入する
+  end
+
   # DELETE /resource/sign_out
   # def destroy
   #   super
