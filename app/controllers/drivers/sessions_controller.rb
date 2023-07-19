@@ -8,10 +8,22 @@ class Drivers::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def guest_sign_in
+    driver = Driver.guest
+    sign_in driver
+  end
+
   # POST /resource/sign_in
   # def create
   #   super
   # end
+
+  def after_sign_in_path_for(resource)
+  end
+
+  def after_sign_out_path_for(resource)
+    new_driver_session_path
+  end
 
   # DELETE /resource/sign_out
   # def destroy

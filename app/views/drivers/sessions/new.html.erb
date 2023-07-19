@@ -1,26 +1,24 @@
-<h2>Log in</h2>
+<h2>Driverログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <table class="table" id="none-borber">
+    <tbody>
+      <tr>
+        <td><%= f.label :メールアドレス %></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <tr>
+        <td><%= f.label :パスワード %></td>
+        <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        <%= link_to "=>パスワードを忘れた方はこちら" %>
+      </tr>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+      <tr>
+        <td><%= f.submit "ログイン", class: "btn03" %></td>
+      </tr>
+      
+    </tbody>
+  </table>
 <% end %>
 
-<%= render "drivers/shared/links" %>

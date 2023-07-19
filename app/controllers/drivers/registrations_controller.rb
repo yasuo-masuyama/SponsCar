@@ -14,10 +14,15 @@ class Drivers::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def after_sign_up_path_for(resource)
+  end
   # GET /resource/edit
   # def edit
   #   super
   # end
+
+  def after_sign_out_path_for(resource)
+  end
 
   # PUT /resource
   # def update
