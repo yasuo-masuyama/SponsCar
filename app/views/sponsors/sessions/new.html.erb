@@ -1,0 +1,27 @@
+<h2>Sponsorログイン</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <table class="table" id="none-border">
+    <tbody>
+      <tr>
+        <td><%= f.label :メールアドレス %></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :パスワード %></td>
+        <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+          <%=link_to "=>パスワードを忘れた方はこちら" %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><%= f.submit "ログイン", class: "btn03" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+<div class="col-xs-3 col-xs-offset-1">
+  <h3>ゲストログイン</h3>
+</div>

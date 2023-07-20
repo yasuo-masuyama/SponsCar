@@ -1,0 +1,12 @@
+<h3>トップページ<h3>
+
+<li><%= link_to "Driver新規登録", new_driver_registration_path %></li>
+<li><%= link_to "Driverログイン", new_driver_session_path %></li>
+<li><%= link_to destroy_driver_session_path, method: :delete do  %>Driverログアウト<% end %></li>
+
+<li><%= link_to "Sponsor新規登録", new_sponsor_registration_path %></li>
+<li><%= link_to "Sponsorログイン", new_sponsor_session_path %></li>
+<li><%= link_to destroy_sponsor_session_path, method: :delete do  %>Sponsorログアウト<% end %></li>
+
+<li><%= link_to "Adminログイン", new_admin_session_path %></li>
+<li><%= link_to destroy_admin_session_path, method: :delete do  %>Adminログアウト<% end %></li>
