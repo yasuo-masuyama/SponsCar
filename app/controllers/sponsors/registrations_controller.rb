@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Sponsor::RegistrationsController < Devise::RegistrationsController
+class Sponsors::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -15,7 +15,7 @@ class Sponsor::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_sign_in_path_for(resource)
-    # リダイレクト先が決まったら記入する。
+    dashboard_sponsor_path(resource)
   end
 
   # GET /resource/edit
