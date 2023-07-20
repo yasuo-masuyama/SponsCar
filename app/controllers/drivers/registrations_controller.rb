@@ -15,6 +15,7 @@ class Drivers::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_sign_up_path_for(resource)
+    dashboard_driver_path
   end
   # GET /resource/edit
   # def edit
@@ -22,6 +23,7 @@ class Drivers::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_sign_out_path_for(resource)
+    new_driver_session_path
   end
 
   # PUT /resource

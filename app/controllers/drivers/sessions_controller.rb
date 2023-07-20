@@ -11,6 +11,7 @@ class Drivers::SessionsController < Devise::SessionsController
   def guest_sign_in
     driver = Driver.guest
     sign_in driver
+    redirect_to dashboard_driver_path(current_driver)
   end
 
   # POST /resource/sign_in
@@ -19,6 +20,7 @@ class Drivers::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
+    dashboard_driver_path(resource)
   end
 
   def after_sign_out_path_for(resource)

@@ -4,11 +4,6 @@
     <table class="table" id="none-border">
       <tbody>
         <tr>
-          <td><%= f.label :プロフィール画像 %></td>
-          <td><%= f.file_field :profile_image, id: "upload_file" %></td>
-        </tr>
-
-        <tr>
           <td><%= f.label :名前 %></td>
           <td><%= f.text_field :name, autofoucus: true, autocomplete: "", placeholder: "お名前を入力", class: "form-control" %></td>
         </tr>
@@ -26,6 +21,11 @@
         <tr>
           <td><%= f.label :住所 %></td>
           <td><%= f.text_field :address, :size=> "60", autofoucus: true, autocomplete: "", placeholder: "ご住所を入力", class: "form-control" %></td>      
+        </tr>
+
+        <tr>
+          <td><%= f.label :メールアドレス %></td>
+          <td><%= f.text_field :email, autofocus: true,:size=>"50", autocomplete:"", placeholder:"メールアドレスを入力", class: "form-control"%></td>
         </tr>
 
         <tr>
