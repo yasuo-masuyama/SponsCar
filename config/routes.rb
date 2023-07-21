@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   resources :advertisements, only:[:index, :show]
 
+  resources :infos
+
   resources :admins, only:[:index]
     namespace :admins do
       resources :sponsors, only: [:index, :show, :update]
