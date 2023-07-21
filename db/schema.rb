@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_21_043532) do
+ActiveRecord::Schema.define(version: 2023_07_21_074424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 2023_07_21_043532) do
     t.boolean "is_active", default: true, null: false
     t.date "start_due_on", null: false
     t.date "end_due_on", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "company_name"
+    t.string "telephone_number", null: false
+    t.string "email", null: false
+    t.text "content", null: false
+    t.integer "work_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
