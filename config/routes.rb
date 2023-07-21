@@ -34,4 +34,13 @@ Rails.application.routes.draw do
       get :dashboard
     end
   end
+
+  resources :under_deals, only:[:index, :show, :create, :edit,:update]do
+  member do
+    get :show_driver
+  end
+    resources :deal_messages, only:[:create]
+  end
+
+  resources :ads, only:[:index, :show]
 end

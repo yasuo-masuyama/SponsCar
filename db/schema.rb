@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_19_143321) do
+ActiveRecord::Schema.define(version: 2023_07_20_053644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,21 @@ ActiveRecord::Schema.define(version: 2023_07_19_143321) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "advertisements", force: :cascade do |t|
+    t.bigint "sponsor_id", null: false
+    t.bigint "genre_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.string "heading", null: false
+    t.text "image"
+    t.integer "amounts", null: false
+    t.boolean "is_active", default: true, null: false
+    t.date "start_due_on", null: false
+    t.date "end_due_on", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -79,4 +94,12 @@ ActiveRecord::Schema.define(version: 2023_07_19_143321) do
     t.index ["reset_password_token"], name: "index_sponsors_on_reset_password_token", unique: true
   end
 
+  create_table "under_deals", force: :cascade do |t|
+    t.bigint "advertisement_id", null: false
+    t.bigint "driver_id", null: false
+    t.integer "work_status", default: 0, null: false
+    t.text "installation_image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 end
