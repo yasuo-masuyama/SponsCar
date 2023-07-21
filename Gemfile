@@ -16,6 +16,13 @@ gem 'devise-i18n'
 gem 'rexml'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+gem 'dotenv-rails'
+gem 'geocoder'
+gem 'enum_help'
+gem 'rails-i18n'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
