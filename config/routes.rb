@@ -53,4 +53,15 @@ Rails.application.routes.draw do
       resources :genres, only: [:index, :create, :edit, :update, :destroy]
       resources :contacts, only: [:index,:show]
     end
+
+  resources :contacts, only: %i[ index new create show update ] do
+    collection do
+      post :confirm
+    end
+  end
+  scope module: :contacts do
+    get :new_inquiry
+    get :working_inquiry
+    get :past_inquiry
+  end
 end
