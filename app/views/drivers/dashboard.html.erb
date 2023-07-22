@@ -1,39 +1,39 @@
 
-		<!-- サイドバー-->
-			<%= render "drivers/sidebar", driver: @driver %>
-		<!-- 運営からのメッセージ -->
-		<%# <%= render 'layouts/message_from_admin', driver: @driver %>
+<!-- サイドバー-->
+<%= render "drivers/sidebar", driver: @driver %>
+<!-- 運営からのメッセージ -->
+<%# <%= render 'layouts/message_from_admin', driver: @driver %>
 
-		<!-- 取引広告の情報 -->
-			<h3>取引中の広告</h3>
-			<% if @under_deal.present? %>
-				<!-- 作業報告エリア -->
-				<%= render 'under_deals/ad_info', ad: @ad %>
-				<%= render 'under_deals/flow_driver', { under_deal: @under_deal, deal_detail: @deal_detail, driver: @driver } %>
-			<!-- メッセージエリア -->
-				<%= form_for (@message), url: under_deal_deal_messages_path(@under_deal) do |f| %>
-						<%= f.text_area :message, placeholder: "メッセージを入力してください。", class: "chat-message" %>
-						<%= f.submit "送信",  class: "btn chat-btn" %>
-				<% end %>
-				<% @messages.each do |message| %>
-					<% if message.user_type == 'driver' %>
-						    <%= attachment_image_tag @under_deal.driver, :profile_image, fallback: "no_image.jpg", size:'90X90' %>
-						      	<p><%= message.message %></p>
-					    				<%= message.created_at.to_s(:datetime_jp) %>
-					<% else %>
-						    <%= attachment_image_tag @under_deal.ad.ad_client, :profile_image, fallback: "no_image.jpg", size:'90X90' %>
-						      	<p><%= message.message %></p>
-						    			<%= message.created_at.to_s(:datetime_jp) %>
-						<% end %>
-					<% end %>
-			<% else %>
-					<h4>現在、取引中の広告はありません。</h4>
-					<h5>広告を探してみましょう！！  <%= link_to "▶︎ 広告ページへ", ads_path %></h5>
-				</div>
-			<% end %>
+<!-- 取引広告の情報 -->
+<h3>取引中の広告</h3>
+<% if @under_deal.present? %>
+  <!-- 作業報告エリア -->
+  <%= render 'under_deals/ad_info', ad: @ad %>
+  <%= render 'under_deals/flow_driver', { under_deal: @under_deal, deal_detail: @deal_detail, driver: @driver } %>
+<!-- メッセージエリア -->
+  <%= form_for (@message), url: under_deal_deal_messages_path(@under_deal) do |f| %>
+      <%= f.text_area :message, placeholder: "メッセージを入力してください。", class: "chat-message" %>
+      <%= f.submit "送信",  class: "btn chat-btn" %>
+  <% end %>
+  <% @messages.each do |message| %>
+    <% if message.user_type == 'driver' %>
+          <%= attachment_image_tag @under_deal.driver, :profile_image, fallback: "no_image.jpg", size:'90X90' %>
+              <p><%= message.message %></p>
+                <%= message.created_at.to_s(:datetime_jp) %>
+    <% else %>
+          <%= attachment_image_tag @under_deal.ad.ad_client, :profile_image, fallback: "no_image.jpg", size:'90X90' %>
+              <p><%= message.message %></p>
+                <%= message.created_at.to_s(:datetime_jp) %>
+      <% end %>
+    <% end %>
+<% else %>
+    <h4>現在、取引中の広告はありません。</h4>
+    <h5>広告を探してみましょう！！  <%= link_to "▶︎ 広告ページへ", advertisements_path %></h5>
+  </div>
+<% end %>
 <!-- 取引一覧 -->
-  <h4>過去取引一覧</h4>
-  <td>広告名</td>
-  <td>広告期間</td>
-  <td>ステータス</td>
-  <td colspan="2">詳細画面</td>
+<h4>過去取引一覧</h4>
+<td>広告名</td>
+<td>広告期間</td>
+<td>ステータス</td>
+<td colspan="2">詳細画面</td>

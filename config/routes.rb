@@ -36,11 +36,32 @@ Rails.application.routes.draw do
   end
 
   resources :under_deals, only:[:index, :show, :create, :edit,:update]do
-  member do
-    get :show_driver
-  end
-    resources :deal_messages, only:[:create]
+    member do
+      get :show_driver
+    end
+      resources :deal_messages, only:[:create]
   end
 
-  resources :ads, only:[:index, :show]
+  resources :advertisements, only:[:index, :show]
+
+  resources :infos
+
+  resources :admins, only:[:index]
+    namespace :admins do
+      resources :sponsors, only: [:index, :show, :update]
+      resources :drivers, only: [:index, :show, :update]
+      resources :genres, only: [:index, :create, :edit, :update, :destroy]
+      resources :contacts, only: [:index,:show]
+    end
+
+  resources :contacts, only: %i[ index new create show update ] do
+    collection do
+      post :confirm
+    end
+  end
+  scope module: :contacts do
+    get :new_inquiry
+    get :working_inquiry
+    get :past_inquiry
+  end
 end
