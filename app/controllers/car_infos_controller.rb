@@ -1,0 +1,2 @@
+class CarInfosController < ApplicationController
+end
