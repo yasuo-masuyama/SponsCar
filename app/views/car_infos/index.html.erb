@@ -1,0 +1,62 @@
+<h3>車両情報</h3>
+  <h4>新規車両登録</h4>
+    <%= form_with(model: @car_info, local: true, url: driver_car_infos_path) do |f| %>
+      <tr>
+        <td><%= f.label :メーカー名 %></td>
+        <td><%= f.text_field :manufacturer_name, autofocus: true, placeholder:"車のメーカー名を入力", class: "form-control"%></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :車名 %></td>
+        <td><%= f.text_field :name, autofocus: true, placeholder:"車種名を入力", class: "form-control"%></td>
+      </tr> 
+
+      <tr>
+        <td><%= f.label :車台番号 %></td>
+        <td><%= f.text_field :flame_number, autofocus: true, placeholder:"車両検査表に記載の車台番号を入力", class: "form-control"%></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :ナンバープレート %></td>
+        <td><%= f.text_field :license_plate, autofocus: true, placeholder:"登録番号を入力", class: "form-control"%></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :車検証写真 %></td>
+        <td><%= f.file_field :vehicle_image %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.submit "登 録", class: "btn btn-primary col-lg-offset-10"%><td>
+      </td>
+
+    <% end %>
+  <%= link_to "前の画面に戻る", dashboard_driver_path(current_driver) %>
+
+<table class="table table-bordered">
+  <h3>登録車両一覧</h3>
+  <thead>
+    <tr>
+      <td>メーカー名</td>
+      <td>車名</td>
+      <td>ナンバープレート</td>
+      <td>車台番号</td>
+      <td colspan="2"></td>
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @car_infos.each do |car_info| %>
+    <tr>
+      <td><%= car_info.manufacturer_name %></td>
+      <td><%= car_info.name %></td>
+      <td><%= car_info.flame_number %></td>
+      <td><%= car_info.license_plate %></td>
+      <td colspan="2">&emsp;
+        <%= link_to "編 集", edit_driver_car_info_path(car_info.driver_id, car_info.id), class: "btn-sm btn-success " %>&emsp;
+        <%= link_to "削 除", driver_car_info_path(car_info.driver_id, car_info.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

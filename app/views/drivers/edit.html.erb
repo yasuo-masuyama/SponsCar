@@ -1,0 +1,56 @@
+<h4>プロフィール情報</h4>
+<%= form_with(model: @driver, local: true, url: driver_path) do |f| %>
+  <% if @driver.errors.any? %>
+		<h3><%= @driver.errors.count %>error occurrence</h3>
+		<ul>
+			<% @driver.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+  
+  <table class="table .table-borderless">
+    <tr>
+      <th><%= f.label :名前 %></th>
+      <td><%= f.text_field :name, class: "form-control form-control-sm" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :名前カナ %></th>
+      <td><%= f.text_field :name_kana, class: "form-control form-control-sm" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :郵便番号 %></th>
+      <td><%= f.text_field :postal_code, class: "form-control form-control-sm" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :住所 %></th>
+      <td><%= f.text_field :address, class: "form-control form-control-sm" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :電話番号 %></th>
+      <td><%= f.text_field :telephone_number, class: "form-control form-control-sm" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :メールアドレス %></th>
+      <td><%= f.text_field :email, class: "form-control form-control-sm" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :活動地域 %></th>
+      <td>(例)東京都港区<%= f.text_field :activity_area, placeholder:"都道府県と市町村名までを入力", class: "form-control"%></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td class="text-left"><%= button_tag :type => "submit", class: "btn03" do %><span>更新する</span><i class="fas fa-angle-double-right"></i><% end %></td>
+    </tr>
+    <% end %>
+  </table>
+  <%= link_to dashboard_driver_path(current_driver) do %><i class="fas fa-angle-left"> マイページへ戻る</i><% end %>
+
+  <table class="table .table-borderless">
+    <tr>
+      <th>振込先情報</th>
+    </tr>
+    <tr>
+      <th>登録車情報</th>
+    </tr>
+  </table>
