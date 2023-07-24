@@ -68,12 +68,11 @@
 		</tr>
 
 		<tr>
-			<td><%= link_to "車両情報", class: "side-menu",data: {"turbolinks" => false} %>
+			<td><%= link_to "車両情報", driver_car_infos_path(current_driver), class: "side-menu",data: {"turbolinks" => false} %>
 		</tr>
 
 		<tr>
 			<td><%= link_to "ログアウト", destroy_driver_session_path, method: :delete, class:"side-menu" %></td>
 		</tr>
-
 	</table>
 </div>

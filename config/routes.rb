@@ -20,13 +20,17 @@ Rails.application.routes.draw do
   end
 
   root 'homes#index'
-  get 'homes/index'
-  get 'homes/about'
+  resources :homes, only: %i[ index ] do
+    collection do
+      get :about
+    end
+  end
 
   resources :drivers, only:[:index, :show, :edit, :update] do
     member do
       get :dashboard
     end
+    resources :car_infos, only: %i[ index create edit update destroy ]
   end
 
   resources :sponsors, only:[:index, :show, :edit, :update] do
@@ -64,6 +68,4 @@ Rails.application.routes.draw do
     get :working_inquiry
     get :past_inquiry
   end
-
-  resources :car_infos, only: %i[ index create edit update destroy ]
 end

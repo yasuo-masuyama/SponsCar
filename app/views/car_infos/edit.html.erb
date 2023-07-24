@@ -1,0 +1,44 @@
+<h3>登録車両編集</h3>
+  <%= form_with(model: @car_info, local: true, url: driver_car_info_path) do |f| %>
+      <tr>
+        <td>
+          <%= f.label :メーカー名 %>
+          <%= f.text_field :manufacturer_name, autofocus: true, autocomplete:"", placeholder:"郵便番号", class: "form-control" %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= f.label :車名 %>
+          <%= f.text_field :name, autofocus: true, autocomplete:"", placeholder:"住所", class: "form-control" %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= f.label :車台番号 %>
+          <%= f.text_field :flame_number, autofocus: true, autocomplete:"", placeholder:"宛名", class: "form-control" %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= f.label :ナンバープレート %>
+          <%= f.text_field :license_plate, autofocus: true, autocomplete:"", placeholder:"宛名", class: "form-control" %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :車検証写真 %></td>
+        <td><%= f.file_field :vehicle_image %></td>
+      </tr>
+
+      <tr>
+        <td class="text-center">
+          <%= f.submit "登録する", class: "btn btn-primary col-lg-offset-10"%>
+        </td>
+      </tr>
+
+    <% end %>
+
+  <%= link_to "前の画面に戻る", driver_car_infos_path(current_driver)  %>
