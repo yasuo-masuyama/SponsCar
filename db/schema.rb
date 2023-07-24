@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_22_015032) do
+ActiveRecord::Schema.define(version: 2023_07_24_025100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,6 @@ ActiveRecord::Schema.define(version: 2023_07_22_015032) do
   end
 
   create_table "advertisements", force: :cascade do |t|
-    t.bigint "sponsor_id", null: false
-    t.bigint "genre_id", null: false
     t.string "title", null: false
     t.text "content", null: false
     t.string "heading", null: false
@@ -42,6 +40,22 @@ ActiveRecord::Schema.define(version: 2023_07_22_015032) do
     t.date "end_due_on", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "sponsor_id", null: false
+    t.bigint "genre_id", null: false
+    t.index ["genre_id"], name: "index_advertisements_on_genre_id"
+    t.index ["sponsor_id"], name: "index_advertisements_on_sponsor_id"
+  end
+
+  create_table "car_infos", force: :cascade do |t|
+    t.bigint "driver_id", null: false
+    t.string "manufacturer_name", null: false
+    t.string "name", null: false
+    t.string "flame_number", null: false
+    t.string "license_plate", null: false
+    t.text "vehicle_image", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driver_id"], name: "index_car_infos_on_driver_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -129,4 +143,7 @@ ActiveRecord::Schema.define(version: 2023_07_22_015032) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "advertisements", "genres"
+  add_foreign_key "advertisements", "sponsors"
+  add_foreign_key "car_infos", "drivers"
 end
