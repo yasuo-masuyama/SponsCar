@@ -1,0 +1,2 @@
+module TransferInfosHelper
+end
