@@ -64,4 +64,6 @@ Rails.application.routes.draw do
     get :working_inquiry
     get :past_inquiry
   end
+
+  resources :car_infos, only: %i[ index create edit update destroy ]
 end
