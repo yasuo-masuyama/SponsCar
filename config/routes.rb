@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get :dashboard
     end
     resources :car_infos, only: %i[ index create edit update destroy ]
+    resources :transfer_infos, only: %i[ index create edit update destroy ]
   end
 
   resources :sponsors, only:[:index, :show, :edit, :update] do
