@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_24_025100) do
+ActiveRecord::Schema.define(version: 2023_07_24_075017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,18 @@ ActiveRecord::Schema.define(version: 2023_07_24_025100) do
     t.index ["reset_password_token"], name: "index_sponsors_on_reset_password_token", unique: true
   end
 
+  create_table "transfer_infos", force: :cascade do |t|
+    t.bigint "driver_id", null: false
+    t.string "bank_name", null: false
+    t.string "branch_name", null: false
+    t.integer "account_number", null: false
+    t.integer "account_type", null: false
+    t.string "account_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driver_id"], name: "index_transfer_infos_on_driver_id"
+  end
+
   create_table "under_deals", force: :cascade do |t|
     t.bigint "advertisement_id", null: false
     t.bigint "driver_id", null: false
@@ -146,4 +158,5 @@ ActiveRecord::Schema.define(version: 2023_07_24_025100) do
   add_foreign_key "advertisements", "genres"
   add_foreign_key "advertisements", "sponsors"
   add_foreign_key "car_infos", "drivers"
+  add_foreign_key "transfer_infos", "drivers"
 end
