@@ -4,6 +4,4 @@ class Sponsor < ApplicationRecord
   devise  :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable
           
-  attachment :profile_image
-  attachment :registry_image
 end
