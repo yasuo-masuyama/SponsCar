@@ -1,0 +1,2 @@
+class TransferInfo < ApplicationRecord
+end
