@@ -27,9 +27,12 @@ class Drivers::RegistrationsController < Devise::RegistrationsController
   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    if account_update_params[:profile_image].present?
+      resource.profile_image.attach(account_update_params[:profile_image]) 
+    end
+  end
 
   # DELETE /resource
   # def destroy

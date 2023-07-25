@@ -10,6 +10,19 @@
 	<% end %>
   
   <table class="table .table-borderless">
+  
+    <tr>
+      <th><%= f.label :プロフィール画像 %></th>
+      <td>
+        <% if @driver.profile_image.attached? %>
+          <%= image_tag @driver.profile_image.variant(resize_to_fill: [200, 200]) %>
+        <% else %>
+          <p>画像がありません</p>
+        <% end %>
+      </td>
+      <td><%= f.file_field :profile_image, class: "form-control form-control-sm" %></td>
+    </tr>
+
     <tr>
       <th><%= f.label :名前 %></th>
       <td><%= f.text_field :name, class: "form-control form-control-sm" %></td>
