@@ -21,6 +21,8 @@ gem 'geocoder'
 gem 'enum_help'
 gem 'rails-i18n'
 gem 'kaminari'
+gem 'activestorage-validator'
+gem 'image_processing'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
