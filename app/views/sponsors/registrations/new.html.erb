@@ -5,6 +5,11 @@
     <table class="table" id="none-border">
       <tbody>
         <tr>
+          <td><%= f.label :会社ロゴ %></td>
+          <td><%= f.file_field :company_image %></td>
+        </tr>
+
+        <tr>
           <td><%= f.label :会社名 %></td>
           <td><%= f.text_field :company_name, autofocus: true, :size=>"40", autocomplete:"", placeholder:"会社名を入力", class: "form-control" %></td>
         </tr>
@@ -44,8 +49,9 @@
         </tr>
 
         <tr>
-          <td><%= f.label :登記簿謄本 %><br>※発行から3ヶ月以内</td>
-          <td><%= f.file_field :registry_image, id:"upload_file" %></td>
+          <td><%= f.label :履歴書事項全部証明書 %></td>
+          <td>※発行から3ヶ月以内</td>
+          <td><%= f.file_field :registry_image %></td>
         </tr>
 
         <tr>
