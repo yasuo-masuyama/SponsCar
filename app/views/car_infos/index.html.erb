@@ -41,6 +41,7 @@
       <td>車名</td>
       <td>ナンバープレート</td>
       <td>車台番号</td>
+      <td>車検証写真</td>
       <td colspan="2"></td>
     </tr>
   </thead>
@@ -52,6 +53,7 @@
       <td><%= car_info.name %></td>
       <td><%= car_info.flame_number %></td>
       <td><%= car_info.license_plate %></td>
+      <td><%= image_tag car_info.vehicle_image.variant(resize_to_fill: [200, 200]) %></td>
       <td colspan="2">&emsp;
         <%= link_to "編 集", edit_driver_car_info_path(car_info.driver_id, car_info.id), class: "btn-sm btn-success " %>&emsp;
         <%= link_to "削 除", driver_car_info_path(car_info.driver_id, car_info.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
