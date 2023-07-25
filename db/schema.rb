@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_24_103451) do
+ActiveRecord::Schema.define(version: 2023_07_25_010133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 2023_07_24_103451) do
     t.string "name", null: false
     t.string "flame_number", null: false
     t.string "license_plate", null: false
-    t.text "vehicle_image", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["driver_id"], name: "index_car_infos_on_driver_id"
@@ -108,8 +107,6 @@ ActiveRecord::Schema.define(version: 2023_07_24_103451) do
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "telephone_number", null: false
-    t.text "profile_image"
-    t.text "license_image", null: false
     t.string "activity_area"
     t.boolean "is_active", default: true, null: false
     t.boolean "terms", default: false, null: false
