@@ -1,0 +1,64 @@
+<table class="table">
+  <tr id="none-border">
+    <td class="text-center image-circle" colspan="2">
+      <td><%= image_tag sponsor.company_image.variant(resize_to_fill: [200, 200]) %></td>
+    </td>
+  </tr>
+
+  <tr id="none-border">
+    <td class="text-center" colspan="2">
+      <%= sponsor.company_name %> さん
+    </td>
+  </tr>
+
+<% if current_sponsor == sponsor %>
+  <tr id="none-border">
+    <td class="text-center" colspan="2">
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<table class="sidebar">
+  <thead>
+    <th class="side-menu-heading">メニュー</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to "マイページ", dashboard_sponsor_path(current_sponsor), class:"side-menu" %></td>
+    </tr>
+
+    <tr>
+      <td><%= link_to  "Driver一覧", class:"side-menu" %></td>
+    </tr>
+
+    <tr>
+      <td><%= link_to  "Sponsor一覧", class:"side-menu" %></td>
+    </tr>
+
+    <tr>
+      <td><%= link_to "掲載広告一覧", class:"side-menu" %></td>
+    </tr>
+
+    <tr>
+      <td><%= link_to "広告一覧", class:"side-menu"  %></td>
+    </tr>
+
+    <tr>
+      <td><%= link_to "お問い合わせ", new_contact_path, class:"side-menu" %></td>
+    </tr>
+  </tbody>
+</table><br>
+
+<table class="sidebar">
+    <thead>
+      <th class="side-menu-heading">設定</th>
+    </thead>
+
+  <tr>
+    <td><%= link_to edit_sponsor_path(current_sponsor), class: "side-menu",data: {"turbolinks" => false} do %>アカウント<% end %></td>
+  </tr>
+
+    <td><%= link_to "ログアウト", destroy_sponsor_session_path, method: :delete, class:"side-menu" %></td>
+  </tr>
+</table>
