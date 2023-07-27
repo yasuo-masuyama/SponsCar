@@ -1,0 +1,23 @@
+<h3>広告一覧</h3>
+	<% i = 0 %>
+	<table class="table" id="none-border">
+		<% @advertisements.each do |advertisement| %>
+			<td class="ad-index">
+				<%= link_to advertisement_path(advertisement.id) do %>
+					<%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]) %><br>
+				<%= advertisement.title %><% end %>&emsp;
+				<%= converting_to_jpy(advertisement.amounts) %><br>
+				<%= advertisement.heading %>
+			</td>
+			<% i = i + 1 %>
+				<% if i % 3 == 0 %>
+					<tr></tr>
+				<% end %>
+			<% end %>
+	</table>
+
+<% if sponsor_signed_in? %>
+	<%= link_to dashboard_sponsor_path(current_sponsor) do %><i class="fas fa-angle-left"> マイページへ戻る</i><% end %>
+<% elsif driver_signed_in?%>
+	<%= link_to dashboard_driver_path(current_driver) do %><i class="fas fa-angle-left"> マイページに戻る</i><% end %>
+<% end %>
