@@ -1,0 +1,57 @@
+<% content_for(:body_attributes) do %>
+    data-turbolinks="false"
+<% end %>
+
+<h3>広告依頼フォーム</h3>
+  <%= form_with(model: @advertisement, local: true, url: sponsor_advertisements_path(current_sponsor) )do |f| %>
+    <p>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <% if @advertisement.image.attached? %>
+        <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]) %>
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :title %>
+      <%= f.text_field :title, autofocus: true, autocomplete:"", placeholder:"タイトルを入力", class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :start_due_on %>
+      <%= f.text_field :start_due_on ,data: { :date_format => 'YYYY/MM/DD' }, :class => 'form-control datetimepicker input-medium', placeholder: '2023/01/01'  %>
+    </p>
+
+    <p>
+      <%= f.label :end_due_on %>
+      <%= f.text_field :end_due_on ,data: { :date_format => 'YYYY/MM/DD' }, :class => 'form-control datetimepicker input-medium', placeholder: '2023/01/01'  %>
+    </p>
+
+    <p>
+      <%= f.label :amounts %>
+      <%= f.text_field :amounts, autofocus: true, autocomplete:"", placeholder:"金額を入力", class: "form-control input-small" %>
+      ※こちらの金額とは別に掲載手数料が10%発生します
+    </p>
+
+    <p>
+      <%= f.label :heading %>
+      <%= f.text_field :heading, autofocus: true, autocomplete:"", placeholder:"見出しを入力", class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :content %>
+      <%= f.text_area :content, autofocus: true, autocomplete:"", placeholder:"内容を入力", class: "form-control", id:"input-area" %></td>
+    </p>
+
+    <p>
+      <%= f.label :genre_id %>
+      <%= f.collection_select(:genre_id, @genres, :id, :name, :prompt => "選択してください") %></td>
+    </p>
+
+    <p class="text-right">
+      <%= button_tag :type => "submit", class: "btn03" do %><span>依頼する</span><i class="fas fa-angle-double-right"></i><% end %></td>
+    </p>
+
+  <% end %>
+
+<%= link_to dashboard_sponsor_path(current_sponsor), class:"btn03" do %><i class="fas fa-angle-left"> 前の画面に戻る</i><% end %>

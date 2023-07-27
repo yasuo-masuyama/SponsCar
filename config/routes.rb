@@ -38,6 +38,9 @@ Rails.application.routes.draw do
     member do
       get :dashboard
     end
+    scope module: :sponsors do
+      resources :advertisements
+    end
   end
 
   resources :under_deals, only:[:index, :show, :create, :edit,:update]do
@@ -69,4 +72,11 @@ Rails.application.routes.draw do
     get :working_inquiry
     get :past_inquiry
   end
+
+  resources :advertisements, only: %i[ index show ] do
+    member do
+      get :genre_search
+    end
+  end
+
 end

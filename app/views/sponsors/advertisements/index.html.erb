@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="col-xs-3">
+		<%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+	</div>
+	<div class="col-xs-8">
+		<h3>掲載中 広告一覧</h3>
+			<% i = 0 %>
+				<table class="table" id="none-border">
+					<% @advertisements.each do |advertisement| %>
+						<td class="ad-index">
+							<%= link_to sponsor_advertisement_path(advertisement.sponsor.id,advertisement.id) do %>
+								<%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]) %><br>
+							<%= advertisement.title %><% end %>&emsp;
+              <%# お気に入りボタンを作成 %>
+							<%= converting_to_jpy(advertisement.amounts) %><br>
+							<%= advertisement.heading %>
+						</td>
+						<% i = i + 1 %>
+							<% if i % 3 == 0 %>
+								<tr></tr>
+							<% end %>
+						<% end %>
+				</table>
+		<% if sponsor_signed_in? %>
+			<%= link_to "マイページへ戻る", dashboard_sponsor_path(current_sponsor) %>
+		<% elsif driver_signed_in?%>
+			<%= link_to "マイページに戻る", dashboard_driver_path(current_driver) %>
+		<% end %>
+	</div>
+</div>

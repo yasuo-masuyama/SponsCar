@@ -1,0 +1,8 @@
+<% if sponsor_signed_in? %>
+  <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+<% elsif driver_signed_in?%>
+  <%= render "drivers/sidebar", driver: current_driver %>
+<% end %><br>
+
+<%= render "advertisements/genre_templete", genres: @genres %>
+<%= render "advertisements/index", advertisements: @advertisement %>
