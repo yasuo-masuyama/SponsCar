@@ -14,6 +14,7 @@
 <% if current_sponsor == sponsor %>
   <tr id="none-border">
     <td class="text-center" colspan="2">
+      <%= link_to new_sponsor_advertisement_path(current_sponsor), class: "btn01", data: {"turbolinks" => false } do %><span>新規広告依頼</span><% end %>
     </td>
   </tr>
 <% end %>
@@ -37,11 +38,11 @@
     </tr>
 
     <tr>
-      <td><%= link_to "掲載広告一覧", class:"side-menu" %></td>
+      <td><%= link_to "掲載広告一覧", sponsor_advertisements_path(current_sponsor), class:"side-menu" %></td>
     </tr>
 
     <tr>
-      <td><%= link_to "広告一覧", class:"side-menu"  %></td>
+      <td><%= link_to "広告一覧", advertisements_path(current_sponsor), class:"side-menu"  %></td>
     </tr>
 
     <tr>

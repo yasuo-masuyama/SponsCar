@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-3">
+    <!-- プロフィール -->
+    <% if sponsor_signed_in? %>
+      <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+    <% elsif driver_signed_in?%>
+      <%= render "drivers/sidebar", driver: current_driver %>
+    <% end %><br>
+  </div>
+
+  <div class="col-xs-8">
+    <div class="ad-area">
+      <div class="ad-card">
+        <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]) %>
+          <table>
+            <tr>
+              <th><h4><%= @advertisement.title %></h4></th>
+            </tr>
+            <tr>
+              <td><span class="ad-fee"><%= converting_to_jpy(@advertisement.amounts) %></span>
+                <%# お気に入りボタンを作成 %>
+              </td>
+            </tr>
+            <tr>
+              <td><h4><%= @advertisement.heading %></h4></td>
+            </tr>
+            <tr>
+              <td><p><%= @advertisement.content %></p></td>
+            </tr>
+          </table>
+
+          <table class="table">
+            <tr>
+              <th>広告主</th>
+              <th>広告作業期間</th>
+            </tr>
+            <tr>
+              <td><%= @advertisement.sponsor.company_name %></td>
+              <td><%= @advertisement.start_due_on %><br>&emsp;〜<%= @advertisement.end_due_on %></td>
+            </tr>
+            <tr>
+            <th>ジャンル</th>
+            </tr>
+            <tr>
+            <td><%= @advertisement.genre.name %></td>
+            </tr>
+          </table>
+          <%= link_to edit_sponsor_advertisement_path(@advertisement.sponsor.id, @advertisement.id), class:"btn03" do %>編集する <i class="fas fa-angle-double-right"></i><% end %>
+      </div>
+    </div><br>
+    <%= link_to sponsor_advertisements_path(current_sponsor) do %><i class="fas fa-angle-left"> 広告一覧へ戻る</i><% end %>
+  </div>
+</div>

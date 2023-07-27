@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-1">
+    <h3>広告内容 編集</h3>
+      <%= form_with(model: @advertisement, local: true,  url: sponsor_advertisement_path) do |f| %>
+          <tr>
+            <td><%= f.label :広告画像 %></td><br>
+            <td><%= f.file_field :image %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :タイトル %></td>
+            <td><%= f.text_field :title, autofocus: true, class: "form-control" %></td>
+          </tr>
+
+          <th><%= f.label :start_due_on %></th>
+          <td><%= f.text_field :start_due_on, data: { :date_format => 'YYYY/MM/DD' }, :class => 'form-control datetimepicker input-medium' %></td>
+          <th><%= f.label :end_due_on %></th>
+          <td><%= f.text_field :end_due_on, data: { :date_format => 'YYYY/MM/DD' }, :class => 'form-control datetimepicker input-medium' %></td>
+          
+          <tr>
+            <td><%= f.label :広告金額 %></td>
+            <td><%= f.text_field :amounts, autofocus: true, class: "form-control" %><span>円</span></td>
+              <p>※こちらの金額とは別に掲載手数料が10%発生します</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><%= f.label :見出し %></td>
+            <td><%= f.text_field :heading, autofocus: true, class: "form-control" %>
+            </td>
+          </tr>
+
+          <tr>
+            <td><%= f.label :内容 %></td>
+            <td><%= f.text_area :content, autofocus: true, class: "form-control" %></td>
+          </tr>
+
+          <tr>
+            <td><%= f.label :ジャンル %></td>
+            <td><%= f.collection_select(:genre_id, @genres, :id, :name) %></td>
+          </tr>
+
+          <tr>
+            <td class="text-center">
+              <%= f.submit "登録する", class: "btn btn-primary col-lg-offset-10"%>
+            </td>
+          </tr>
+
+        <% end %>
+      <%= link_to sponsor_advertisements_path do %><i class="fas fa-angle-left"> 前の画面に戻る</i><% end %>
+  </div>
+  <div class = "col-xs-5">
+    <h3>商品画像プレビュー</h3>
+      <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]) %>
+  </div>
+</div>
