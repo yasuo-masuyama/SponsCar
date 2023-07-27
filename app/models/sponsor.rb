@@ -22,4 +22,6 @@ class Sponsor < ApplicationRecord
   has_one_attached :company_image
   has_one_attached :registry_image
 
+  has_many :advertisements
+
 end
