@@ -75,7 +75,7 @@ Rails.application.routes.draw do
 
   resources :advertisements, only: %i[ index show ] do
     member do
-      get :genre_search
+      get :genre_index
     end
   end
 
