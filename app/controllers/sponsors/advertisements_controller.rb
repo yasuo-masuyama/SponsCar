@@ -1,6 +1,6 @@
 class Sponsors::AdvertisementsController < ApplicationController
   before_action :set_advertisement, only: %i[ show edit update ]
-  before_action :getAllGenreRecords, only: %i[ index new edit]
+  before_action :getAllGenreRecords, only: %i[ index new edit ]
 
   def index
     @sponsor = current_sponsor

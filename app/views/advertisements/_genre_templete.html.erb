@@ -4,7 +4,7 @@
 	</thead>
 	<% genres.each do |genre| %>
 		<tr>
-			<td><%= link_to genre.name, genre_search_advertisement_path(genre.id), class:"side-menu" %></td>
+			<td><%= link_to genre.name, genre_index_advertisement_path(genre.id), class:"side-menu" %></td>
 		</tr>
 	<% end %>
 </table>
