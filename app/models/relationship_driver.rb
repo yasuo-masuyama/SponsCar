@@ -1,0 +1,2 @@
+class RelationshipDriver < ApplicationRecord
+end
