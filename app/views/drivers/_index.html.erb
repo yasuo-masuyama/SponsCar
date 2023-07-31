@@ -1,19 +1,22 @@
-<table class="table">
-  <tr id="none-border">
-    <td class="text-center">
-        <%= attachment_image_tag driver, :profile_image, fallback: "no_image.jpg", class: "image-circle", size: "230x170" %>
-    </td>
-  </tr>
-  <tr id="none-border">
-    <td class="text-center">
-        <%= driver.driver_name %> さん
-    </td>
-  </tr>
-  <% if current_driver == driver %>
-  <tr id="none-border">
-    <td class="text-center">
-        <%= link_to edit_driver_path(current_driver), class: "btn01",data: {"turbolinks" => false} do %><span>ドライバー情報 編集</span><% end %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+<h3>Driver一覧</h3>
+	<% i = 0 %>
+		<table class="table" id="none-border">
+			<% drivers.each do |driver| %>
+				<td>
+					<%= link_to driver_path(driver.id),data: {"turbolinks" => false} do %>
+					<%= image_tag driver.profile_image.variant(resize_to_fill: [200, 200]) %><br>
+					<%= driver.name %><% end %><br>
+					<%= driver.name_kana %><br>
+				</td>
+				<% i = i + 1 %>
+				<% if i % 3 == 0 %>
+					<tr></tr>
+				<% end %>
+			<% end %>
+		</table>
+	<div class="text-center"><%= paginate drivers, class: "paginate" %></div>
+<% if sponsor_signed_in? %>
+	<%= link_to "マイページへ戻る", dashboard_sponsor_path(current_sponsor) %>
+<% elsif driver_signed_in?%>
+	<%= link_to "トップページに戻る", dashboard_driver_path(current_driver) %>
+<% end %>

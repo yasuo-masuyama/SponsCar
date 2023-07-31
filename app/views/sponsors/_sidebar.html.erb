@@ -11,6 +11,10 @@
     </td>
   </tr>
 
+  <tr id="none-border" follow_count_<%= sponsor.id %>>
+		<%= render "relationship_drivers/follow_count_sponsor", sponsor: current_sponsor %>
+	</tr>
+
 <% if current_sponsor == sponsor %>
   <tr id="none-border">
     <td class="text-center" colspan="2">
@@ -30,11 +34,11 @@
     </tr>
 
     <tr>
-      <td><%= link_to  "Driver一覧", class:"side-menu" %></td>
+      <td><%= link_to  "Driver一覧", drivers_path, class:"side-menu" %></td>
     </tr>
 
     <tr>
-      <td><%= link_to  "Sponsor一覧", class:"side-menu" %></td>
+      <td><%= link_to  "Sponsor一覧", sponsors_path, class:"side-menu" %></td>
     </tr>
 
     <tr>

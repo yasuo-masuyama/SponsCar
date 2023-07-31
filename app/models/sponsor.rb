@@ -24,4 +24,21 @@ class Sponsor < ApplicationRecord
 
   has_many :advertisements
 
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy 
+	has_many :followed, class_name: "RelationshipDriver", foreign_key: "followed_id", dependent: :destroy
+
+  has_many :following_driver, through: :follower, source: :followed 
+	has_many :follower_driver, through: :followed, source: :follower 
+
+  def follow(driver_id)
+		follower.create(followed_id: driver_id)
+	end
+
+	def unfollow(driver_id)
+		follower.find_by(followed_id: driver_id).destroy
+	end
+
+	def following(driver_id)
+		follower.find_by(followed_id: driver_id)
+	end
 end

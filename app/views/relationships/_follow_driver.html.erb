@@ -1,0 +1,7 @@
+<% if sponsor_signed_in? %>
+  <% if current_sponsor.following(@driver) %>
+    <%= link_to 'フォローを外す', relationships_path(@driver), method: :delete, remote: true %>
+  <% else %>
+    <%= link_to 'フォローする', relationships_path(@driver), method: :post, remote: true %>
+  <% end %>
+<% end %>
