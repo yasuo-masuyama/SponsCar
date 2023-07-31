@@ -79,6 +79,7 @@ Rails.application.routes.draw do
     member do
       get :genre_index
     end
+    resource :favorites, only: %i[ create destroy ]
   end
 
   post 'relationship_drivers/:sponsor_id', to: 'relationship_drivers#create', as:'relationship_drivers'
