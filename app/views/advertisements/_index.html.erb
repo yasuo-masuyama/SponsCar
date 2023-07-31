@@ -6,6 +6,9 @@
 				<%= link_to advertisement_path(advertisement.id) do %>
 					<%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]) %><br>
 				<%= advertisement.title %><% end %>&emsp;
+			<div id="favorites_buttons_<%= advertisement.id %>">
+					<%= render partial:'favorites/favorite', locals: { advertisement: advertisement} %>
+			</div>
 				<%= converting_to_jpy(advertisement.amounts) %><br>
 				<%= advertisement.heading %>
 			</td>

@@ -13,4 +13,8 @@ class Advertisement < ApplicationRecord
 
   has_one_attached :image
 
+  def favorited_by?(driver)
+		favorites.where(driver_id: driver.id).exists?
+	end
+
 end

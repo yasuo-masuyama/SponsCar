@@ -20,7 +20,9 @@
             </tr>
             <tr>
               <td><span class="ad-fee"><%= converting_to_jpy(@advertisement.amounts) %></span>
-                <%# お気に入りボタンを入れる %>
+                <div id="favorites_buttons_<%= @advertisement.id %>">
+                  <%= render partial: 'favorites/favorite', locals: { advertisement: @advertisement } %>
+                </div>
               </td>
             </tr>
             <tr>
