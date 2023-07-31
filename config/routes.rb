@@ -52,8 +52,6 @@ Rails.application.routes.draw do
       resources :deal_messages, only:[:create]
   end
 
-  resources :advertisements, only:[:index, :show]
-
   resources :infos
 
   resources :admins, only:[:index]
@@ -78,6 +76,7 @@ Rails.application.routes.draw do
   resources :advertisements, only: %i[ index show ] do
     member do
       get :genre_index
+      get :favorite_index
     end
     resource :favorites, only: %i[ create destroy ]
   end
