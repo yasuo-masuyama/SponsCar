@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_27_024653) do
+ActiveRecord::Schema.define(version: 2023_07_30_151151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,26 @@ ActiveRecord::Schema.define(version: 2023_07_27_024653) do
     t.integer "viewer_type", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "relationship_drivers", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_relationship_drivers_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationship_drivers_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationship_drivers_on_follower_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "sponsors", force: :cascade do |t|

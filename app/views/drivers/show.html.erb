@@ -1,0 +1,81 @@
+	<div class="row">
+		<div class="col-xs-3">
+			<% if sponsor_signed_in? %>
+				<%= render 'sponsors/sidebar' , sponsor: current_sponsor %>
+			<% elsif driver_signed_in?%>
+				<%= render "drivers/sidebar", driver: current_driver %>
+			<% end %>
+		</div>
+
+		<div class="col-xs-8">
+			<div class="row">
+				<div class = "col-xs-6">
+				<%= image_tag @driver.profile_image.variant(resize_to_fill: [200, 200]) %><br>
+					<div id="follow_driver_<%= @driver.id %>">
+						<%= render "relationships/follow_driver", driver: @driver %>
+					</div>
+						<table class="table .table-borderless">
+							<tr id="follow_count_<%= @driver.id %>">
+								<%= render "relationships/follow_count_driver", driver: @driver %>
+							</tr>
+							<tr>
+								<th>名前</th>
+								<td><%= @driver.name %></td>
+							</tr>
+							<tr>
+								<th>名前（カナ）</th>
+								<td><%= @driver.name_kana %></td>
+							</tr>
+							<tr>
+								<th>広告活動地域</th>
+								<td><%= @driver.activity_area %></td>
+							</tr>
+							<tr>
+								<th>メールアドレス</th>
+								<td><%= @driver.email %></td>
+							</tr>
+							<% if driver_signed_in? %>
+							<tr>
+								<th>ユーザーステータス</th>
+								<td>
+									<%= form_with(model: @driver, local: true, url: driver_path(@driver), method: :patch) do |f| %>
+										<%= f.radio_button :is_active, :true, checed:true %>
+										<%= f.label :有効 %>
+										<%= f.radio_button :is_active, :false %>
+										<%= f.label :無効 %>
+										<%= f.submit "更新", class: "btn btn-primary",style: "margin-left:13px"%>
+									<% end %></td>
+							</tr>
+							<% end %>
+						</table>
+				</div>
+
+				<div class = "col-xs-6">
+					<h4>広告活動地域</h4>
+				</div>
+			</div>
+
+		<div class="col-xs-12">
+			<table class="table">
+        <h3>車両情報</h3>
+	        <thead>
+		        <tr>
+		          <td>メーカー</td>
+		          <td>車名</td>
+		          <td>ナンバープレート</td>
+		          <td>車台番号</td>
+		        </tr>
+		      </thead>
+		      <tbody>
+		      <% @car_infos.each do |car_info| %>
+		        <tr>
+		          <td><%= car_info.manufacturer_name %></td>
+		          <td><%= car_info.name %></td>
+		          <td><%= car_info.license_plate %></td>
+		          <td><%= car_info.flame_number %></td>
+		        </tr>
+		      <% end %>
+		      </tbody>
+	      </table>
+	  </div>
+	</div>

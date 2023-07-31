@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :drivers, only:[:index, :show, :edit, :update] do
     member do
       get :dashboard
+      get :followings, :followers
     end
     resources :car_infos, only: %i[ index create edit update destroy ]
     resources :transfer_infos, only: %i[ index create edit update destroy ]
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   resources :sponsors, only:[:index, :show, :edit, :update] do
     member do
       get :dashboard
+      get :followings, :followers
     end
     scope module: :sponsors do
       resources :advertisements
@@ -78,5 +80,11 @@ Rails.application.routes.draw do
       get :genre_index
     end
   end
+
+  post 'relationship_drivers/:sponsor_id', to: 'relationship_drivers#create', as:'relationship_drivers'
+  delete 'relationship_drivers/:sponsor_id', to: 'relationship_drivers#destroy'
+  
+  post '/relationships/:driver_id',to: 'relationships#create',as:'relationships'
+  delete '/relationships/:driver_id',to: 'relationships#destroy'
 
 end

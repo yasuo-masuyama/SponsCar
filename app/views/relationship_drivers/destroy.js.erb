@@ -1,0 +1,2 @@
+$('#follow_sponsor_<%= @sponsor.id %>').html("<%= j(render partial: 'relationship_drivers/follow_sponsor', sponsor: @sponsor) %>");
+$('#follow_count_<%= @sponsor.id %>').html("<%= j(render partial: 'relationship_drivers/follow_count_sponsor', sponsor: @sponsor) %>");

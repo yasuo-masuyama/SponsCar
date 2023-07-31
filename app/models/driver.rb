@@ -20,4 +20,22 @@ class Driver < ApplicationRecord
   has_many :transfer_infos
   
   enum user_status: {not_check: 0, checked_indentification: 1, checked_car_indentification: 2,}
+
+  has_many :follower, class_name: "RelationshipDriver", foreign_key: "follower_id", dependent: :destroy 
+	has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+  has_many :following_sponsor, through: :follower, source: :followed
+  has_many :follower_sponsor, through: :followed, source: :follower
+
+  def follow(sponsor_id)
+		follower.create(followed_id: sponsor_id)
+	end
+
+	def unfollow(sponsor_id)
+		follower.find_by(followed_id: sponsor_id).destroy
+	end
+
+	def following(sponsor_id)
+		follower.find_by(followed_id: sponsor_id)
+	end
 end

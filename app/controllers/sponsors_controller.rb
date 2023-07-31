@@ -1,8 +1,14 @@
 class SponsorsController < ApplicationController
   before_action :authenticate_sponsor! || :authenticate_admin!, only: %i[ dashboard edit update ]
-  before_action :set_sponsor, only: %i[ show edit update ]
+  before_action :set_sponsor, only: %i[ show edit update followings followers ]
+  before_action :set_current_driver, only: %i[ dashboard index ]
+  before_action :set_current_sponsor, only: %i[ dashboard index ]
 
   def dashboard
+  end
+
+  def index
+    @sponsors = Sponsor.page(params[:page]).per(9)
   end
 
   def show
@@ -19,7 +25,23 @@ class SponsorsController < ApplicationController
     end
   end
 
+  def followings
+    @followings = @sponsor.following_driver
+  end
+
+  def followers
+    @followers = @sponsor.follower_driver
+  end
+
   private
+
+  def set_current_driver
+    @driver = current_driver
+  end
+
+  def set_current_sponsor
+    @sponsor = current_sponsor
+  end
 
   def set_sponsor
     @sponsor = Sponsor.find(params[:id])
