@@ -9,6 +9,12 @@ class Advertisement < ApplicationRecord
   belongs_to :genre
   belongs_to :sponsor
 
+  has_many :favorites, dependent: :destroy
+
   has_one_attached :image
+
+  def favorited_by?(driver)
+		favorites.where(driver_id: driver.id).exists?
+	end
 
 end

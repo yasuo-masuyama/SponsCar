@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-3">
+		<!-- 前の画面に戻る -->
+					<!-- プロフィール -->
+		<% if sponsor_signed_in? %>
+			<%= render 'sponsors/profile', sponsor: @sponsor %>
+		<% elsif driver_signed_in?%>
+			<%= render 'drivers/sidebar' , driver: @driver %>
+		<% end %><br>
+		<!-- ジャンル一覧 -->
+			<%= render "advertisements/genre_templete", genres: @genres %>
+		</div>
+	<div class="col-xs-8">
+		<%= render 'advertisements/index', advertisements: @advertisements %>
+	</div>
+</div>
