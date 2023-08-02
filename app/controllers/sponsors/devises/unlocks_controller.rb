@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Drivers::UnlocksController < Devise::UnlocksController
+class Sponsors::Devises::UnlocksController < Devise::UnlocksController
   # GET /resource/unlock/new
   # def new
   #   super

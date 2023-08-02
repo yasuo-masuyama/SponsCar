@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Sponsors::PasswordsController < Devise::PasswordsController
+class Sponsors::Devises::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   # def new
   #   super
