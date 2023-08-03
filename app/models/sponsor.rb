@@ -41,4 +41,7 @@ class Sponsor < ApplicationRecord
 	def following(driver_id)
 		follower.find_by(followed_id: driver_id)
 	end
+
+  geocoded_by :address
+	after_validation :geocode, if: :address_changed?
 end

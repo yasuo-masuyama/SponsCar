@@ -67,6 +67,26 @@
   </table>
   <%= link_to dashboard_driver_path(current_driver) do %><i class="fas fa-angle-left"> マイページへ戻る</i><% end %>
 
+  <div class="col-xs-6">
+    <h4>活動地域</h4>
+      <div id ="map"></div>
+        <script>
+          var map;
+          function initMap(){
+            var lat_lng ={ lat: <%= @driver.latitude %>, lng: <%= @driver.longitude %>}
+
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: lat_lng,
+              zoom: 12,
+            });
+            marker = new google.maps.Marker({
+              position: lat_lng,
+              map: map
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+
   <table class="table .table-borderless">
     <tr>
       <th>口座情報</th>

@@ -7,9 +7,11 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     if resource_class == Driver
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :name_kana, :postal_code, :address, :telephone_number, :activity_area, :terms, :email, :profile_image, :license_image])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :name_kana, :postal_code, :address, :telephone_number, 
+                                        :activity_area, :terms, :email, :profile_image, :license_image, :latitude, :longitude])
     elsif resource_class == Sponsor
-      devise_parameter_sanitizer.permit(:sign_up,keys:[:company_name, :company_name_kana, :ceo_name, :ceo_name_kana, :postal_code, :address, :telephone_number, :terms, :is_active, :company_image, :registry_image])
+      devise_parameter_sanitizer.permit(:sign_up,keys:[:company_name, :company_name_kana, :ceo_name, :ceo_name_kana, :postal_code, 
+                                        :address, :telephone_number, :terms, :is_active, :company_image, :registry_image, :latitude, :longitude])
     else
       devise_parameter_sanitizer.permit(:sign_up,keys:[:name,:name_kana,:email])
     end
