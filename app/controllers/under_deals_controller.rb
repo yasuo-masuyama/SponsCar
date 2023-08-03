@@ -1,0 +1,2 @@
+class UnderDealsController < ApplicationController
+end
