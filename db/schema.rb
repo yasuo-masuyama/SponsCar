@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_31_102555) do
+ActiveRecord::Schema.define(version: 2023_08_03_103224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,12 +198,13 @@ ActiveRecord::Schema.define(version: 2023_07_31_102555) do
   end
 
   create_table "under_deals", force: :cascade do |t|
-    t.bigint "advertisement_id", null: false
-    t.bigint "driver_id", null: false
     t.integer "work_status", default: 0, null: false
-    t.text "installation_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "advertisement_id", null: false
+    t.bigint "driver_id", null: false
+    t.index ["advertisement_id"], name: "index_under_deals_on_advertisement_id"
+    t.index ["driver_id"], name: "index_under_deals_on_driver_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -214,4 +215,6 @@ ActiveRecord::Schema.define(version: 2023_07_31_102555) do
   add_foreign_key "favorites", "advertisements"
   add_foreign_key "favorites", "drivers"
   add_foreign_key "transfer_infos", "drivers"
+  add_foreign_key "under_deals", "advertisements"
+  add_foreign_key "under_deals", "drivers"
 end
