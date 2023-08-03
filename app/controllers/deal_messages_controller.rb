@@ -1,0 +1,2 @@
+class DealMessagesController < ApplicationController
+end
