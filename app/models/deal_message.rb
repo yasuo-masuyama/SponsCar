@@ -1,0 +1,2 @@
+class DealMessage < ApplicationRecord
+end
