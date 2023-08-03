@@ -1,23 +1,22 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers:{ 
-    registrations: 'admins/devises/registrations',
-    sessions: 'admins/devises/sessions' 
+    registrations: 'admins/registrations',
+    sessions: 'admins/sessions' 
   }
 
   devise_for :drivers, controllers:{ 
-    registrations: 'drivers/devises/registrations',
-    sessions: 'drivers/devises/sessions' 
+    registrations: 'drivers/registrations',
+    sessions: 'drivers/sessions' 
   }
   devise_scope :driver do
-    post 'drivers/devises/guest_sign_in', to: 'drivers/sessions#new_guest'
+    post 'driver/guest_sign_in', to: 'drivers/sessions#new_guest'
   end
 
   devise_for :sponsors, controllers:{ 
-    registrations: 'sponsors/devises/registrations',
-    sessions: 'sponsors/devises/sessions' 
-  }
+    registrations: 'sponsors/registrations',
+    sessions: 'sponsors/sessions' }
   devise_scope :sponsor do
-    post 'sponsors/devises/guest_sign_in', to: 'sponsors/devises/sessions#guest_sign_in'
+    post 'sponsor/guest_sign_in', to: 'sponsor/sessions#guest_sign_in'
   end
 
   root 'homes#index'
@@ -55,12 +54,13 @@ Rails.application.routes.draw do
 
   resources :infos
 
-  resources :admins, only:[:index] do
+  resources :admins, only:[:index]
     namespace :admins do
+      resources :sponsors, only: [:index, :show, :update]
+      resources :drivers, only: [:index, :show, :update]
       resources :genres, only: [:index, :create, :edit, :update, :destroy]
       resources :contacts, only: [:index,:show]
     end
-  end
 
   resources :contacts, only: %i[ index new create show update ] do
     collection do
@@ -78,7 +78,7 @@ Rails.application.routes.draw do
       get :genre_index
       get :favorite_index
     end
-    resource :favorites, only: %i[ index create destroy ]
+    resource :favorites, only: %i[ create destroy ]
   end
 
   post 'relationship_drivers/:sponsor_id', to: 'relationship_drivers#create', as:'relationship_drivers'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Sponsors::Devises::ConfirmationsController < Devise::ConfirmationsController
+class Drivers::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation/new
   # def new
   #   super

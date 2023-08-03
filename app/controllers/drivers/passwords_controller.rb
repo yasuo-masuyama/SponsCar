@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Drivers::Devises::PasswordsController < Devise::PasswordsController
+class Drivers::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   # def new
   #   super
