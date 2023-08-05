@@ -23,6 +23,7 @@ class Sponsor < ApplicationRecord
   has_one_attached :registry_image
 
   has_many :advertisements
+  has_many :rooms
 
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy 
 	has_many :followed, class_name: "RelationshipDriver", foreign_key: "followed_id", dependent: :destroy

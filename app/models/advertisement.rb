@@ -6,9 +6,11 @@ class Advertisement < ApplicationRecord
   validates :amounts, presence: true
   validates :image, presence: true, blob: { content_type: :image }
 
-  belongs_to :genre
   belongs_to :sponsor
+  belongs_to :genre
 
+  has_many :rooms
+  has_many :under_deals
   has_many :favorites, dependent: :destroy
 
   has_one_attached :image

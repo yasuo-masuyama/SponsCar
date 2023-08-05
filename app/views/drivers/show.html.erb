@@ -71,27 +71,27 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
 			</div>
 
-		<div class="col-xs-12">
-			<table class="table">
-        <h3>車両情報</h3>
-	        <thead>
-		        <tr>
-		          <td>メーカー</td>
-		          <td>車名</td>
-		          <td>ナンバープレート</td>
-		          <td>車台番号</td>
-		        </tr>
-		      </thead>
-		      <tbody>
-		      <% @car_infos.each do |car_info| %>
-		        <tr>
-		          <td><%= car_info.manufacturer_name %></td>
-		          <td><%= car_info.name %></td>
-		          <td><%= car_info.license_plate %></td>
-		          <td><%= car_info.flame_number %></td>
-		        </tr>
-		      <% end %>
-		      </tbody>
-	      </table>
-	  </div>
+	<div class="col-xs-12">
+		<table class="table">
+			<h3>車両情報</h3>
+			<thead>
+				<tr>
+					<td>メーカー</td>
+					<td>車名</td>
+					<td>ナンバープレート</td>
+					<td>車台番号</td>
+				</tr>
+			</thead>
+			<tbody>
+			<% @car_infos.each do |car_info| %>
+				<tr>
+					<td><%= car_info.manufacturer_name %></td>
+					<td><%= car_info.name %></td>
+					<td><%= car_info.license_plate %></td>
+					<td><%= car_info.flame_number %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
 	</div>
+</div>
