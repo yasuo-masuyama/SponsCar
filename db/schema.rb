@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_31_102555) do
+ActiveRecord::Schema.define(version: 2023_08_03_153038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 2023_07_31_102555) do
     t.index ["driver_id"], name: "index_car_infos_on_driver_id"
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.integer "user_type", null: false
+    t.text "message", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_chats_on_room_id"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
     t.string "company_name"
@@ -93,6 +102,29 @@ ActiveRecord::Schema.define(version: 2023_07_31_102555) do
     t.integer "work_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "deal_details", force: :cascade do |t|
+    t.bigint "under_deal_id", null: false
+    t.integer "payment_amount"
+    t.integer "transfer_status", default: 0, null: false
+    t.string "bank_name", null: false
+    t.string "branch_name", null: false
+    t.integer "account_type", null: false
+    t.integer "account_number", null: false
+    t.string "account_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["under_deal_id"], name: "index_deal_details_on_under_deal_id"
+  end
+
+  create_table "deal_messages", force: :cascade do |t|
+    t.bigint "under_deal_id", null: false
+    t.text "message", null: false
+    t.integer "user_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["under_deal_id"], name: "index_deal_messages_on_under_deal_id"
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -161,6 +193,17 @@ ActiveRecord::Schema.define(version: 2023_07_31_102555) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "driver_id", null: false
+    t.bigint "sponsor_id", null: false
+    t.bigint "advertisement_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["advertisement_id"], name: "index_rooms_on_advertisement_id"
+    t.index ["driver_id"], name: "index_rooms_on_driver_id"
+    t.index ["sponsor_id"], name: "index_rooms_on_sponsor_id"
+  end
+
   create_table "sponsors", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -198,12 +241,13 @@ ActiveRecord::Schema.define(version: 2023_07_31_102555) do
   end
 
   create_table "under_deals", force: :cascade do |t|
-    t.bigint "advertisement_id", null: false
-    t.bigint "driver_id", null: false
     t.integer "work_status", default: 0, null: false
-    t.text "installation_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "advertisement_id", null: false
+    t.bigint "driver_id", null: false
+    t.index ["advertisement_id"], name: "index_under_deals_on_advertisement_id"
+    t.index ["driver_id"], name: "index_under_deals_on_driver_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -211,7 +255,15 @@ ActiveRecord::Schema.define(version: 2023_07_31_102555) do
   add_foreign_key "advertisements", "genres"
   add_foreign_key "advertisements", "sponsors"
   add_foreign_key "car_infos", "drivers"
+  add_foreign_key "chats", "rooms"
+  add_foreign_key "deal_details", "under_deals"
+  add_foreign_key "deal_messages", "under_deals"
   add_foreign_key "favorites", "advertisements"
   add_foreign_key "favorites", "drivers"
+  add_foreign_key "rooms", "advertisements"
+  add_foreign_key "rooms", "drivers"
+  add_foreign_key "rooms", "sponsors"
   add_foreign_key "transfer_infos", "drivers"
+  add_foreign_key "under_deals", "advertisements"
+  add_foreign_key "under_deals", "drivers"
 end

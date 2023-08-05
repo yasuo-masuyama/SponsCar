@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :drivers, only:[:index, :show, :edit, :update] do
+  resources :drivers, only: %i[ index show edit update ] do
     member do
       get :dashboard
       get :followings, :followers
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :transfer_infos, only: %i[ index create edit update destroy ]
   end
 
-  resources :sponsors, only:[:index, :show, :edit, :update] do
+  resources :sponsors, only: %i[ index show edit update ] do
     member do
       get :dashboard
       get :followings, :followers
@@ -45,21 +45,24 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :under_deals, only:[:index, :show, :create, :edit,:update]do
+  resources :under_deals, only: %i[ index show create edit update ] do
     member do
       get :show_driver
     end
-      resources :deal_messages, only:[:create]
+    resources :deal_messages, only: %i[ create ]
   end
+  scope module: :under_deals do
+      get :coming_soon
+	end
 
   resources :infos
 
-  resources :admins, only:[:index]
+  resources :admins, only: %i[ index ]
     namespace :admins do
-      resources :sponsors, only: [:index, :show, :update]
-      resources :drivers, only: [:index, :show, :update]
-      resources :genres, only: [:index, :create, :edit, :update, :destroy]
-      resources :contacts, only: [:index,:show]
+      resources :sponsors, only: %i[ index show update ]
+      resources :drivers, only: %i[ index show update ]
+      resources :genres, only: %i[ index create edit update destroy ]
+      resources :contacts, only: %i[ index show ]
     end
 
   resources :contacts, only: %i[ index new create show update ] do

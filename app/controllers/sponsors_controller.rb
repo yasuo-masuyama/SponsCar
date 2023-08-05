@@ -5,6 +5,9 @@ class SponsorsController < ApplicationController
   before_action :set_current_sponsor, only: %i[ dashboard index ]
 
   def dashboard
+    deal_all = UnderDeal.includes(:advertisement).where(advertisements: {sponsor_id: current_sponsor} )
+    @under_deals = deal_all.includes(:advertisement).where.not(work_status: 'finished')
+    @finish_deals = deal_all.where(work_status: 'finished').or(deal_all.where(work_status: 'refuse')).or(deal_all.where(work_status: 'checked_refuse'))
   end
 
   def index

@@ -15,6 +15,7 @@ class Driver < ApplicationRecord
   has_one_attached :profile_image
   has_one_attached :license_image
   
+  has_many :rooms
   has_many :under_deals
   has_many :car_infos
   has_many :transfer_infos

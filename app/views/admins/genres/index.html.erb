@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-8">
 			<h3>ジャンル新規登録</h3>
-				<%= form_with(model: @genre, local: true, url: admin_admins_genres_path(current_admin)) do |f| %>
+				<%= form_with(model: @genre, local: true, url: admins_genres_path) do |f| %>
 				<div class="form-inline">
 					<div class="form-group">
 						<%= f.label :ジャンル名 %>
@@ -39,8 +39,8 @@
 								<% else %>
 									<td>無効</td>
 								<% end %>
-								<td><%= link_to "編集する", edit_admin_admins_genre_path(current_admin, genre.id), class: "btn btn-success" %>&emsp;
-										<%= link_to "削除する", admin_admins_genre_path(current_admin, genre.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"},class: "btn btn-danger" %></td>
+								<td><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn btn-success" %>&emsp;
+										<%= link_to "削除する", admins_genre_path(genre.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"},class: "btn btn-danger" %></td>
 								</tr>
 							<% end %>
 						</tbody>

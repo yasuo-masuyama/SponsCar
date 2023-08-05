@@ -3,4 +3,8 @@
 		<!-- サイドバー -->
 		<%= render 'sponsors/sidebar', sponsor: current_sponsor %>
 	</div>
+	<div class="col-xs-8">
+		<%= render 'layouts/message_from_admin', sponsor: @sponsor %>
+		<%= render 'under_deals/index_sponsor', under_deals: @under_deals, finish_deals: @finish_deals %>
+	</div>
 </div>

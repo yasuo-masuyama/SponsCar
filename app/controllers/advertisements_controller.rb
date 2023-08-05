@@ -1,5 +1,5 @@
 class AdvertisementsController < ApplicationController
-  before_action :getAllGenreRecords, only: %i[ index show genre_index favorite_index ]
+  before_action :get_all_genre_records, only: %i[ index show genre_index favorite_index ]
   before_action :set_current_driver, only: %i[ index show favorite_index ]
   before_action :set_current_sponsor, only: %i[ index show ]
   # before_action :paginate_advertisements, only: %i[ genre_index favorite_index ]
@@ -10,22 +10,24 @@ class AdvertisementsController < ApplicationController
 
   def show
     @advertisement = Advertisement.includes(:sponsor, :genre).find(params[:id])
+    @room = Room.find_by(advertisement_id: @advertisement.id, driver_id: current_driver)
+    @under_deal = UnderDeal.new
   end
 
   def genre_index
     advertisements = Advertisement.where(genre_id: params[:id])
-    @advertisements = advertisements.page(params[:page]).per(9) # リファクタ検討
+    @advertisements = advertisements.page(params[:page]).per(9)
     @genre = Genre.find(params[:id])
   end
 
   def favorite_index
     advertisements = Advertisement.joins(:favorites).where(favorites: { driver: @driver })
-    @advertisements = advertisements.page(params[:page]).per(9) # リファクタ検討
+    @advertisements = advertisements.page(params[:page]).per(9) 
   end
 
   private
 
-  def getAllGenreRecords
+  def get_all_genre_records
     @genres = Genre.all
   end
 
@@ -36,8 +38,4 @@ class AdvertisementsController < ApplicationController
   def set_current_sponsor
     @sponsor = current_sponsor
   end
-
-  # def paginate_advertisements
-  #   @advertisements = advertisements.page(params[:page]).per(9)
-  # end
 end

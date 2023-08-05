@@ -50,6 +50,7 @@
           </tr>
         </table>
       </div>
+      <%= render "under_deals/apply_advertisement", under_deal: @under_deal, advertisement: @advertisement, room: @room %>
     </div><br>
     <%= link_to advertisements_path do %><i class="fas fa-angle-left"> 広告一覧へ戻る</i><% end %>
   </div>

@@ -9,7 +9,7 @@ class Admins::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      redirect_to admin_admins_genres_path(current_admin)
+      redirect_to admins_genres_path
     else
       render :index
     end
@@ -20,7 +20,7 @@ class Admins::GenresController < ApplicationController
 
   def update
     if @genre.update(genre_params)
-      redirect_to admin_admins_genres_path(current_admin)
+      redirect_to admins_genres_path
     else
       render :index
     end
@@ -28,7 +28,7 @@ class Admins::GenresController < ApplicationController
 
   def destroy
     @genre.destroy
-    redirect_to admin_admins_genres_path(current_admin)
+    redirect_to admins_genres_path
   end
 
   private

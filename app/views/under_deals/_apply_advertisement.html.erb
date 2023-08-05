@@ -1,0 +1,19 @@
+<% if driver_signed_in? %>
+    <% if check_apply.present? %>
+      <div class="btn btn-default">現在、お申し込み中の広告がある為、新規のお申し込みができません</div>
+    <% else %>
+      <%= form_with(model: under_deal, url: under_deals_path, method: :post) do |f| %>
+        <%= f.hidden_field :advertisement_id, :value => advertisement.id %>
+        <%= f.hidden_field :driver_id, :value => current_driver.id %>
+        <%= f.submit "この広告に申し込む", :class => "btn03" %>
+        <% end %>
+    <% end %><br>
+      <section class="question">
+        <% if room.nil? %>
+          <%= link_to '広告のことで質問する',class:"btn05", method: :POST %>
+        <% else %>
+          <%= link_to '広告のことで質問する',class:"btn05" %>
+        <% end %>
+      </section>
+    <br>
+<% end %>
