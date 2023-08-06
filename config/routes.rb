@@ -77,6 +77,8 @@ Rails.application.routes.draw do
   end
 
   resources :advertisements, only: %i[ index show ] do
+    resources :chats, only: %i[ index create ]
+    resources :rooms, only: %i[ index show create ]
     member do
       get :genre_index
       get :favorite_index
