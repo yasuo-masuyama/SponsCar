@@ -9,8 +9,8 @@ class DriversController < ApplicationController
     @finish_deals = @under_deals.where(work_status: 'finished').or(@under_deals.where(work_status:'checked_refuse'))
     if @under_deal.present?
       @advertisement = @under_deal.advertisement
-      @messages = @under_deal.deal_messages
-      @message = DealMessage.new()
+      @deal_messages = @under_deal.deal_messages
+      @deal_message = DealMessage.new()
       @deal_detail = DealDetail.new(deal_detail_params)
     end
   end

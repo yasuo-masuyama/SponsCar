@@ -8,15 +8,15 @@ class UnderDealsController < ApplicationController
   def show
     @under_deal = UnderDeal.includes(:advertisement, :driver, :deal_detail).includes(advertisement: :sponsor).find(params[:id])
     @advertisement = @under_deal.advertisement
-    @messages = @under_deal.deal_messages
-    @message = DealMessage.new()
+    @deal_messages = @under_deal.deal_messages
+    @deal_message = DealMessage.new()
     @deal_detail = DealDetail.new(deal_detail_params)
   end
 
   def show_driver
     @under_deal = UnderDeal.includes(:advertisement, :driver).includes(advertisement: :sponsor).find(params[:id])
     @advertisement = @under_deal.advertisement
-    @messages = @under_deal.deal_messages
+    @deal_messages = @under_deal.deal_messages
     @deal_detail = DealDetail.new(deal_detail_params)
   end
 
