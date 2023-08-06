@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col-xs-3">
+	<!-- プロフィール -->
+		<%= render 'drivers/sidebar', driver: current_driver %><!-- サイドバー -->
+	</div>
+	<div class="col-xs-8 ">
+		<h4>過去の広告詳細</h4>
+		<%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
+		<%= render 'under_deals/flow_driver', under_deal: @under_deal %>
+			<!-- メッセージエリア -->
+			<div id="chat-templete" class="chat-area">
+				<h4>メッセージ記録</h4><br>
+					<% if @deal_messages.blank? %>
+						<h4 class="alert">メッセージはありません</h4>
+					<% end %>
+				<% @deal_messages.each do |message| %>
+					<% if message.user_type == 'driver' %>
+						<div class="message">
+            <div id="icon" class="faceicon">
+              <%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
+            </div>
+              <div class="chatting">
+                <div class="says">
+                  <p><%= message.message %></p>
+                  <div class="say-data">
+                    <%= message.created_at.to_s(:datetime_jp) %>
+                  </div>
+                </div>
+              </div>
+						</div>
+					<% else %>
+						<div class="message2">
+            <div class="faceicon2">
+              <%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
+            </div>
+              <div class="chatting2">
+                <div class="says2">
+                  <p><%= message.message %></p>
+                  <div class="say-data2">
+                    <%= message.created_at.to_s(:datetime_jp) %>
+                  </div>
+                </div>
+              </div>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+	</div>
+</div>
