@@ -2,7 +2,6 @@ class AdvertisementsController < ApplicationController
   before_action :get_all_genre_records, only: %i[ index show genre_index favorite_index ]
   before_action :set_current_driver, only: %i[ index show favorite_index ]
   before_action :set_current_sponsor, only: %i[ index show ]
-  # before_action :paginate_advertisements, only: %i[ genre_index favorite_index ]
 
   def index
     @advertisements = Advertisement.page(params[:page]).per(9)
@@ -10,7 +9,8 @@ class AdvertisementsController < ApplicationController
 
   def show
     @advertisement = Advertisement.includes(:sponsor, :genre).find(params[:id])
-    @room = Room.find_by(advertisement_id: @advertisement.id, driver_id: current_driver)
+    @room = Room.find_by(advertisement_id: @advertisement.id, driver_id: current_driver.id)
+
     @under_deal = UnderDeal.new
   end
 
