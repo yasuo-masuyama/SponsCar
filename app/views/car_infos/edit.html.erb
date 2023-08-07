@@ -1,45 +1,34 @@
-<h3>登録車両編集</h3>
-  <%= form_with(model: @car_info, local: true, url: driver_car_info_path) do |f| %>
-      <tr>
-        <td>
-          <%= f.label :メーカー名 %>
-          <%= f.text_field :manufacturer_name, autofocus: true, autocomplete:"", placeholder:"郵便番号", class: "form-control" %>
-        </td>
-      </tr>
+<div class="ui container">
+  <h3>登録車両編集</h3>
+  <%= form_with(model: @car_info, local: true, url: driver_car_info_path, class: "ui form") do |f| %>
+    <div class="field">
+      <%= f.label :メーカー名 %>
+      <%= f.text_field :manufacturer_name, autofocus: true, placeholder: "車のメーカー名を入力" %>
+    </div>
 
-      <tr>
-        <td>
-          <%= f.label :車名 %>
-          <%= f.text_field :name, autofocus: true, autocomplete:"", placeholder:"住所", class: "form-control" %>
-        </td>
-      </tr>
+    <div class="field">
+      <%= f.label :車名 %>
+      <%= f.text_field :name, autofocus: true, placeholder: "車種名を入力" %>
+    </div> 
 
-      <tr>
-        <td>
-          <%= f.label :車台番号 %>
-          <%= f.text_field :flame_number, autofocus: true, autocomplete:"", placeholder:"宛名", class: "form-control" %>
-        </td>
-      </tr>
+    <div class="field">
+      <%= f.label :車台番号 %>
+      <%= f.text_field :flame_number, autofocus: true, placeholder: "車両検査表に記載の車台番号を入力" %>
+    </div>
 
-      <tr>
-        <td>
-          <%= f.label :ナンバープレート %>
-          <%= f.text_field :license_plate, autofocus: true, autocomplete:"", placeholder:"宛名", class: "form-control" %>
-        </td>
-      </tr>
+    <div class="field">
+      <%= f.label :ナンバープレート %>
+      <%= f.text_field :license_plate, autofocus: true, placeholder: "登録番号を入力" %>
+    </div>
 
-      <tr>
-        <td><%= f.label :車検証写真 %></td>
-        <td><%= f.file_field :vehicle_image %></td>
-        <td><%= image_tag @car_info.vehicle_image.variant(resize_to_fill: [200, 200]) %></td>
-      </tr>
+    <div class="field">
+      <%= f.label :車検証写真 %>
+      <%= f.file_field :vehicle_image %>
+      <%= image_tag @car_info.vehicle_image.variant(resize_to_fill: [200, 200]) if @car_info.vehicle_image.attached? %>
+    </div>
 
-      <tr>
-        <td class="text-center">
-          <%= f.submit "登録する", class: "btn btn-primary col-lg-offset-10"%>
-        </td>
-      </tr>
+    <%= f.submit "登 録", class: "ui primary button" %>
+  <% end %>
 
-    <% end %>
-
-  <%= link_to "前の画面に戻る", driver_car_infos_path(current_driver)  %>
+  <%= link_to "前の画面に戻る", driver_car_infos_path(current_driver), class: "ui button" %>
+</div>
