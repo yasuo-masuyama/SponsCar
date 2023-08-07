@@ -1,25 +1,28 @@
-<%= form_with(model: @info, local: true, url:choose_new_or_edit ) do |f| %>
-  <tr>
-    <td><%= f.label :タイトル %></td><br>
-    <td><%= f.text_field :title, autofocus: true, autocomplete:"", placeholder:"タイトルを入力", class: "form-control" %></td>
-  </tr>
-  <tr>
-    <td><%= f.label :閲覧者タイプ %></td><br>
-    <td>
-      <%= f.radio_button :viewer_type, :both %>
-      <%= f.label "全て  " %>
-      <%= f.radio_button :viewer_type, :ad_client %>
-      <%= f.label "Sponsor" %>
-      <%= f.radio_button :viewer_type, :driver %>
-      <%= f.label "Driver" %></td>
-  </tr> <br>
-  <tr>
-    <td><%= f.label :内容 %></td>
-    <td><%= f.text_area :content, autofocus: true, autocomplete:"", placeholder:"内容を入力", class: "form-control",:size => "60x10" %></td>
-  </tr><br>
-  <tr>
-    <td class="text-center">
-      <%= f.submit class: "btn btn-primary "%>
-    </td>
-  </tr>
+<%= form_with(model: @info, local: true, url: choose_new_or_edit, class: "ui form") do |f| %>
+  <div class="field">
+    <%= f.label :タイトル %>
+    <%= f.text_field :title, autofocus: true, autocomplete:"", placeholder:"タイトルを入力" %>
+  </div>
+  <div class="field">
+    <%= f.label :閲覧者タイプ %>
+    <div class="inline fields">
+      <div class="field">
+        <%= f.radio_button :viewer_type, :both %>
+        <%= f.label "全て" %>
+      </div>
+      <div class="field">
+        <%= f.radio_button :viewer_type, :ad_client %>
+        <%= f.label "Sponsor" %>
+      </div>
+      <div class="field">
+        <%= f.radio_button :viewer_type, :driver %>
+        <%= f.label "Driver" %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :内容 %>
+    <%= f.text_area :content, autofocus: true, autocomplete:"", placeholder:"内容を入力", rows: 10 %>
+  </div>
+  <%= f.submit "送信", class: "ui button primary" %>
 <% end %>

@@ -14,8 +14,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'devise-i18n'
 gem 'rexml'
-gem 'bootstrap', '~> 4.4.1'
-gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'geocoder'
 gem 'enum_help'
@@ -25,6 +23,7 @@ gem 'activestorage-validator'
 gem 'image_processing'
 gem 'aws-sdk-s3', require: false
 gem 'font-awesome-sass'
+gem 'semantic-ui-sass'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

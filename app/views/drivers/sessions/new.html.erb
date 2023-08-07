@@ -1,24 +1,25 @@
-<h2>Driverログイン</h2>
+<div class="ui container">
+  <h2>Driverログイン</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form" }) do |f| %>
+    <div class="ui stacked segment">
+      <div class="field">
+        <%= f.label :メールアドレス %>
+        <div class="ui input">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <table class="table" id="none-borber">
-    <tbody>
-      <tr>
-        <td><%= f.label :メールアドレス %></td>
-        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
-      </tr>
-
-      <tr>
-        <td><%= f.label :パスワード %></td>
-        <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      <div class="field">
+        <%= f.label :パスワード %>
+        <div class="ui input">
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
         <%= link_to "=>パスワードを忘れた方はこちら" %>
-      </tr>
+      </div>
 
-      <tr>
-        <td><%= f.submit "ログイン", class: "btn03" %></td>
-      </tr>
-      
-    </tbody>
-  </table>
-<% end %>
+      <%= f.submit "ログイン", class: "ui fluid primary button" %>
+    </div>
+  <% end %>
+</div>
+
 

@@ -1,97 +1,97 @@
 <h3>管理者ページ</h3>
-	<div class="row">
-		<div class="col-xs-5 col-xs-offset-1">
-			<table class="table table-hover " id="index-table">
-				<thead class="thead-dark">
-					<tr>
-						<th>お知らせ管理</th>
-						<th></th>
-					</tr>
-				</thead>
-					<tbody>
-					<tr>
-						<td><%= link_to "新規作成", new_info_path %></td>
-						<td><%= link_to "お知らせ一覧", infos_path %></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="col-xs-5 col-xs-offset-1">
-			<table class="table table-hover " id="index-table">
-				<thead class="thead-dark">
-					<tr>
-						<th>お問い合わせ管理</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><%= link_to "新規お問い合わせ", new_inquiry_path %></td>
-						<td><%= link_to "対応中", working_inquiry_path %></td>
-						<td><%= link_to "過去一覧", past_inquiry_path %></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-5 col-xs-offset-1">
-			<table class="table table-hover " id="index-table">
-				<thead class="thead-dark">
-					<tr>
-						<th>Spnsor管理</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><%= link_to "Sponsor一覧" %></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="col-xs-5 col-xs-offset-1">
-			<table class="table table-hover " id="index-table">
-				<thead class="thead-dark">
-					<tr>
-						<th>Driver管理</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><%= link_to "Driver一覧" %></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-5 col-xs-offset-1">
-			<table class="table table-hover " id="index-table">
-				<thead class="thead-dark">
-					<tr>
-						<th>広告管理</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><%= link_to "広告 一覧へ" %></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="row">
-		<div class="col-xs-5 col-xs-offset-1">
-			<table class="table table-hover " id="index-table">
-				<thead class="thead-dark">
-					<tr>
-						<th>ジャンル管理</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><%= link_to "ジャンル画面へ", admins_genres_path(current_admin) %></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+<div class="ui grid">
+  <div class="five wide column">
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th>お知らせ管理</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to "新規作成", new_info_path, class: "ui button primary" %></td>
+          <td><%= link_to "お知らせ一覧", infos_path, class: "ui button" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="five wide column">
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th>お問い合わせ管理</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to "新規お問い合わせ", new_inquiry_path, class: "ui button primary" %></td>
+          <td><%= link_to "対応中", working_inquiry_path, class: "ui button" %></td>
+          <td><%= link_to "過去一覧", past_inquiry_path, class: "ui button" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="ui grid">
+  <div class="five wide column">
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th>Spnsor管理</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to "Sponsor一覧", sponsors_path, class: "ui button" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="five wide column">
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th>Driver管理</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to "Driver一覧", drivers_path, class: "ui button" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="ui grid">
+  <div class="five wide column">
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th>広告管理</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to "広告 一覧へ", advertisements_path, class: "ui button" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="five wide column">
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th>ジャンル管理</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to "ジャンル画面へ", admins_genres_path(current_admin), class: "ui button" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

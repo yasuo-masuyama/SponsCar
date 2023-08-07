@@ -10,7 +10,143 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+<body>
+  <header>
+    <div class="ui container">
+      <div class="ui stackable grid">
+        <div class="two wide column">
+          <h3 class="logo">SponsCar</h3>
+        </div>
+        <div class="fourteen wide column">
+          <div class="ui secondary menu">
+            <% if sponsor_signed_in? || driver_signed_in? || admin_signed_in? %>
+              <a class="item" href="<%= sponsor_signed_in? ? dashboard_sponsor_path(current_sponsor) : driver_signed_in? ? dashboard_driver_path(current_driver) : admins_path %>">
+                マイページ
+              </a>
+              <a class="item" href="<%= infos_path %>">お知らせ</a>
+              <a class="item" href="<%= new_contact_path %>">お問い合わせ</a>
+              <% if sponsor_signed_in? %>
+                <%= link_to "ログアウト", destroy_sponsor_session_path, method: :delete, class: "item" %>
+              <% elsif driver_signed_in? %>
+                <%= link_to "ログアウト", destroy_driver_session_path, method: :delete, class: "item" %>
+              <% elsif admin_signed_in? %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "item" %>
+              <% end %>
+            <% else %>
+              <a class="item" href="<%= about_homes_path %>">About SponsCar</a>
+              <a class="item" href="<%= new_contact_path %>">お問い合わせ</a>
+              <div class="ui simple dropdown item">
+                新規登録
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <a class="item" href="<%= new_driver_registration_path %>">Driverになる</a>
+                  <a class="item" href="<%= new_sponsor_registration_path %>">Sponsorになる</a>
+                </div>
+              </div>
+              <div class="ui simple dropdown item">
+                ログイン
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <a class="item" href="<%= new_driver_session_path %>">Driver</a>
+                  <a class="item" href="<%= new_sponsor_session_path %>">Sponsor</a>
+                  <a class="item" href="<%= new_admin_session_path %>">Admin</a>
+                </div>
+              </div>
+              <a class="item" href="https://twitter.com/Ader21745141" title="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a class="item" href="#" title="Facebook">
+                <i class="fab fa-facebook"></i>
+              </a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="ui segment">
+        <p></p>
+      </div>
+    </div>
+  </header>
+
+    <!-- メイン -->
+    <main>
+      <!-- エラーメッセージ -->
+      <div class="row">
+        <div class="col-xs-4 col-xs-offset-1">
+          <% if flash[:notice] %>
+            <div class="alert alert-success">
+              <%= flash[:notice] %>
+            </div>
+          <% elsif flash[:alert] %>
+            <div class="alert alert-danger">
+              <%= flash[:alert] %>
+            </div>
+          <% elsif flash[:error] %>
+            <div class="alert alert-danger">
+              <%= flash[:error] %>
+            </div>
+          <% elsif flash[:contact] %>
+            <div class="alert alert-success">
+              <%= flash[:contact] %>
+            </div>
+          <% elsif flash[:blank] %> <!-- 未入力エラーに対するメッセージ -->
+            <div class="alert alert-success">
+              <%= flash[:blank] %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     <%= yield %>
+    </main>
+  <!-- フッター -->
+    <footer class="ui vertical footer segment">
+      <div class="ui container">
+        <div class="ui stackable divided equal height stackable grid">
+          <div class="row">
+            <div class="four wide column">
+              <h4 class="ui header">About SponsCar</h4>
+              <p>Deliver a small business to you.<br>Small happiness with driving.</p>
+              <p>SponsCar is an application that matches companies that want to advertise with drivers who want to advertise and promote.</p>
+              <div class="ui horizontal small divided link list social-media">
+                <a class="item" href="https://twitter.com/Ader21745141" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a class="item" href="https://twitter.com/Ader21745141" title="Twitter"><i class="fab fa-facebook"></i></a>
+                <a class="item" href="https://twitter.com/Ader21745141" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a class="item" href="https://twitter.com/Ader21745141" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="four wide column">
+              <h4 class="ui header">Help</h4>
+              <div class="ui link list">
+                <a class="item" href=""><i class="fa fa-angle-double-right"></i> How It Works</a>
+                <a class="item" href=""><i class="fa fa-angle-double-right"></i> Frequently Asked Questions</a>
+              </div>
+            </div>
+            <div class="four wide column">
+              <h4 class="ui header">Information</h4>
+              <div class="ui link list">
+                <a class="item" href=""><i class="fa fa-angle-double-right"></i> About Ader</a>
+                <a class="item" href=""><i class="fa fa-angle-double-right"></i> Contact Us</a>
+                <a class="item" href=""><i class="fa fa-angle-double-right"></i> Company Overview</a>
+              </div>
+            </div>
+            <div class="four wide column">
+              <h4 class="ui header">Security & Privacy</h4>
+              <div class="ui link list">
+                <a href="https://drive.google.com/open?id=1S4yUlGV0eq2iKZGOVUhfwSGGeFXSo35_" title=""><i class="fa fa-angle-double-right"></i> Terms of Service</a>
+                <a href="https://drive.google.com/open?id=1S4yUlGV0eq2iKZGOVUhfwSGGeFXSo35_" title=""><i class="fa fa-angle-double-right"></i> Privacy Policy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui section divider"></div>
+      <div class="ui container">
+        <div class="ui center aligned grid">
+          <div class="column">
+            <p>&copy; 2023 SponsCar. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

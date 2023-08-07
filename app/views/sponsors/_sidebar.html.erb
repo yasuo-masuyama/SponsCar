@@ -1,69 +1,42 @@
-<table class="table">
-  <tr id="none-border">
-    <td class="text-center image-circle" colspan="2">
-      <td><%= image_tag sponsor.company_image.variant(resize_to_fill: [200, 200]) %></td>
-    </td>
-  </tr>
-
-  <tr id="none-border">
-    <td class="text-center" colspan="2">
+<div class="ui vertical menu sidebar-area">
+  <div class="item">
+    <div class="ui centered circular image">
+      <%= image_tag sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
+    </div>
+    <div class="center aligned header">
       <%= sponsor.company_name %> さん
-    </td>
-  </tr>
+    </div>
+  </div>
+  <div class="item" id="none-border">
+    <%= render "relationship_drivers/follow_count_sponsor", sponsor: current_sponsor %>
+  </div>
+  <% if current_sponsor == sponsor %>
+    <div class="item">
+      <%= link_to new_sponsor_advertisement_path(current_sponsor), class: "btn01", data: { "turbolinks" => false } do %>
+        <span>新規広告依頼</span>
+      <% end %>
+    </div>
+  <% end %>
 
-  <tr id="none-border" follow_count_<%= sponsor.id %>>
-		<%= render "relationship_drivers/follow_count_sponsor", sponsor: current_sponsor %>
-	</tr>
+  <div class="item">
+    <div class="header">メニュー</div>
+    <div class="menu">
+      <%= link_to "マイページ", dashboard_sponsor_path(current_sponsor), class: "side-menu item" %>
+      <%= link_to "Driver一覧", drivers_path, class: "side-menu item" %>
+      <%= link_to "Sponsor一覧", sponsors_path, class: "side-menu item" %>
+      <%= link_to "掲載広告一覧", sponsor_advertisements_path(current_sponsor), class: "side-menu item" %>
+      <%= link_to "広告一覧", advertisements_path(current_sponsor), class: "side-menu item" %>
+      <%= link_to "お問い合わせ", new_contact_path, class: "side-menu item" %>
+    </div>
+  </div>
 
-<% if current_sponsor == sponsor %>
-  <tr id="none-border">
-    <td class="text-center" colspan="2">
-      <%= link_to new_sponsor_advertisement_path(current_sponsor), class: "btn01", data: {"turbolinks" => false } do %><span>新規広告依頼</span><% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<table class="sidebar">
-  <thead>
-    <th class="side-menu-heading">メニュー</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= link_to "マイページ", dashboard_sponsor_path(current_sponsor), class:"side-menu" %></td>
-    </tr>
-
-    <tr>
-      <td><%= link_to  "Driver一覧", drivers_path, class:"side-menu" %></td>
-    </tr>
-
-    <tr>
-      <td><%= link_to  "Sponsor一覧", sponsors_path, class:"side-menu" %></td>
-    </tr>
-
-    <tr>
-      <td><%= link_to "掲載広告一覧", sponsor_advertisements_path(current_sponsor), class:"side-menu" %></td>
-    </tr>
-
-    <tr>
-      <td><%= link_to "広告一覧", advertisements_path(current_sponsor), class:"side-menu"  %></td>
-    </tr>
-
-    <tr>
-      <td><%= link_to "お問い合わせ", new_contact_path, class:"side-menu" %></td>
-    </tr>
-  </tbody>
-</table><br>
-
-<table class="sidebar">
-    <thead>
-      <th class="side-menu-heading">設定</th>
-    </thead>
-
-  <tr>
-    <td><%= link_to edit_sponsor_path(current_sponsor), class: "side-menu",data: {"turbolinks" => false} do %>アカウント<% end %></td>
-  </tr>
-
-    <td><%= link_to "ログアウト", destroy_sponsor_session_path, method: :delete, class:"side-menu" %></td>
-  </tr>
-</table>
+  <div class="item">
+    <div class="header">設定</div>
+    <div class="menu">
+      <%= link_to edit_sponsor_path(current_sponsor), class: "side-menu item", data: { "turbolinks" => false } do %>
+        アカウント
+      <% end %>
+      <%= link_to "ログアウト", destroy_sponsor_session_path, method: :delete, class: "side-menu item" %>
+    </div>
+  </div>
+</div>
