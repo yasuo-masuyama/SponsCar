@@ -1,78 +1,40 @@
-<div class="sidebar-area">
-	<table class="table">
-		<tr id="none-border">
-			<td class="text-center" colspan="2">
-				<%# <%= image_tag driver, :profile_image, fallback: "no_image.jpg", class: "image-circle", size: "230x170" %>
-        <%# 初期イメージを挿入 %> 
-			</td>
-		</tr>
-		<tr id="none-border">
-			<td class="text-center" colspan="2">
-				<%= driver.name %> さん
-			</td>
-		</tr>
-		<%# <tr id="none-border" follow_count_<%= driver.id %>
-			<%# <%= render "relationships/follow_count_driver", driver: current_driver %>
-      <%# フォロー関係 %>
-		</tr>
-		<% if current_driver == driver %>
-		<tr id="none-border">
-			<td class="text-center " colspan="2">
-				<%= link_to edit_driver_path(current_driver), class: "btn01",data: {"turbolinks" => false} do %><span>ドライバー情報 編集</span><% end %>
-			</td>
-		</tr>
-		<% end %>
-	</table>
-	<table class="sidebar">
-		<thead>
-			<th class="side-menu-heading">メニュー</th>
-		</thead>
-		<tbody>
+<div class="ui vertical menu sidebar-area">
+  <div class="item">
+    <div class="ui centered circular image">
+      <%= image_tag driver.profile_image.variant(resize_to_fill: [200, 200]) %> 
+    </div>
+    <div class="center aligned header">
+      <%= driver.name %> さん
+    </div>
+  </div>
+  <div class="item" id="none-border">
+    <%= render "relationships/follow_count_driver", driver: current_driver %>
+  </div>
 
-			<tr>
-				<td><%= link_to "マイページ", dashboard_driver_path(current_driver), class:"side-menu" %></td>
-			</tr>
+  <div class="item">
+    <div class="header">メニュー</div>
+    <div class="menu">
+      <%= link_to "マイページ", dashboard_driver_path(current_driver), class: "side-menu item" %>
+      <%= link_to "お気に入り広告", favorite_index_advertisement_path(current_driver), class: "side-menu item" %>
+      <%= link_to "広告を探す", advertisements_path, class: "side-menu item" %>
+      <%= link_to "Sponsor一覧", sponsors_path, class: "side-menu item" %>
+      <%= link_to "取引情報", dashboard_driver_path(current_driver), class: "side-menu item" %>
+      <%= link_to "お問い合わせ", new_contact_path, class: "side-menu item" %>
+    </div>
+  </div>
 
-			<tr>
-				<td><%= link_to "お気に入り広告", favorite_index_advertisement_path(current_driver), class:"side-menu"%></td>
-			</tr>
-
-			<tr>
-				<td><%= link_to  "広告を探す", advertisements_path,class:"side-menu" %></td>
-			</tr>
-
-			<tr>
-				<td><%= link_to  "Sponsor一覧", sponsors_path,class:"side-menu" %></td>
-			</tr>
-
-			<tr>
-				<td><%= link_to "取引情報", dashboard_driver_path(current_driver), class:"side-menu" %></td>
-			</tr>
-
-			<tr>
-				<td><%= link_to "お問い合わせ", new_contact_path, class:"side-menu" %></td>
-			</tr>
-
-		</tbody>
-	</table><br>
-	<table class="sidebar">
-			<thead>
-				<th class="side-menu-heading">設定</th>
-			</thead>
-		<tr>
-			<%# <td><%= link_to, class: "side-menu",data: {"turbolinks" => false} doアカウント<% end %></td>
-		</tr>
-
-		<tr>
-			<td><%= link_to "口座情報", driver_transfer_infos_path(current_driver), class: "side-menu",data: {"turbolinks" => false} %>
-		</tr>
-
-		<tr>
-			<td><%= link_to "車両情報", driver_car_infos_path(current_driver), class: "side-menu",data: {"turbolinks" => false} %>
-		</tr>
-
-		<tr>
-			<td><%= link_to "ログアウト", destroy_driver_session_path, method: :delete, class:"side-menu" %></td>
-		</tr>
-	</table>
+  <div class="item">
+    <div class="header">設定</div>
+    <div class="menu">
+      <% if current_driver == driver %>
+        <%= link_to edit_driver_path(current_driver), class: "side-menu item", data: { "turbolinks" => false } do %>
+          アカウント
+        <% end %>
+      <% end %>
+      <%= link_to "口座情報", driver_transfer_infos_path(current_driver), class: "side-menu item", data: { "turbolinks" => false } %>
+      <%= link_to "車両情報", driver_car_infos_path(current_driver), class: "side-menu item", data: { "turbolinks" => false } %>
+      <%= link_to "ログアウト", destroy_driver_session_path, method: :delete, class: "side-menu item" %>
+    </div>
+  </div>
 </div>
+

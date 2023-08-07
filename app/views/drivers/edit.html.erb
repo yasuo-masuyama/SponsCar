@@ -1,108 +1,123 @@
-<h4>プロフィール情報</h4>
-<%= form_with(model: @driver, local: true, url: driver_path) do |f| %>
-  <% if @driver.errors.any? %>
-		<h3><%= @driver.errors.count %>error occurrence</h3>
-		<ul>
-			<% @driver.errors.full_messages.each do |message| %>
-			<li><%= message %></li>
-			<% end %>
-		</ul>
-	<% end %>
-  
-  <table class="table .table-borderless">
-  
-    <tr>
-      <th><%= f.label :プロフィール画像 %></th>
-      <td>
+<div class="ui segment">
+  <h4 class="ui dividing header">プロフィール情報</h4>
+  <%= form_with(model: @driver, local: true, url: driver_path, class: "ui form error") do |f| %>
+    <% if @driver.errors.any? %>
+      <div class="ui error message">
+        <div class="header">
+          <%= pluralize(@driver.errors.count, "error") %>が発生しました
+        </div>
+        <ul class="list">
+          <% @driver.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :プロフィール画像 %>
+      <div class="ui medium image">
         <% if @driver.profile_image.attached? %>
           <%= image_tag @driver.profile_image.variant(resize_to_fill: [200, 200]) %>
         <% else %>
           <p>画像がありません</p>
         <% end %>
-      </td>
-      <td><%= f.file_field :profile_image, class: "form-control form-control-sm" %></td>
-    </tr>
+      </div>
+      <%= f.file_field :profile_image, class: "ui input" %>
+    </div>
 
-    <tr>
-      <th><%= f.label :名前 %></th>
-      <td><%= f.text_field :name, class: "form-control form-control-sm" %></td>
-    </tr>
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :名前 %>
+        <%= f.text_field :name, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :名前カナ %></th>
-      <td><%= f.text_field :name_kana, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :名前カナ %>
+        <%= f.text_field :name_kana, class: "ui input" %>
+      </div>
+    </div>
 
-    <tr>
-      <th><%= f.label :郵便番号 %></th>
-      <td><%= f.text_field :postal_code, class: "form-control form-control-sm" %></td>
-    </tr>
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :郵便番号 %>
+        <%= f.text_field :postal_code, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :住所 %></th>
-      <td><%= f.text_field :address, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :住所 %>
+        <%= f.text_field :address, class: "ui input" %>
+      </div>
+    </div>
 
-    <tr>
-      <th><%= f.label :電話番号 %></th>
-      <td><%= f.text_field :telephone_number, class: "form-control form-control-sm" %></td>
-    </tr>
+    <div class="field">
+      <%= f.label :電話番号 %>
+      <%= f.text_field :telephone_number, class: "ui input" %>
+    </div>
 
-    <tr>
-      <th><%= f.label :メールアドレス %></th>
-      <td><%= f.text_field :email, class: "form-control form-control-sm" %></td>
-    </tr>
+    <div class="field">
+      <%= f.label :メールアドレス %>
+      <%= f.text_field :email, class: "ui input" %>
+    </div>
 
-    <tr>
-      <th><%= f.label :活動地域 %></th>
-      <td>(例)東京都港区<%= f.text_field :activity_area, placeholder:"都道府県と市町村名までを入力", class: "form-control"%></td>
-    </tr>
+    <div class="field">
+      <%= f.label :活動地域 %>
+      <%= f.text_field :activity_area, placeholder: "都道府県と市町村名までを入力", class: "ui input" %>
+    </div>
 
-    <tr>
-      <th></th>
-      <td class="text-left"><%= button_tag :type => "submit", class: "btn03" do %><span>更新する</span><i class="fas fa-angle-double-right"></i><% end %></td>
-    </tr>
-    
-    <% end %>
+    <%= f.submit "更新する", class: "ui primary button" %>
+  <% end %>
+
+  <%= link_to "マイページへ戻る", dashboard_driver_path(current_driver), class: "ui secondary button" %>
+</div>
+
+<div class="col-xs-6">
+  <h4>活動地域</h4>
+  <div id="map"></div>
+  <script>
+    var map;
+    function initMap(){
+      var lat_lng = { lat: <%= @driver.latitude %>, lng: <%= @driver.longitude %> };
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: lat_lng,
+        zoom: 12,
+      });
+      marker = new google.maps.Marker({
+        position: lat_lng,
+        map: map
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+
+  <table class="ui table unstackable">
+    <thead>
+      <tr>
+        <th>口座情報</th>
+        <th>車両情報</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <% if @driver.transfer_infos.present? %>
+            <%= link_to "編集をする", driver_transfer_infos_path(@driver.id), class: "ui button primary" %>
+          <% else %>
+            <%= link_to "登録する", driver_transfer_infos_path(@driver.id), class: "ui button" %>
+            <span>口座情報が登録されていません。</span>
+          <% end %>
+        </td>
+        <td>
+          <% if @driver.car_infos.present? %>
+            <%= link_to "編集をする", driver_car_infos_path(@driver.id), class: "ui button primary" %>
+          <% else %>
+            <%= link_to "登録する", driver_car_infos_path(@driver.id), class: "ui button" %>
+            <span>車両情報が登録されていません。</span>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
   </table>
-  <%= link_to dashboard_driver_path(current_driver) do %><i class="fas fa-angle-left"> マイページへ戻る</i><% end %>
+</div>
 
-  <div class="col-xs-6">
-    <h4>活動地域</h4>
-      <div id ="map"></div>
-        <script>
-          var map;
-          function initMap(){
-            var lat_lng ={ lat: <%= @driver.latitude %>, lng: <%= @driver.longitude %>}
-
-            map = new google.maps.Map(document.getElementById('map'), {
-              center: lat_lng,
-              zoom: 12,
-            });
-            marker = new google.maps.Marker({
-              position: lat_lng,
-              map: map
-            });
-          }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
-
-  <table class="table .table-borderless">
-    <tr>
-      <th>口座情報</th>
-        <% if @driver.transfer_infos.present? %>
-          <td><%= link_to "編集をする", driver_transfer_infos_path(@driver.id) %></td>
-        <% else %>
-          <td><%= link_to "登録する", driver_transfer_infos_path(@driver.id) %><span>口座情報が登録されていません。</span></td>
-        <% end %>
-    </tr>
-
-    <tr>
-      <th>車両情報</th>
-        <% if @driver.car_infos.present? %>
-          <td><%= link_to "編集をする", driver_car_infos_path(@driver.id) %></td>
-        <% else %>
-          <td><%= link_to "登録する", driver_car_infos_path(@driver.id) %><span>車両情報が登録されていません。</span></td>
-        <% end %>
-    </tr>
-  </table>

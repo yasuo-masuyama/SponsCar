@@ -1,9 +1,13 @@
 <% if driver_signed_in? %>
-	<% if advertisement.favorited_by?(current_driver) %>
-	  <%= link_to advertisement_favorites_path(advertisement.id), method: :delete, remote: true do %>
-	  	<i class="fa-regular fa-heart" style="color: #ff0000;"></i><% end %>
-	<% else %>
-		<%= link_to advertisement_favorites_path(advertisement.id), method: :post, remote: true do %>
-			<i class="fa-regular fa-heart" style="color: #ff0000;"></i></span><% end %>
-  <% end %>
+  <div class="favorite-button">
+    <% if advertisement.favorited_by?(current_driver) %>
+      <%= link_to advertisement_favorites_path(advertisement.id), method: :delete, remote: true, class: "favorite-link is-favorited" do %>
+        <i class="far fa-heart"></i>
+      <% end %>
+    <% else %>
+      <%= link_to advertisement_favorites_path(advertisement.id), method: :post, remote: true, class: "favorite-link" do %>
+        <i class="far fa-heart"></i>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
