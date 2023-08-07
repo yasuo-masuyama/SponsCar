@@ -1,7 +1,15 @@
 <% if driver_signed_in? %>
-  <% if current_driver.following(@sponsor) %>
-    <%= link_to 'フォローを外す', relationship_drivers_path(@sponsor), method: :delete, remote: true%>
-  <% else %>
-    <%= link_to 'フォローする', relationship_drivers_path(@sponsor), method: :post, remote: :true %>
-  <% end %>
+  <div class="ui compact menu">
+    <div class="ui simple dropdown item">
+      <i class="far fa-user icon"></i>フォロー
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <% if current_driver.following(@sponsor) %>
+          <%= link_to 'フォローを外す', relationship_drivers_path(@sponsor), method: :delete, remote: true, class: "item" %>
+        <% else %>
+          <%= link_to 'フォローする', relationship_drivers_path(@sponsor), method: :post, remote: :true, class: "item" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
