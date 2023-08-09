@@ -1,57 +1,52 @@
-<div class="row">
-  <div class="col-xs-3">
-    <!-- プロフィール -->
+<div class="ui grid">
+  <div class="four wide column">
+ 
     <% if sponsor_signed_in? %>
       <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
-    <% elsif driver_signed_in?%>
+    <% elsif driver_signed_in? %>
       <%= render "drivers/sidebar", driver: current_driver %>
-    <% end %><br>
-    <!-- ジャンル一覧 -->
+    <% end %>
+    
     <%= render "advertisements/genre_templete", genres: @genres %>
   </div>
 
-  <div class="col-xs-8">
-    <div class="ad-area">
-      <div class="ad-card">
-        <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]) %>
-          <table>
-            <tr>
-              <th><h4><%= @advertisement.title %></h4></th>
-            </tr>
-            <tr>
-              <td><span class="ad-fee"><%= converting_to_jpy(@advertisement.amounts) %></span>
-                <div id="favorites_buttons_<%= @advertisement.id %>">
-                  <%= render partial: 'favorites/favorite', locals: { advertisement: @advertisement } %>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><h4><%= @advertisement.heading %></h4></td>
-            </tr>
-            <tr>
-              <td><p><%= @advertisement.content %></p></td>
-            </tr>
-          </table>
-          <table class="table">
+  <div class="twelve wide column">
+    <div class="ui segment">
+      <div class="column">
+        <div class="image">
+          <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]) %>
+        </div>
+        <div class="content">
+          <a class="header"><%= @advertisement.title %></a>
+          <div class="meta">
+            <span class="ad-fee">報酬金額：<%= converting_to_jpy(@advertisement.amounts) %></span>
+            <div id="favorites_buttons_<%= @advertisement.id %>">
+              <%= render partial: 'favorites/favorite', locals: { advertisement: @advertisement } %>
+            </div>
+          </div>
+          <div class="description">
+            <h4><%= @advertisement.heading %></h4>
+            <p><%= @advertisement.content %></p>
+          </div>
+        </div>
+        <div class="extra content">
+          <table class="ui table">
             <tr>
               <th>Sponsor</th>
-              <th>広告作業期間</th>
+              <td><%= @advertisement.sponsor.company_name %></td>
             </tr>
             <tr>
-              <td><%= @advertisement.sponsor.company_name %></td>
-              <td><%= @advertisement.start_due_on %><br>&emsp;〜<%= @advertisement.end_due_on %></td>
+              <th>広告作業期間</th>
+              <td><%= @advertisement.start_due_on %>〜<%= @advertisement.end_due_on %></td>
             </tr>
             <tr>
               <th>ジャンル</th>
-            </tr>
-            <tr>
               <td><%= @advertisement.genre.name %></td>
-            </td>
-          </tr>
-        </table>
+            </tr>
+          </table>
+          <%= render "under_deals/apply_advertisement", under_deal: @under_deal, advertisement: @advertisement, room: @room %>
+        </div>
       </div>
-      <%= render "under_deals/apply_advertisement", under_deal: @under_deal, advertisement: @advertisement, room: @room %>
-    </div><br>
-    <%= link_to advertisements_path do %><i class="fas fa-angle-left"> 広告一覧へ戻る</i><% end %>
+    </div>
   </div>
 </div>
