@@ -1,12 +1,33 @@
-<div class="row">
-	<div class="col-xs-3">
-		<% if sponsor_signed_in? %>
-				<%= render 'sponsors/sidebar', sponsor: current_sponsor %>
-		<% elsif driver_signed_in?%>
-			<%= render "drivers/sidebar", driver: current_driver %>
-		<% end %>
-	</div>
-	<div class="col-xs-8 col-xs-offset-1">
-		<%= render 'sponsors/index', sponsors: @sponsors %>
-	</div>
+<div class="ui stackable grid">
+  <div class="four wide column">
+    <% if sponsor_signed_in? %>
+      <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+    <% elsif driver_signed_in? %>
+      <%= render "drivers/sidebar", driver: current_driver %>
+    <% end %>
+  </div>
+
+  <div class="twelve wide column">
+    <h3>Sponsor一覧</h3>
+			<div class="ui three stackable cloumn grid">
+				<% @sponsors.each do |sponsor| %>
+					<div class="column">
+						<div class="ui card" style="width: 260.73px;">
+							<div class="advertisement_image">
+								<%= link_to sponsor_path(sponsor.id) do %>
+									<%= image_tag sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
+								<% end %>
+							</div>
+							<div class="content">スポンサー名： 
+								<%= link_to sponsor.company_name, sponsor_path(sponsor.id), data: {"turbolinks" => false} %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+
+		<div class="ui center aligned container">
+			<%= paginate @sponsors, class: "ui pagination menu" %>
+		</div>
+  </div>
 </div>

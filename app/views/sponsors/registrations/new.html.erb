@@ -1,86 +1,112 @@
-<h2>Sponsor新規登録</h2>
+<div class="ui container">
+  <h2>Sponsor新規登録</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui form" }) do |f| %>
+    <%= render "sponsors/shared/error_messages", resource: resource %>
+    <div class="ui stacked segment">
+      <div class="field">
+        <%= f.label :会社ロゴ %>
+        <div class="ui input">
+          <%= f.file_field :company_image %>
+        </div>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "sponsors/shared/error_messages", resource: resource %>
-    <table class="table" id="none-border">
-      <tbody>
-        <tr>
-          <td><%= f.label :会社ロゴ %></td>
-          <td><%= f.file_field :company_image %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :会社名 %>
+        <div class="ui input">
+          <%= f.text_field :company_name, autofocus: true, autocomplete: "", placeholder: "会社名を入力", size: "40" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :会社名 %></td>
-          <td><%= f.text_field :company_name, autofocus: true, :size=>"40", autocomplete:"", placeholder:"会社名を入力", class: "form-control" %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :会社名カナ %>
+        <div class="ui input">
+          <%= f.text_field :company_name_kana, autofocus: true, autocomplete: "", placeholder: "会社名のカナを入力", size: "40" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :会社名カナ %></td>
-          <td><%= f.text_field :company_name_kana, autofocus: true, :size=>"40", autocomplete:"", placeholder:"会社名のカナを入力", class: "form-control" %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :代表取締役 %>
+        <div class="ui input">
+          <%= f.text_field :ceo_name, autofocus: true, autocomplete: "", placeholder: "代表取締役者名を入力", size: "40" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :代表取締役 %></td>
-          <td><%= f.text_field :ceo_name, autofocus: true, :size=>"40", autocomplete:"", placeholder:"代表取締役者名を入力", class: "form-control" %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :代表取締役カナ %>
+        <div class="ui input">
+          <%= f.text_field :ceo_name_kana, autofocus: true, autocomplete: "", placeholder: "代表取締役者名のフリガナを入力", size: "40" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :代表取締役カナ %></td>
-          <td><%= f.text_field :ceo_name_kana, autofocus: true, :size=>"40", autocomplete:"", placeholder:"代表取締役者名のフリガナを入力", class: "form-control" %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :郵便番号 %>
+        <div class="ui input">
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "", placeholder: "ハイフンなし" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :郵便番号 %></td>
-          <td><%= f.text_field :postal_code, autofocus: true, autocomplete:"", placeholder:"ハイフンなし", class: "form-control" %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :住所 %>
+        <div class="ui input">
+          <%= f.text_field :address, autofocus: true, autocomplete: "", placeholder: "会社所在地を入力", size: "60" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :住所 %></td>
-          <td><%= f.text_field :address,:size=>"60", autofocus: true, autocomplete:"", placeholder:"会社所在地を入力", class: "form-control" %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :メールアドレス %>
+        <div class="ui input">
+          <%= f.text_field :email, autofocus: true, size: "40", autocomplete: "", placeholder: "メールアドレスを入力" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :メールアドレス %></td>
-          <td><%= f.text_field :email, autofocus: true,:size=>"40", autocomplete:"", placeholder:"メールアドレスを入力", class: "form-control"%></td>
-        </tr>
-        <tr>
-          <td><%= f.label :電話番号 %></td>
-          <td><%= f.text_field :telephone_number, autofocus: true, autocomplete:"",placeholder: "電話番号を入力", class: "form-control" %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :電話番号 %>
+        <div class="ui input">
+          <%= f.text_field :telephone_number, autofocus: true, autocomplete: "", placeholder: "電話番号を入力" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :履歴書事項全部証明書 %></td>
-          <td>※発行から3ヶ月以内</td>
-          <td><%= f.file_field :registry_image %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :履歴書事項全部証明書 %>
+        <div class="ui input">
+          ※発行から3ヶ月以内 <%= f.file_field :registry_image %>
+        </div>
+      </div>
 
-        <tr>
-        <td><%= f.label :パスワード %>
-          <% if @minimum_password_length %>
-            <em>( <%= @minimum_password_length %>文字以上 )</em>
-          <% end %></td>
-        <td><%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></td>
-        </tr>
+      <div class="field">
+        <%= f.label :パスワード %>
+        <% if @minimum_password_length %>
+          <em>( <%= @minimum_password_length %>文字以上 )</em>
+        <% end %>
+        <div class="ui input">
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.label :パスワード（確認用） %></td>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
-        </tr>
-        
-        <tr>
-          <td><%= link_to "ご利用規約"," " %><br>
-              必ずご一読、ご了承の上でご登録ください</td>
-          <td><%= f.check_box :terms, checked:false, :as => :boolean %>利用規約に同意する</td>
-        </tr>
+      <div class="field">
+        <%= f.label :パスワード（確認用） %>
+        <div class="ui input">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+      </div>
 
-        <tr>
-          <td><%= f.submit "登録する", class: "btn03" %></td>
-        </tr>
-      </tbody>
-    </table>
-<% end %>
+      <div class="field">
+        <%= link_to "ご利用規約", " " %><br>
+        必ずご一読、ご了承の上でご登録ください
+      </div>
 
-<div class="col-xs-3">
-  <h4>Spnsorアカウントはお持ちですか？</h4>
-    <%=link_to "ログインする", new_sponsor_session_path %>
+      <div class="field">
+        <%= f.check_box :terms, checked: false, as: :boolean, class: "hidden" %>
+        <%= f.label :terms, "利用規約に同意する" %>
+      </div>
+
+      <%= f.submit "登録する", class: "btn03 ui fluid primary button" %>
+    </div>
+  <% end %>
 </div>
+
+<div class="ui container">
+  <h4>Spnsorアカウントはお持ちですか？</h4>
+  <%= link_to "ログインする", new_sponsor_session_path, class: "ui button" %>
+</div>
+

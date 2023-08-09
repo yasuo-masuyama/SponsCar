@@ -9,7 +9,7 @@ class AdvertisementsController < ApplicationController
 
   def show
     @advertisement = Advertisement.includes(:sponsor, :genre).find(params[:id])
-    @room = Room.find_by(advertisement_id: @advertisement.id, driver_id: current_driver.id)
+    @room = Room.find_by(advertisement_id: @advertisement.id, driver_id: current_driver)
 
     @under_deal = UnderDeal.new
   end

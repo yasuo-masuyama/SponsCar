@@ -1,57 +1,64 @@
-<div class="current-deal">
-	<table class="table table-hover">
-		<h3>取引中の広告一覧</h3>
-		<thead>
-			<tr>
-				<td>広告名</td>
-				<td>ドライバー</td>
-				<td>広告期間</td>
-				<td>ステータス</td>
-				<td colspan="2">詳細画面</td>
-			</tr>
-		</thead>
-		<tbody>
-		<% under_deals.each do |u| %>
-			<tr>
-				<td><%= u.advertisement.title %></td>
-				<td><%= u.driver.name %></td>
-				<td><%= u.advertisement.start_due_on %>〜<%= u.advertisement.end_due_on %></td>
-				<td><%= u.work_status_i18n %></td>
-				<td colspan="2">
-					<%= link_to under_deal_path(u.id), class: "btn02" do %><span>詳細<i class="fas fa-arrow-right"></i><% end %></td>
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
-	<% if under_deals.blank? %>
-		<div class="message-box">
-			<h4>現在、取引中の広告はありません。<br>広告を依頼してみましょう！！</h4>
-		</div>
-	<% end %>
-	
-	<!-- 取引一覧 -->
-	<table class="table table-hover">
-		<h3>過去取引一覧</h3>
-		<thead>
-			<tr>
-				<td>広告名</td>
-				<td>ドライバー</td>
-				<td>広告期間</td>
-				<td>ステータス</td>
-				<td colspan="2">詳細画面</td>
-			</tr>
-		</thead>
-		<tbody>
-		<% finish_deals.each do |f| %>
-			<tr>
-				<td><%= f.advertisement.title %></td>
-				<td><%= f.driver.name %></td>
-				<td><%= f.advertisement.start_due_on %>〜<%= f.advertisement.end_due_on %></td>
-				<td><%= f.work_status_i18n %></td>
-				<td colspan="2">
-				<%= link_to under_deal_path(f.id), class: "btn02" do %><span>詳細<i class="fas fa-arrow-right"></i><% end %></td>
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
+<div class="current-deal ui segment">
+  <h3 class="ui header">取引中の広告一覧</h3>
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>広告名</th>
+        <th>ドライバー</th>
+        <th>広告期間</th>
+        <th>ステータス</th>
+        <th>詳細画面</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% under_deals.each do |u| %>
+        <tr>
+          <td><%= u.advertisement.title %></td>
+          <td><%= u.driver.name %></td>
+          <td><%= u.advertisement.start_due_on %>〜<%= u.advertisement.end_due_on %></td>
+          <td><%= u.work_status_i18n %></td>
+          <td>
+            <%= link_to under_deal_path(u.id), class: "ui green button" do %>
+              詳細<i class="arrow right icon"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    
+  <% if under_deals.blank? %>
+    <div class="ui message">
+      <h4>現在、取引中の広告はありません。<br>広告を依頼してみましょう！！</h4>
+    </div>
+  <% end %>
+
+  <h3 class="ui header">過去取引一覧</h3>
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>広告名</th>
+        <th>ドライバー</th>
+        <th>広告期間</th>
+        <th>ステータス</th>
+        <th>詳細画面</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% finish_deals.each do |f| %>
+        <tr>
+          <td><%= f.advertisement.title %></td>
+          <td><%= f.driver.name %></td>
+          <td><%= f.advertisement.start_due_on %>〜<%= f.advertisement.end_due_on %></td>
+          <td><%= f.work_status_i18n %></td>
+          <td>
+            <%= link_to under_deal_path(f.id), class: "ui green button" do %>
+              詳細<i class="arrow right icon"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+

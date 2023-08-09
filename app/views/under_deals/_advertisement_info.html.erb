@@ -1,22 +1,38 @@
-<div class="row">
-	<div id="deal-ad-area">
-		<div class="col-xs-5">
-			<%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]) %>
-		</div>
-		<div class="col-xs-5 col-xs-offset-2">
-			<tr>
-      <th><h4><%= advertisement.title %></h4></th>
-      <td><h4><%= converting_to_jpy(advertisement.amounts) %></h4></td>
-      <td><%= advertisement.heading %></td><br>
-      <br>
-      <td><span class="tag">広告主</span></td><br>
-      <br>
-      <td ><%= advertisement.sponsor.company_name %></td><br>
-      <br>
-      <td><span class="tag">広告期間</span></td><br>
-      <br>
-      <td><%= advertisement.start_due_on %>〜<%= advertisement.end_due_on %></td><br>
-    </tr>
-		</div>
-	</div>
+<div class="ui grid">
+  <div class="row" id="deal-ad-area">
+    <div class="five wide column">
+      <%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]), class: "ui rounded image" %>
+    </div>
+    <div class="two wide column"></div>
+    <div class="nine wide column">
+      <table class="ui table">
+          <tr>
+            <td><span class="tag">広告タイトル</span></td>
+            <td><%= advertisement.title %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="tag">広告見出し</span></td>
+            <td><%= advertisement.heading %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="tag">広告料金</span></td>
+            <td><%= converting_to_jpy(advertisement.amounts) %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="tag">スポンサー名</span></td>
+            <td><%= advertisement.sponsor.company_name %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="tag">広告期間</span></td>
+            <td colspan="2"><%= advertisement.start_due_on %> 〜 <%= advertisement.end_due_on %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+

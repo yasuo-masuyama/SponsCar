@@ -1,55 +1,58 @@
-<div class="row">
-  <div class="col-xs-3">
-    <!-- プロフィール -->
+<div class="ui grid">
+  <div class="four wide column">
     <% if sponsor_signed_in? %>
       <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
     <% elsif driver_signed_in?%>
       <%= render "drivers/sidebar", driver: current_driver %>
-    <% end %><br>
+    <% end %>
   </div>
 
-  <div class="col-xs-8">
-    <div class="ad-area">
-      <div class="ad-card">
-        <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]) %>
-          <table>
-            <tr>
-              <th><h4><%= @advertisement.title %></h4></th>
-            </tr>
-            <tr>
-              <td><span class="ad-fee"><%= converting_to_jpy(@advertisement.amounts) %></span>
-                <div id="favorites_buttons_<%= @advertisement.id %>">
-                  <%= render partial: 'favorites/favorite', locals: { advertisement: @advertisement } %>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><h4><%= @advertisement.heading %></h4></td>
-            </tr>
-            <tr>
-              <td><p><%= @advertisement.content %></p></td>
-            </tr>
-          </table>
-
-          <table class="table">
-            <tr>
-              <th>sponsor</th>
-              <th>広告作業期間</th>
-            </tr>
-            <tr>
-              <td><%= @advertisement.sponsor.company_name %></td>
-              <td><%= @advertisement.start_due_on %><br>&emsp;〜<%= @advertisement.end_due_on %></td>
-            </tr>
-            <tr>
-            <th>ジャンル</th>
-            </tr>
-            <tr>
-            <td><%= @advertisement.genre.name %></td>
-            </tr>
-          </table>
-          <%= link_to edit_sponsor_advertisement_path(@advertisement.sponsor.id, @advertisement.id), class:"btn03" do %>編集する <i class="fas fa-angle-double-right"></i><% end %>
+  <div class="twelve wide column">
+    <div class="ui segment">
+      <div class="image">
+        <%= image_tag @advertisement.image.variant(resize_to_fill: [300, 300]) %>
       </div>
-    </div><br>
-    <%= link_to sponsor_advertisements_path(current_sponsor) do %><i class="fas fa-angle-left"> 広告一覧へ戻る</i><% end %>
+      <div class="content">
+        <div class="header"><%= @advertisement.title %></div>
+        <div class="meta">
+          <span class="ad-fee"><%= converting_to_jpy(@advertisement.amounts) %></span>
+          <div id="favorites_buttons_<%= @advertisement.id %>">
+            <%= render partial: 'favorites/favorite', locals: { advertisement: @advertisement } %>
+          </div>
+        </div>
+        <div class="description">
+          <h4><%= @advertisement.heading %></h4>
+          <p><%= @advertisement.content %></p>
+        </div>
+      </div>
+      <div class="extra content">
+        <table class="ui table">
+          <tr>
+            <th>スポンサー</th>
+            <th>広告作業期間</th>
+          </tr>
+          <tr>
+            <td><%= @advertisement.sponsor.company_name %></td>
+            <td><%= @advertisement.start_due_on %> - <%= @advertisement.end_due_on %></td>
+          </tr>
+          <tr>
+            <th>ジャンル</th>
+          </tr>
+          <tr>
+            <td colspan="2"><%= @advertisement.genre.name %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="ui bottom attached button">
+        <%= link_to edit_sponsor_advertisement_path(@advertisement.sponsor.id, @advertisement.id) do %>
+          編集する <i class="fas fa-angle-double-right"></i>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <%= link_to sponsor_advertisements_path(current_sponsor) do %>
+        <i class="fas fa-angle-left"> 広告一覧へ戻る</i>
+      <% end %>
+    </div>
   </div>
 </div>

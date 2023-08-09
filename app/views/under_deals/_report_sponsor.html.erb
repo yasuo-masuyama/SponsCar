@@ -1,97 +1,106 @@
-<div class="row">
-	<div id="report-area">
-		<p class="title">やることリスト</p>
-		<div class="col-xs-3">
-			<table>
-				<tr>
-					<th>広告取付け完了写真</th>
-				</tr>
-				<tr>
-          <% if under_deal.installation_image.attached? %>
-					  <td><%= image_tag under_deal.installation_image.variant(resize_to_fill: [200, 200]) %></td>
-          <% end %>
-				</tr>
-			</table>
-		</div>
-		<div class="col-xs-3">
-			<table>
-				<tr>
-					<th>広告キット発送連絡</th>
-				</tr>
-				<tr>
-					<td>
-					<% if under_deal.work_status == 'waiting_kit' %>
-						<%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch) do |f| %>
-							<%= f.submit "発送連絡", name:'sent_kit', class: "btn03" %>
-						<% end %>
-					<% else %>
-						<p class="btn btn-default" disabled="disabled">発送完了</p>
-					<% end %>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="col-xs-3">
-			<table>
-				<tr>
-					<th>振り込み完了報告</th>
-				</tr>
-				<tr>
-					<td>
-						<% if under_deal.work_status == 'completed' %>
-						<%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch) do |f| %>
-							<%= f.submit "振込み報告", name:'transferred', class: "btn03" %>
-						<% end %>
-					</td>
-				</tr>
-			</table>
-			<div class="deposit-info">
-				<tr>
-					<td>
-						<p>振込先情報</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>銀行名：<%= under_deal.deal_detail.bank_name %></span><br>
-						<span>店名：<%= under_deal.deal_detail.branch_name %></span><br>
-						<span>種別：<%= under_deal.deal_detail.account_type_i18n %></span><br>
-						<span>口座番号：<%= under_deal.deal_detail.account_number %></span><br>
-						<span>口座名：<%= under_deal.deal_detail.account_name %></span><br>
-					</td>
-				</tr>
-			</div>
-				<% elsif under_deal.work_status == 'transferred' %>
-					<p class="btn btn-default" disabled="disabled">振込み報告済み</p>
-				<% else %>
-					<p class="btn btn-default" disabled="disabled">振込み報告</p>
-				<% end %>
-				</td>
-			</tr>
-		</table>
-		</div>
-		<div class="col-xs-3">
-			<table>
-				<tr>
-					<th>評価</th>
-				</tr>
-				<tr>
-					<td>
-						<% if under_deal.work_status == 'rated' %>
-							<%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch) do |f| %>
-								<br>
-								<%= f.submit "ドライバーを評価", name:'finished', class: "btn03" %>
-							<% end %>
-						<% elsif under_deal.work_status == 'completed' %>
-							<p class="btn btn-default" disabled="disabled">振込み待ち</p>
-						<% elsif under_deal.work_status == 'finished' %>
-							<p class="btn btn-default" disabled="disabled">評価済み</p>
-						<% else %>
-							<p class="btn btn-default" disabled="disabled">ドライバーを評価</p>
-						<% end %>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-</div>
+<div class="ui grid">
+  <div class="column">
+    <div id="report-area" class="ui segment">
+      <p class="title ui header">やることリスト</p>
+      
+      <div class="ui four column grid">
+        
+				<div class="column">
+					<table class="ui table">
+						<thead>
+							<tr>
+								<th><div class=text-center>広告取付け完了写真</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<% if under_deal.installation_image.attached? %>
+									<td><div class="centered-image"><%= image_tag under_deal.installation_image.variant(resize_to_fill: [100, 100]) %></div></td>
+								<% end %>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="column">
+					<table class="ui table">
+						<thead>
+							<tr>
+								<th><div class="text-center">広告キット発送連絡</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div class="centered-content">
+										<% if under_deal.work_status == 'waiting_kit' %>
+											<%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch) do |f| %>
+												<%= f.submit "発送連絡", name: 'sent_kit', class: "ui blue button" %>
+											<% end %>
+										<% else %>
+											<p class="ui disabled button" disabled>発送完了</p>
+										<% end %>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="column">
+					<table class="ui table">
+						<thead>
+							<tr>
+								<th><div class="text-center">振り込み完了報告</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div class="centered-content">
+										<% if under_deal.work_status == 'completed' %>
+											<%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch) do |f| %>
+												<%= f.submit "振込み報告", name: 'transferred', class: "ui blue button" %>
+											<% end %>
+										<% elsif under_deal.work_status == 'transferred' %>
+											<p class="ui disabled button" disabled>振込み報告済み</p>
+										<% else %>
+											<p class="ui disabled button" disabled>振込み報告</p>
+										<% end %>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="column">
+					<table class="ui table">
+						<thead>
+							<tr>
+								<th><div class="text-center">評価</div></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<% if under_deal.work_status == 'rated' %>
+										<%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch) do |f| %>
+											<%= f.submit "Driverを評価", name: 'finished', class: "ui blue button" %>
+										<% end %>
+									<% elsif under_deal.work_status == 'completed' %>
+										<p class="ui disabled button" disabled>振込み待ち</p>
+									<% elsif under_deal.work_status == 'finished' %>
+										<p class="ui disabled button" disabled>評価済み</p>
+									<% else %>
+										<p class="ui disabled button" disabled>Driverを評価</p>
+									<% end %>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+      </div> 
+    </div> 
+  </div> 
+</div> 

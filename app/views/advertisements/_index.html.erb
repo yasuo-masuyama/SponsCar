@@ -1,26 +1,30 @@
-<h3>広告一覧</h3>
-	<% i = 0 %>
-	<table class="table" id="none-border">
-		<% @advertisements.each do |advertisement| %>
-			<td class="ad-index">
-				<%= link_to advertisement_path(advertisement.id) do %>
-					<%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]) %><br>
-				<%= advertisement.title %><% end %>&emsp;
-			<div id="favorites_buttons_<%= advertisement.id %>">
-					<%= render partial:'favorites/favorite', locals: { advertisement: advertisement} %>
-			</div>
-				<%= converting_to_jpy(advertisement.amounts) %><br>
-				<%= advertisement.heading %>
-			</td>
-			<% i = i + 1 %>
-				<% if i % 3 == 0 %>
-					<tr></tr>
-				<% end %>
-			<% end %>
-	</table>
+<h3 class="ui header">広告一覧</h3>
 
-<% if sponsor_signed_in? %>
-	<%= link_to dashboard_sponsor_path(current_sponsor) do %><i class="fas fa-angle-left"> マイページへ戻る</i><% end %>
-<% elsif driver_signed_in?%>
-	<%= link_to dashboard_driver_path(current_driver) do %><i class="fas fa-angle-left"> マイページに戻る</i><% end %>
-<% end %>
+<div class="ui three column grid">
+  <% @advertisements.each do |advertisement| %>
+    <div class="column">
+      <div class="ui card">
+        <div class="advertisement_image">
+          <%= link_to advertisement_path(advertisement.id) do %>
+            <%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]) %>
+          <% end %>
+        </div>
+        <div class="content">
+          <%= link_to advertisement.title, advertisement_path(advertisement.id) %>
+          <div class="description">
+            <%= advertisement.heading %>
+          </div>
+				</div>
+					<div class="extra content">
+						<span class="right floated">
+							報酬金額：<%= converting_to_jpy(advertisement.amounts) %>
+						</span>
+					<div id="favorites_buttons_<%= advertisement.id %>">
+							<%= render partial: 'favorites/favorite', locals: { advertisement: advertisement } %>
+					</div>
+				</div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

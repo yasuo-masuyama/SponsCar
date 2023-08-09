@@ -1,91 +1,108 @@
 <% if under_deal.work_status == 'approval_pending' %>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h3>広告に応募がありました!</h3>
-		</div>
-		<div id="report-driver">
-			<%= render 'drivers/profile' , driver: under_deal.driver %>
-				<p><%= link_to "プロフィールを確認する",driver_path(under_deal.driver.id), name: 'driver_check', class: "btn05" %></p>
-				<p>取引承認待ちです。こちらのドライバーと広告契約を結びますか？</p>
-				<%= form_with(model: under_deal,local: true , url:under_deal_path(under_deal), method: :patch) do |f| %>
-					<%= f.submit "広告を依頼する", name:'accept', class: "btn03 " %>
-					<%= f.submit "お断りする", name: 'refuse', class: "btn04" %>
-				<% end %>
-			</div>
-		</div>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h3>広告に応募がありました!</h3>
+      </div>
+      <div id="report-driver">
+        <%= render 'drivers/profile', driver: under_deal.driver %>
+        <p><%= link_to "プロフィールを確認する", driver_path(under_deal.driver.id), name: 'driver_check', class: "ui button btn05" %></p>
+        <p>取引承認待ちです。こちらのドライバーと広告契約を結びますか？</p>
+        <%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch, class: "ui form") do |f| %>
+          <%= f.submit "広告を依頼する", name: 'accept', class: "ui button btn03" %>
+          <%= f.submit "お断りする", name: 'refuse', class: "ui button btn04" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <% if under_deal.work_status == 'refuse'%>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h3>ドライバーからの申し込みをお断りしました。</h3>
-		</div>
-	</div>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h3>ドライバーからの申し込みをお断りしました。</h3>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <% if under_deal.work_status == 'waiting_kit'%>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h3>ドライバーへ広告キットを発送してください</h3>
-		</div>
-	</div>
-	<%= render 'under_deals/report_sponsor', under_deal: under_deal %>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h3>ドライバーへ広告キットを発送してください</h3>
+      </div>
+    </div>
+  </div>
+  <%= render 'under_deals/report_sponsor', under_deal: under_deal %>
 <% end %>
 
 <% if under_deal.work_status == 'sent_kit'%>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h3>発送通知をしました!<br>ドライバーからの広告キット取り付け完了連絡をお待ちください。</h3>
-		</div>
-	</div>
-	<%= render 'under_deals/report_sponsor', under_deal: under_deal %>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h3>発送通知をしました!<br>ドライバーからの広告キット取り付け完了連絡をお待ちください。</h3>
+      </div>
+    </div>
+  </div>
+  <%= render 'under_deals/report_sponsor', under_deal: under_deal %>
 <% end %>
 
 <% if under_deal.work_status == 'advertising'%>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h4>ドライバーから広告キット取付け完了の報告がきました。<br>これからドライバーが広告作業を行います。作業完了の報告をお待ちください。</h4>
-		</div>
-	</div>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h4>ドライバーから広告キット取付け完了の報告がきました。<br>これからドライバーが広告作業を行います。作業完了の報告をお待ちください。</h4>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <% if under_deal.work_status == 'completed'%>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h3>広告作業が完了しました！</h3>
-			<h4>広告作業代の振り込み作業を行ってください。お振込み完了後、評価をしてドライバーに報告をしてください。</h4>
-		</div>
-	</div>
-	<%= render 'under_deals/report_sponsor', under_deal: under_deal %>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h3>広告作業が完了しました！</h3>
+        <h4>広告作業代の振り込み作業を行ってください。お振込み完了後、評価をしてドライバーに報告をしてください。</h4>
+      </div>
+    </div>
+  </div>
+  <%= render 'under_deals/report_sponsor', under_deal: under_deal %>
 <% end %>
 
 <% if under_deal.work_status == 'transferred'%>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h3>振り込み報告が完了しました！</h3>
-			<h4>ドライバーからの受け取り連絡待ちです。</h4>
-		</div>
-	</div>
-	<%= render 'under_deals/report_sponsor', under_deal: under_deal %>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h3>振り込み報告が完了しました！</h3>
+        <h4>ドライバーからの受け取り連絡待ちです。</h4>
+      </div>
+    </div>
+  </div>
+  <%= render 'under_deals/report_sponsor', under_deal: under_deal %>
 <% end %>
 
 <% if under_deal.work_status == 'rated'%>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h3>ドライバーから振り込み確認の連絡がきました！</h3>
-			<h4>ドライバーの評価をして取引を終了させてください。</h4>
-		</div>
-	</div>
-	<%= render 'under_deals/report_sponsor', under_deal: under_deal %>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h3>ドライバーから振り込み確認の連絡がきました！</h3>
+        <h4>ドライバーの評価をして取引を終了させてください。</h4>
+      </div>
+    </div>
+  </div>
+  <%= render 'under_deals/report_sponsor', under_deal: under_deal %>
 <% end %>
 
 <% if under_deal.work_status == 'finished'%>
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="message-box">
-			<h3>お疲れ様でした！</h3>
-			<h4>お取引きが完了しました。宣伝したい広告はありませんか？</h4>
-				<p><%= link_to "広告を依頼する", class: "btn btn-sm btn-default" %></p>
-		</div>
-	</div>
-	<%= render 'under_deals/report_sponsor', under_deal: under_deal %>
+  <div class="ui stackable grid">
+    <div class="wide column">
+      <div class="ui message-box">
+        <h3>お疲れ様でした！</h3>
+        <h4>お取引きが完了しました。宣伝したい広告はありませんか？</h4>
+      </div>
+    </div>
+  </div>
+  <%= render 'under_deals/report_sponsor', under_deal: under_deal %>
 <% end %>

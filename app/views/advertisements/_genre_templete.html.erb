@@ -1,10 +1,9 @@
-<table class="sidebar">
-	<thead>
-		<th class="side-menu-heading">ジャンル検索</th>
-	</thead>
-	<% genres.each do |genre| %>
-		<tr>
-			<td><%= link_to genre.name, genre_index_advertisement_path(genre.id), class:"side-menu" %></td>
-		</tr>
-	<% end %>
-</table>
+<div class="ui vertical menu">
+  <h4 class="header item">ジャンル検索</h4>
+
+  <% genres.each do |genre| %>
+    <a class="item side-menu" href="<%= genre_index_advertisement_path(genre.id) %>">
+      <%= genre.name %>
+    </a>
+  <% end %>
+</div>

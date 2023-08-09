@@ -1,8 +1,17 @@
-<% if sponsor_signed_in? %>
-  <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
-<% elsif driver_signed_in?%>
-  <%= render "drivers/sidebar", driver: current_driver %>
-<% end %><br>
+<div class="ui grid">
 
-<%= render "advertisements/genre_templete", genres: @genres %>
-<%= render "advertisements/index", advertisements: @advertisement %>
+  <div class="four wide column">
+    <% if sponsor_signed_in? %>
+      <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+    <% elsif driver_signed_in? %>
+      <%= render "drivers/sidebar", driver: current_driver %>
+    <% end %>
+
+    <%= render "advertisements/genre_templete", genres: @genres %>
+  </div>
+
+  <div class="twelve wide column">
+    <%= render "advertisements/index", advertisements: @advertisement %>
+  </div>
+</div>
+

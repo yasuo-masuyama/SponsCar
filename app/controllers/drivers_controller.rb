@@ -55,7 +55,7 @@ class DriversController < ApplicationController
   end
 
   def driver_params
-    params.require(:driver).permit( :name, :name_kana, :postal_code, :address, :telephone_number, :is_active, :activity_area, :profile_image, :license_image) 
+    params.require(:driver).permit(:name, :name_kana, :postal_code, :address, :telephone_number, :is_active, :activity_area, :profile_image, :license_image) 
   end
 
   def deal_detail_params
