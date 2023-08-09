@@ -1,93 +1,96 @@
-<div class="row">
-	<div class="col-xs-3">
-		<!-- サイドバー-->
-			<%= render "drivers/sidebar", driver: @driver %>
-	</div>
-	<div class="col-xs-8">
-		<!-- 運営からのメッセージ -->
-		<%= render 'layouts/message_from_admin', driver: @driver %>
+<div class="ui grid">
+  <div class="three wide column">
 
-		<!-- 取引広告の情報 -->
-		<div class="deal-area">
-			<h3>取引中の広告</h3>
-			<% if @under_deal.present? %>
-				<!-- 作業報告エリア -->
-				<%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
-				<%= render 'under_deals/flow_driver', { under_deal: @under_deal, deal_detail: @deal_detail, driver: @driver } %>
-			<!-- メッセージエリア -->
-			<div id="chat-templete" class="chat-area">
-				<%= form_with(model: @deal_message, local: true,url: under_deal_deal_messages_path(@under_deal)) do |f| %>
-					<div id ="chat-send">
-						<%= f.text_area :message, placeholder: "メッセージを入力してください。", class: "chat-message" %>
-						<%= f.submit "送信",  class: "btn chat-btn" %>
-					</div>
-				<% end %>
+    <%= render "drivers/sidebar", driver: @driver %>
+  </div>
+  <div class="thirteen wide column">
 
-				<% @deal_messages.each do |message| %>
-					<% if message.user_type == 'driver' %>
-						<div class="message">
-            <div id="icon" class="faceicon">
-              <%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
-            </div>
-              <div class="chatting">
-                <div class="says">
-                  <p><%= message.message %></p>
-                  <div class="say-data">
-                    <%= message.created_at.to_s(:datetime_jp) %>
-                  </div>
-                </div>
-              </div>
+    <%= render 'layouts/message_from_admin', driver: @driver %>
+
+    <div class="current-deal ui segment">
+      <h3 class="ui header">取引中の広告</h3>
+      <% if @under_deal.present? %>
+
+        <%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
+        <%= render 'under_deals/flow_driver', { under_deal: @under_deal, deal_detail: @deal_detail, driver: @driver } %>
+
+					<div class="ui segment">
+						<div class="ui comments">
+							<% @deal_messages.each do |message| %>
+								<% if message.user_type == 'driver' %>
+									<div class="comment">
+										<a class="avatar">
+											<%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
+										</a>
+										<div class="content">
+											<div class="text">
+												<%= message.message %>
+											</div>
+											<div class="metadata">
+												<span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
+											</div>
+										</div>
+									</div>
+								<% else %>
+									<div class="comment">
+										<a class="avatar">
+											<%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
+										</a>
+										<div class="content">
+											<div class="text">
+												<%= message.message %>
+											</div>
+											<div class="metadata">
+												<span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							<% end %>
 						</div>
-					<% else %>
-						<div class="message2">
-            <div class="faceicon2">
-              <%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
-            </div>
-            </div>
-              <div class="chatting2">
-                <div class="says2">
-                  <p><%= message.message %></p>
-                  <div class="say-data2">
-                    <%= message.created_at.to_s(:datetime_jp) %>
-                  </div>
-                </div>
-              </div>
-							</div>
-						<% end %>
-					<% end %>
-				</div>
-			<% else %>
-				<div class="message-box">
-					<h4>現在、取引中の広告はありません。</h4>
-					<h5>広告を探してみましょう！！  <%= link_to "▶︎ 広告ページへ", advertisements_path %></h5>
-				</div>
-			<% end %>
-			<!-- 取引一覧 -->
-			<div class="past-deal">
-				<table class="table">
-					<h4>過去取引一覧</h4>
-          <thead>
-            <tr>
-              <td>広告名</td>
-              <td>広告期間</td>
-              <td>ステータス</td>
-              <td colspan="2">詳細画面</td>
-            </tr>
-          </thead>
-          <tbody>
-            <% @finish_deals.each do |f| %>
-            <tr>
-              <td><%= f.advertisement.title %></td>
-              <td><%= f.advertisement.start_due_on %>〜<%= f.advertisement.end_due_on %></td>
-              <td><%= f.work_status_i18n %></td>
-              <td colspan="2">
-                <%= link_to show_driver_under_deal_path(f.id), class: "btn02" do %><span>詳細<i class="fas fa-arrow-right"></i><% end %>
+  
+  <div id="chat-templete">
+    <%= form_with(model: @deal_message, local: true, url: under_deal_deal_messages_path(@under_deal)) do |f| %>
+      <div class="flex-container">
+        <%= f.text_area :message, placeholder: "メッセージを入力してください。", class: "chat-message flex-input" %>
+        <%= f.submit "送信", class: "ui button chat-btn teal" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+      <% else %>
+        <div class="ui message">
+          <h4>現在、取引中の広告はありません。</h4>
+          <h5>広告を探してみましょう！！ <%= link_to "▶︎ 広告ページへ", advertisements_path %></h5>
+        </div>
+      <% end %>
+
+      <h3 class="ui header">過去取引一覧</h3>
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>広告名</th>
+            <th>広告期間</th>
+            <th>ステータス</th>
+            <th colspan="2">詳細画面</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @finish_deals.each do |f| %>
+          <tr>
+            <td><%= f.advertisement.title %></td>
+            <td><%= f.advertisement.start_due_on %>〜<%= f.advertisement.end_due_on %></td>
+            <td><%= f.work_status_i18n %></td>
+            <td colspan="2">
+              <%= link_to show_driver_under_deal_path(f.id), class: "ui green button" do %>
+                詳細<i class="arrow right icon"></i>
+              <% end %>
             </td>
-            </tr>
-            <% end %>
-          </tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
