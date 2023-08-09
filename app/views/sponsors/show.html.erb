@@ -1,87 +1,92 @@
-<div class="row">
-	<div class="col-xs-3">
-		<% if sponsor_signed_in? %>
-			<%= render 'sponsors/sidebar' , sponsor: current_sponsor %>
-		<% elsif driver_signed_in?%>
-			<%= render "drivers/sidebar", driver: current_driver %>
-		<% end %><br>
-	</div>
+<div class="ui container">
+  <div class="ui stackable grid">
+    <div class="four wide column">
+      <% if sponsor_signed_in? %>
+        <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+      <% elsif driver_signed_in? %>
+        <%= render "drivers/sidebar", driver: current_driver %>
+      <% end %>
+    </div>
 
-	<div class="col-xs-9">
-		<div class="row">
-			<div class = "col-xs-6">
-				<h4>Sponsor情報</h4>
-					<%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]) %><br>
-						<div id="follow_sponsor_<%= @sponsor.id %>">
-							<%= render "relationship_drivers/follow_sponsor", sponsor: @sponsor %>
-						</div>
-					<table class="table .table-borderless">
-						<tr id="follow_count_<%= @sponsor.id %>">
-							<%= render "relationship_drivers/follow_count_sponsor", sponsor: @sponsor %>
-						</tr>
+    <div class="twelve wide column">
+      <div class="ui segment">
+        <div class="ui stackable grid">
 
-						<tr>
-							<th>会社名</th>
-							<td><%= @sponsor.company_name %></td>
-						</tr>
+          <div class="eight wide column">
+            <h4 class="ui header">Sponsor情報</h4>
+            <%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]) %><br>
+            <div id="follow_sponsor_<%= @sponsor.id %>">
+              <%= render "relationship_drivers/follow_sponsor", sponsor: @sponsor %>
+            </div>
+            <table class="ui table">
+              <tr id="follow_count_<%= @sponsor.id %>">
+                <%= render "relationship_drivers/follow_count_sponsor", sponsor: @sponsor %>
+              </tr>
+              <tr>
+                <th>会社名</th>
+                <td><%= @sponsor.company_name %></td>
+              </tr>
+              <tr>
+                <th>会社名（カナ）</th>
+                <td><%= @sponsor.company_name_kana %></td>
+              </tr>
+              <tr>
+                <th>郵便番号</th>
+                <td><%= @sponsor.postal_code %></td>
+              </tr>
+              <tr>
+                <th>住所</th>
+                <td><%= @sponsor.address %></td>
+              </tr>
+              <tr>
+                <th>メールアドレス</th>
+                <td><%= @sponsor.email %></td>
+              </tr>
+              <% if admin_signed_in? %>
+                <tr>
+                  <th>ユーザーステータス</th>
+                  <td>
+                    <%= form_with(model: @sponsor, local: true, url: sponsor_path(@sponsor), method: :patch, html: {class: "ui form"}) do |f| %>
+                      <div class="inline fields">
+                        <div class="field">
+                          <%= f.radio_button :is_active, :true, checked: true %>
+                          <%= f.label :有効 %>
+                        </div>
+                        <div class="field">
+                          <%= f.radio_button :is_active, :false %>
+                          <%= f.label :無効 %>
+                        </div>
+                      </div>
+                      <%= f.submit "更新", class: "ui primary button" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
 
-						<tr>
-							<th>会社名（カナ）</th>
-							<td><%= @sponsor.company_name_kana %></td>
-						</tr>
+          <div class="four wide column">
+            <h4 class="ui header">所在地</h4>
+            <div id="map"></div>
+            <script>
+              var map;
+              function initMap() {
+                var lat_lng = { lat: <%= @sponsor.latitude %>, lng: <%= @sponsor.longitude %> };
+                map = new google.maps.Map(document.getElementById('map'), {
+                  center: lat_lng,
+                  zoom: 12,
+                });
+                marker = new google.maps.Marker({
+                  position: lat_lng,
+                  map: map
+                });
+              }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+          </div>
 
-						<tr>
-							<th>郵便番号</th>
-							<td><%= @sponsor.postal_code %></td>
-						</tr>
-
-						<tr>
-							<th>住所</th>
-							<td><%= @sponsor.address %></td>
-						</tr>
-
-						<tr>
-							<th>メールアドレス</th>
-							<td><%= @sponsor.email %></td>
-						</tr>
-
-						<% if sponsor_signed_in? %>
-						<tr>
-							<th>ユーザーステータス</th>
-							<td>
-								<%= form_with(model: @sponsor, local: true, url: sponsor_path(@sponsor), method: :patch) do |f| %>
-									<%= f.radio_button :is_active, :true, checed:true %>
-									<%= f.label :有効 %>
-									<%= f.radio_button :is_active, :false %>
-									<%= f.label :無効 %>
-									<%= f.submit "更新", class: "btn btn-primary",style: "margin-left:13px"%>
-								<% end %>
-							</td>
-						</tr>
-						<% end %>
-					</table>
-				<%= link_to sponsors_path do %><i class="fas fa-angle-left"> 一覧ページへ戻る</i><% end %>
-			</div>
-
-			<div class="col-xs-6">
-				<h4>所在地</h4>
-					<div id ="map"></div>
-						<script>
-							var map;
-							function initMap(){
-								var lat_lng ={ lat: <%= @sponsor.latitude %>, lng: <%= @sponsor.longitude %>}
-
-								map = new google.maps.Map(document.getElementById('map'), {
-									center: lat_lng,
-									zoom: 12,
-								});
-								marker = new google.maps.Marker({
-									position: lat_lng,
-									map: map
-								});
-							}
-						</script>
-						<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
-			</div>
-		</div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

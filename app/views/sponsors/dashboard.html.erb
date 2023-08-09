@@ -1,10 +1,9 @@
-<div class="row">
-	<div class="col-xs-3">
-		<!-- サイドバー -->
-		<%= render 'sponsors/sidebar', sponsor: current_sponsor %>
-	</div>
-	<div class="col-xs-8">
-		<%= render 'layouts/message_from_admin', sponsor: @sponsor %>
-		<%= render 'under_deals/index_sponsor', under_deals: @under_deals, finish_deals: @finish_deals %>
-	</div>
+<div class="ui grid">
+  <div class="four wide column">
+    <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+  </div>
+  <div class="twelve wide column">
+    <%= render 'layouts/message_from_admin', sponsor: @sponsor %>
+    <%= render 'under_deals/index_sponsor', under_deals: @under_deals, finish_deals: @finish_deals %>
+  </div>
 </div>

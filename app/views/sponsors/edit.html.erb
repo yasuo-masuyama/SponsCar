@@ -1,68 +1,81 @@
-<%= form_with(model: @sponsor, local: true, url:sponsor_path) do |f| %>
-  <% if @sponsor.errors.any? %>
-    <h3><%= @spnsor.errors.count %>error occurrence</h3>
-    <ul>
-      <% @sponsor.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div style="display: flex; justify-content: space-between;">
+
+  <div class="four wide column">
+    <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+  </div>
+
+  <div class="eight wide column" style="flex-grow: 1; margin-left: 2em;">
+    <%= form_with(model: @sponsor, local: true, url: sponsor_path, class: "ui form") do |f| %>
+      <% if @sponsor.errors.any? %>
+        <div class="ui error message">
+          <h3><%= @sponsor.errors.count %> error occurrence</h3>
+          <ul>
+            <% @sponsor.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </ul>
-  <% end %>
 
-  <table class="table .table-borderless">
-    <tr>
-      <th><%= f.label :会社ロゴ %></th>
-      <td><%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]) %></td>
-      <td><%= f.file_field :company_image, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field" style="display: flex; flex-direction: column; align-items: right;">
+        <div style="margin-bottom: 20px;">
+          <%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]), class: "ui circular image" %>
+        </div>
+        <%= f.label :会社ロゴ %>
+        <%= f.file_field :company_image, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :会社名 %></th>
-      <td><%= f.text_field :company_name, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :会社名 %>
+        <%= f.text_field :company_name, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :会社名（カナ） %></th>
-      <td><%= f.text_field :company_name_kana, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :会社名（カナ） %>
+        <%= f.text_field :company_name_kana, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :代表取締役名 %></th>
-      <td><%= f.text_field :ceo_name, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :代表取締役名 %>
+        <%= f.text_field :ceo_name, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :代表取締役名（カナ） %></th>
-      <td><%= f.text_field :ceo_name_kana, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :代表取締役名（カナ） %>
+        <%= f.text_field :ceo_name_kana, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :郵便番号 %></th>
-      <td><%= f.text_field :postal_code, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :郵便番号 %>
+        <%= f.text_field :postal_code, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :住所 %></th>
-      <td><%= f.text_field :address, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :住所 %>
+        <%= f.text_field :address, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :電話番号 %></th>
-      <td><%= f.text_field :telephone_number, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :電話番号 %>
+        <%= f.text_field :telephone_number, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th><%= f.label :メールアドレス %></th>
-      <td><%= f.text_field :email, class: "form-control form-control-sm" %></td>
-    </tr>
+      <div class="field">
+        <%= f.label :メールアドレス %>
+        <%= f.text_field :email, class: "ui input" %>
+      </div>
 
-    <tr>
-      <th></th>
-      <td class="text-left"><%= button_tag :type => "submit", class: "btn03" do %><span>更新する</span><i class="fas fa-angle-double-right"></i><% end %></td></td>
-    </tr>
+      <div class="field">
+        <%= button_tag :type => "submit", class: "ui blue button" do %>
+          <span>更新する</span><i class="fas fa-angle-double-right"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-  </table>
-  <%= link_to dashboard_sponsor_path(current_sponsor) do %><i class="fas fa-angle-left"> マイページへ戻る</i><% end %>
-<% end %>
+
+
 
 
 
