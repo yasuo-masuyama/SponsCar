@@ -1,32 +1,38 @@
-<div class="row">
-	<div class="col-xs-3">
-		<%= render 'sponsors/sidebar', sponsor: current_sponsor %>
-	</div>
-	<div class="col-xs-8">
+<div class="ui stackable grid">
+  <div class="four wide column">
+    <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+  </div>
+
+	<div class="twelve wide column">
 		<h3>掲載中 広告一覧</h3>
-			<% i = 0 %>
-				<table class="table" id="none-border">
-					<% @advertisements.each do |advertisement| %>
-						<td class="ad-index">
-							<%= link_to sponsor_advertisement_path(advertisement.sponsor.id,advertisement.id) do %>
-								<%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]) %><br>
-							<%= advertisement.title %><% end %>&emsp;
-            <div id="favorites_buttons_<%= advertisement.id %>">
-								<%= render partial:'favorites/favorite', locals: { advertisement: advertisement} %>
-						</div>
-							<%= converting_to_jpy(advertisement.amounts) %><br>
-							<%= advertisement.heading %>
-						</td>
-						<% i = i + 1 %>
-							<% if i % 3 == 0 %>
-								<tr></tr>
+
+		<div class="ui stackable three column grid">
+			<% @advertisements.each do |advertisement| %>
+				<div class="column">
+					<div class="ui card">
+						<div class="advertisement_image">
+							<%= link_to sponsor_advertisement_path(advertisement.sponsor.id, advertisement.id) do %>
+								<%= image_tag advertisement.image.variant(resize_to_fill: [200, 200]) %>
 							<% end %>
-						<% end %>
-				</table>
-		<% if sponsor_signed_in? %>
-			<%= link_to "マイページへ戻る", dashboard_sponsor_path(current_sponsor) %>
-		<% elsif driver_signed_in?%>
-			<%= link_to "マイページに戻る", dashboard_driver_path(current_driver) %>
-		<% end %>
+						</div>
+						<div class="content">
+								<%= link_to advertisement.title, sponsor_advertisement_path(advertisement.sponsor.id, advertisement.id) %>
+							<div class="description">
+								<%= advertisement.heading %>
+							</div>
+						</div>
+						<div class="extra content">
+							<span class="right floated">
+							報酬金額:<%= converting_to_jpy(advertisement.amounts) %>
+							</span>
+							<div id="favorites_buttons_<%= advertisement.id %>">
+								<%= render partial: 'favorites/favorite', locals: { advertisement: advertisement } %>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>
+
