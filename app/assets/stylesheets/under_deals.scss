@@ -1,3 +1,54 @@
 // Place all the styles related to the under_deals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-input {
+  flex-grow: 1;
+  margin-right: 1rem;
+}
+
+.bordered-content {
+  border: 1px solid #d4d4d5;  
+  border-radius: 3px;         
+  padding: 1rem;              
+}
+
+.text-center {
+  text-align: center;
+}
+
+.centered-image {
+  text-align: center;
+}
+
+.centered-image img {
+  display: inline-block;
+}
+
+.centered-content {
+  text-align: center;
+}
+
+.ui.message-box {
+  background-color: #FFD700; /* 金色の背景色 */
+  color: #000; /* 文字色を黒に設定 */
+  text-align: center; /* テキストを中央に配置 */
+  padding: 20px 0; /* 上下のパディングを追加して、テキストがボックス内で中央に見えるように調整 */
+  border-radius: 5px; /* 角を少し丸くする */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 少し影をつけて立体感を出す */
+}
+
+.ui.message-box h3,
+.ui.message-box h4 {
+  margin: 10px 0; /* 上下のマージンを追加して、テキスト間のスペースを確保 */
+}
+
+.ui.table td {
+  text-align: center;
+}
