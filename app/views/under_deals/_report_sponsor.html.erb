@@ -51,7 +51,7 @@
 					<table class="ui table">
 						<thead>
 							<tr>
-								<th><div class="text-center">振り込み完了報告</div></th>
+								<th><div class="text-center">振込み完了報告</div></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,17 +84,19 @@
 						<tbody>
 							<tr>
 								<td>
-									<% if under_deal.work_status == 'rated' %>
-										<%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch) do |f| %>
-											<%= f.submit "Driverを評価", name: 'finished', class: "ui blue button" %>
+								  <div class="centered-content">
+										<% if under_deal.work_status == 'rated' %>
+											<%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch) do |f| %>
+												<%= f.submit "Driverを評価", name: 'finished', class: "ui blue button" %>
+											<% end %>
+										<% elsif under_deal.work_status == 'completed' %>
+											<p class="ui disabled button" disabled>振込み待ち</p>
+										<% elsif under_deal.work_status == 'finished' %>
+											<p class="ui disabled button" disabled>評価済み</p>
+										<% else %>
+											<p class="ui disabled button" disabled>Driverを評価</p>
 										<% end %>
-									<% elsif under_deal.work_status == 'completed' %>
-										<p class="ui disabled button" disabled>振込み待ち</p>
-									<% elsif under_deal.work_status == 'finished' %>
-										<p class="ui disabled button" disabled>評価済み</p>
-									<% else %>
-										<p class="ui disabled button" disabled>Driverを評価</p>
-									<% end %>
+									</div>
 								</td>
 							</tr>
 						</tbody>

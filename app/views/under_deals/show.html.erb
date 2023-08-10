@@ -12,49 +12,48 @@
       <%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
       <%= render 'under_deals/flow_sponsor', under_deal: @under_deal %>
 
-      <div class="ui segment">
-        <div class="ui comments">
-          <% @deal_messages.each do |message| %>
-            <% if message.user_type == 'driver' %>
-              <div class="comment">
-                <a class="avatar">
-                  <%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
-                </a>
-                <div class="content">
-                  <div class="text">
-                    <%= message.message %>
-                  </div>
-                  <div class="metadata">
-                    <span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
-                  </div>
+    <div class="ui segment">
+      <div class="ui comments">
+        <% @deal_messages.each do |message| %>
+          <% if message.user_type == 'driver' %>
+            <div class="comment driver-message">
+              <a class="avatar">
+                <%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
+              </a>
+              <div class="content">
+                <div class="text">
+                  <%= message.message %>
+                </div>
+                <div class="metadata">
+                  <span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
                 </div>
               </div>
-            <% else %>
-              <div class="comment">
-                <a class="avatar">
-                  <%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
-                </a>
-                <div class="content">
-                  <div class="text">
-                    <%= message.message %>
-                  </div>
-                  <div class="metadata">
-                    <span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
-                  </div>
+            </div>
+          <% else %>
+            <div class="comment sponsor-message">
+              <a class="avatar">
+                <%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
+              </a>
+              <div class="content">
+                <div class="text">
+                  <%= message.message %>
+                </div>
+                <div class="metadata">
+                  <span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
                 </div>
               </div>
-            <% end %>
+            </div>
           <% end %>
-        </div>
+        <% end %>
+      </div>
 
-        <div id="chat-templete">
-					<%= form_with(model: @deal_message, local: true, url: under_deal_deal_messages_path(@under_deal)) do |f| %>
-						<div class="flex-container">
-							<%= f.text_area :message, placeholder: "メッセージを入力してください。", class: "chat-message flex-input" %>
-							<%= f.submit "送信", class: "ui button chat-btn teal" %>
-						</div>
-					<% end %>
-        </div>
+      <div id="chat-templete">
+        <%= form_with(model: @deal_message, local: true, url: under_deal_deal_messages_path(@under_deal)) do |f| %>
+          <div class="flex-container">
+            <%= f.text_area :message, placeholder: "メッセージを入力してください。", class: "chat-message flex-input" %>
+            <%= f.submit "送信", class: "ui button chat-btn teal" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
