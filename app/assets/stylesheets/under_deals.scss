@@ -52,3 +52,21 @@
 .ui.table td {
   text-align: center;
 }
+
+/* デフォルトのファイル選択フィールドを隠す */
+#update_img {
+  display: none;
+}
+
+/* カスタムのファイルアップロードボタンのスタイル */
+.custom-file-label {
+  padding: 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: block;      /* ブロック要素として表示 */
+  margin: 0 auto;      /* 水平方向の中央に配置 */
+  text-align: center;  /* テキストを中央に配置 */
+  width: 100%;          /* 必要に応じて幅を調整 */
+  margin-bottom: 5px; /* 「写真をアップロード」ボタンとの間に余白を追加 */
+}

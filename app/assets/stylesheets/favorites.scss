@@ -1,3 +1,11 @@
 // Place all the styles related to the favorites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.favorite-link i {
+  color: grey; /* 非お気に入りのアイコンの色 */
+}
+
+.favorite-link.is-favorited i {
+  color: red; /* お気に入りのアイコンの色 */
+}
