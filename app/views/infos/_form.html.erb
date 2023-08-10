@@ -3,6 +3,7 @@
     <%= f.label :タイトル %>
     <%= f.text_field :title, autofocus: true, autocomplete:"", placeholder:"タイトルを入力" %>
   </div>
+  
   <div class="field">
     <%= f.label :閲覧者タイプ %>
     <div class="inline fields">
@@ -20,6 +21,7 @@
       </div>
     </div>
   </div>
+  
   <div class="field">
     <%= f.label :内容 %>
     <%= f.text_area :content, autofocus: true, autocomplete:"", placeholder:"内容を入力", rows: 10 %>
