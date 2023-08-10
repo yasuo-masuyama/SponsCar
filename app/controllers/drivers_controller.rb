@@ -26,6 +26,7 @@ class DriversController < ApplicationController
   def show
     @genres = Genre.all
     @car_infos = @driver.car_infos
+    @current_driver = current_driver
   end
 
   def update

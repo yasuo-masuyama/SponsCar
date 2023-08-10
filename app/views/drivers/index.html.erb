@@ -1,12 +1,35 @@
-<div class="row">
-	<div class="col-xs-3">
-		<% if sponsor_signed_in? %>
-			<%= render 'sponsors/sidebar' , sponsor: current_sponsor %>
-		<% elsif driver_signed_in? %>
-			<%= render "drivers/sidebar", driver: current_driver %>
-		<% end %>
-	</div>
-	<div class="col-xs-8 col-xs-offset-1">
-		<%= render 'drivers/index', drivers: @drivers %>
-	</div>
+<div class="ui stackable grid">
+  <div class="four wide column">
+    <% if sponsor_signed_in? %>
+      <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+    <% elsif driver_signed_in? %>
+      <%= render "drivers/sidebar", driver: current_driver %>
+    <% end %>
+  </div>
+
+  <div class="twelve wide column">
+    <h3>Driver一覧</h3>
+
+    <div class="ui three column grid">
+      <% @drivers.each do |driver| %>
+        <div class="column">
+				  <div class="ui card">
+					  <div class="profile_image">
+							<%= link_to driver_path(driver.id) do %>
+								<%= image_tag driver.profile_image.variant(resize_to_fill: [200, 200]) %>
+							<% end %>
+						</div>
+						<div class="content">ドライバー名：
+						  <%= link_to driver.name, driver_path(driver.id), data: {"turbolinks" => false}  %>
+						</div>
+					</div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="ui center aligned container">
+      <%= paginate @drivers, class: "ui pagination menu" %>
+    </div>
+  </div>
 </div>
+

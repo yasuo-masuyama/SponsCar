@@ -1,0 +1,106 @@
+ja:
+  enums:
+    under_deal:
+      work_status:
+        approval_pending: 返答待ち
+        refuse: 契約見送り
+        waiting_kit: 広告キット発送待ち
+        sent_kit: 広告キット発送済
+        advertising: 広告作業中
+        completed: 広告料振り込み待ち
+        transferred: 振り込み完了
+        rated: 評価待ち
+        finished: 取引完了
+        checked_refuse: 契約見送り
+    contact:
+      work_status:
+        new_inquiry: 新規問い合わせ
+        working_inquiry: 対応中
+        past_inquiry: 対応済み
+    transfer_info:
+      account_type:
+        ordinary: 普通預金
+        checking: 当座預金
+    deal_detail:
+      account_type:
+        ordinary: 普通預金
+        checking: 当座預金
+    driver:
+      user_status:
+        not_check: 本人証明未確認
+        checked_indentification: 本人確認済
+        checked_car_indentification: 車両情報確認済
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      trauncate: "..."
+
+  activemodel:
+    errors:
+      message:
+        not_upload: "がアップロードされていません"
+        input_number: "数字を入力してください"
+
+  activerecord:
+    attributes:
+      sponsor:
+        company_name: 会社名
+        company_name_kana: 会社名（カナ）
+        password: パスワード
+        password_confirmation: パスワード確認
+        ceo_name: 代表取締役名
+        ceo_name_kana: 代表取締役名（カナ）
+        email: メールアドレス
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        registry_image: 登記簿藤本の画像
+        terms: 利用規約
+
+      driver:
+        driver_name: お名前
+        driver_name_kana: お名前（カナ）
+        password: パスワード
+        email: メールアドレス
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        driver_license_image: 運転免許証の画像
+        terms: 利用規約
+        user_status: ステータス
+        activity_area: 活動地域
+
+      car_info:
+        manufacturer_name: メーカー
+        name: 車名
+        flame_number: 車台番号
+        license_plate: 登録番号
+        vehicle_image: 車検証書類
+
+      transfer_information:
+        bank_name: 銀行名
+        branch_name: 支店名
+        account_type: 口座種別
+        account_number: 口座番号
+        account_name: 口座人名
+
+      advertisement:
+        genre_id: ジャンル
+        title: タイトル
+        heading: 見出し
+        content: 内容
+        image: 広告写真
+        amounts: 報酬金額
+        start_due_on: 広告開始日
+        end_due_on: 広告終了日
+        genre: ジャンル
+
+      contact:
+        name: お名前
+        company_name: 会社名
+        telephone_number: 電話番号
+        email: メールアドレス
+        content: 内容

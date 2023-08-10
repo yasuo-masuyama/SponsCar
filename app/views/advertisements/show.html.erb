@@ -17,7 +17,7 @@
           <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]) %>
         </div>
         <div class="content">
-          <a class="header"><%= @advertisement.title %></a>
+          <span class="header"><%= @advertisement.title %></span>
           <div class="meta">
             <span class="ad-fee">報酬金額：<%= converting_to_jpy(@advertisement.amounts) %></span>
             <div id="favorites_buttons_<%= @advertisement.id %>">
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="description">
-            <h4><%= @advertisement.heading %></h4>
+            <h5><%= @advertisement.heading %></h5>
             <p><%= @advertisement.content %></p>
           </div>
         </div>

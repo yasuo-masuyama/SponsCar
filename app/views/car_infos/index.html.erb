@@ -32,8 +32,6 @@
     <% end %>
   </div>
 
-  <%= link_to "前の画面に戻る", dashboard_driver_path(current_driver), class: "ui button" %>
-
   <div class="ui segment">
     <h3>登録車両一覧</h3>
     <table class="ui celled table">
@@ -54,9 +52,9 @@
             <td><%= car_info.name %></td>
             <td><%= car_info.flame_number %></td>
             <td><%= car_info.license_plate %></td>
-            <td><%= image_tag car_info.vehicle_image.variant(resize_to_fill: [200, 200]) %></td>
+            <td><%= image_tag car_info.vehicle_image.variant(resize_to_fill: [100, 100]) %></td>
             <td colspan="2">
-              <%= link_to "編 集", edit_driver_car_info_path(car_info.driver_id, car_info.id), class: "ui button" %>
+              <%= link_to "編 集", edit_driver_car_info_path(car_info.driver_id, car_info.id), class: "ui green button" %>
               <%= link_to "削 除", driver_car_info_path(car_info.driver_id, car_info.id), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "ui button negative" %>
             </td>
           </tr>
@@ -65,4 +63,6 @@
     </table>
   </div>
 </div>
+
+  <%= link_to "前の画面に戻る", dashboard_driver_path(current_driver), class: "fas fa-angle-left" %>
 

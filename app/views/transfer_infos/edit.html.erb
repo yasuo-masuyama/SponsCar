@@ -1,4 +1,4 @@
-<h1>振込先口座編集</h1>
+<h3>振込先口座編集</h3>
 <%= form_with(model: @transfer_info, local: true, url: driver_transfer_info_path) do |f| %>
   <div class="ui form">
     <div class="field">
@@ -12,8 +12,17 @@
     </div>
 
     <div class="field">
-      <%= f.label :口座種別 %>
-      <%= f.text_field :account_type, autofocus: true, autocomplete:"", placeholder:"普通預金 or 当座預金を入力", class: "form-control" %>
+      <%= f.label :預金口座 %>
+      <div class="inline fields">
+        <div class="field">
+          <%= f.radio_button :account_type, :ordinary %>
+          <%= f.label "普通預金" %>
+        </div>
+        <div class="field">
+          <%= f.radio_button :account_type, :checking %>
+          <%= f.label "当座預金" %>
+        </div>
+      </div>
     </div>
 
     <div class="field">

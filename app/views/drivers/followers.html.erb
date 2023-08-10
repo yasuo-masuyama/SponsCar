@@ -1,31 +1,35 @@
-<div class="row">
-	<div class="col-xs-3">
+<div class="ui grid">
+  <div class="four wide column">
+    <% if sponsor_signed_in? %>
+      <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+    <% elsif driver_signed_in? %>
+      <%= render "drivers/sidebar", driver: current_driver %>
+    <% end %>
+  </div>
 
-		<% if sponsor_signed_in? %>
-			<%= render 'sponsors/sidebar', sponsor: current_sponsor %>
-		<% elsif driver_signed_in?%>
-			<%= render "drivers/sidebar", driver: current_driver %>
-		<% end %>
-	</div><br>
-	<div class="col-xs-6">
-		<h3>フォロワー リスト</h3>
-		<table class="table">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @followers.each do |sponsor| %>
-					<tr>
-						<td><%= image_tag sponsor.company_image.variant(resize_to_fill: [200, 200]) %></td>
-						<td><%= sponsor.company_name %></td>
-						<td><%= link_to sponsor_path(sponsor), class: "btn02", data: {"turbolinks" => false} do %><span>詳細<i class="fas fa-arrow-right"></i><% end %></td>
-					</tr>
-	      <% end %>
-			</tbody>
-		</table>
-	</div>
+  <div class="twelve wide column">
+    <h3 class="ui header">フォロワー リスト</h3>
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @followers.each do |sponsor| %>
+          <tr>
+            <td><%= image_tag sponsor.company_image.variant(resize_to_fill: [100, 100]) %></td>
+            <td><%= sponsor.company_name %></td>
+            <td>
+              <%= link_to sponsor_path(sponsor), class: "ui blue button", data: {"turbolinks" => false} do %>
+                詳細 <i class="fas fa-arrow-right"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

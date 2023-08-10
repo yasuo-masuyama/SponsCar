@@ -1,72 +1,63 @@
-<div class="ui stackable grid">
+<!-- Advertisement Details -->
+<table class="ui stackable table">
   <div class="four wide column">
     <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]), class: "ui rounded image" %>
   </div>
-  <div class="twelve wide column">
-    <div class="ui table">
-      <div class="row">
-        <div class="four wide column">
-          <h4><%= @advertisement.title %></h4>
-        </div>
-        <div class="twelve wide column right aligned">
-          <h3><%= @advertisement.amounts %>円</h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="sixteen wide column">
-          <h4><%= @advertisement.heading %></h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="sixteen wide column">
-          <p><%= @advertisement.content %></p>
-        </div>
-      </div>
+  <tbody>
+    <tr>
+      <td><strong>広告名</strong></td>
+      <td><p><%= @advertisement.title %></p></td>
+    </tr>
+
+    <tr>
+      <td><strong>報酬金額</strong></td>
+      <td><p><%= @advertisement.amounts %>円</p></td>
+    </tr>
+
+    <tr>
+      <td><strong>見出し</strong></td>
+      <td><p><%= @advertisement.heading %></p></td>
+    </tr>
+
+    <tr>
+      <td><strong>内容</strong></td>
+      <td><p><%= @advertisement.content %></p></td>
+    </tr>
+
+    <tr>
+      <td><strong>ジャンル</strong></td>
+      <td><%= @advertisement.genre.name %></td>
+    </tr>
+
+    <tr>
+      <td><strong>スポンサー</strong></td>
+      <td><%= @advertisement.sponsor.company_name %></td>
+    </tr>
+
+    <tr>
+      <td><strong>広告作業期間</strong></td>
+      <td><%= @advertisement.start_due_on %> 〜 <%= @advertisement.end_due_on %></td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<!-- Chatbox -->
+<div class="ui stackable grid">
+  <div class="sixteen wide column">
+    <h4 class="ui header">チャットボックス</h4>
+    <div class="ui action input">
+      <% if driver_signed_in? %>
+        <input name="chat" type="text" data-behavior="room_speaker" data-user="0" data-room="<%= @room.id %>" placeholder="メッセージを入力...">
+      <% else %>
+        <input name="chat" type="text" data-behavior="room_speaker" data-user="1" data-room="<%= @room.id %>" placeholder="メッセージを入力...">
+      <% end %>
+      <button class="ui primary button">送信</button>
+    </div>
+    <div class="ui container">
+      <%= render "chat", collection: @chats %>
     </div>
   </div>
 </div>
 
-<div class="ui stackable grid">
-  <div class="three wide column">
-    ジャンル
-  </div>
-  <div class="five wide column">
-    <%= @advertisement.genre.name %>
-  </div>
-  <div class="four wide column">
-    広告主
-  </div>
-  <div class="four wide column">
-    <%= @advertisement.sponsor.company_name %>
-  </div>
-  <div class="three wide column">
-    広告作業期間
-  </div>
-  <div class="five wide column">
-    <%= @advertisement.start_due_on %> 〜 <%= @advertisement.end_due_on %>
-  </div>
-</div>
-
-
-
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-    <% if driver_signed_in? %>
-      <div class="text-left">
-        <h4>チャットボックス</h4>
-        <div class="ui input">
-          <input name="chat" type="text" data-behavior="room_speaker" data-user="0" data-room="<%= @room.id %>" >
-        </div>
-      </div>
-    <% else %>
-      <div class="text-right">
-        <h4>チャットボックス</h4>
-        <div class="ui input">
-          <input name="chat" type="text" data-behavior="room_speaker" data-user="1" data-room="<%= @room.id %>">
-        </div>
-      </div>
-    <% end %>
-    <br>
-    <%= render "chat", collection: @chats %>
-  </div>
-</div>

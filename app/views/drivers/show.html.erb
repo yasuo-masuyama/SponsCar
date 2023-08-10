@@ -1,20 +1,24 @@
-	<div class="row">
-		<div class="col-xs-3">
-			<% if sponsor_signed_in? %>
-				<%= render 'sponsors/sidebar' , sponsor: current_sponsor %>
-			<% elsif driver_signed_in?%>
-				<%= render "drivers/sidebar", driver: current_driver %>
-			<% end %>
-		</div>
+<div class="ui grid">
+  <div class="four wide column">
+    <% if sponsor_signed_in? %>
+      <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
+    <% elsif driver_signed_in? %>
+      <%= render "drivers/sidebar", driver: current_driver %>
+    <% end %>
+  </div>
 
-		<div class="col-xs-8">
-			<div class="row">
-				<div class = "col-xs-6">
-				<%= image_tag @driver.profile_image.variant(resize_to_fill: [200, 200]) %><br>
+  <div class="twelve wide column">
+    <div class="ui segment">
+		  <div class="ui stackable grid">
+
+				<div class="eight wide column">
+				  <h4 class="ui header">Driver情報</h4>
+					<%= image_tag @driver.profile_image.variant(resize_to_fill: [200, 200]) %><br>
 					<div id="follow_driver_<%= @driver.id %>">
 						<%= render "relationships/follow_driver", driver: @driver %>
 					</div>
-						<table class="table .table-borderless">
+					<table class="ui table">
+						<tbody>
 							<tr id="follow_count_<%= @driver.id %>">
 								<%= render "relationships/follow_count_driver", driver: @driver %>
 							</tr>
@@ -34,64 +38,75 @@
 								<th>メールアドレス</th>
 								<td><%= @driver.email %></td>
 							</tr>
-							<% if driver_signed_in? %>
-							<tr>
-								<th>ユーザーステータス</th>
-								<td>
-									<%= form_with(model: @driver, local: true, url: driver_path(@driver), method: :patch) do |f| %>
-										<%= f.radio_button :is_active, :true, checed:true %>
-										<%= f.label :有効 %>
-										<%= f.radio_button :is_active, :false %>
-										<%= f.label :無効 %>
-										<%= f.submit "更新", class: "btn btn-primary",style: "margin-left:13px"%>
-									<% end %></td>
-							</tr>
+							<% if admin_signed_in? %>
+								<tr>
+									<th>ユーザーステータス</th>
+									<td>
+										<%= form_with(model: @driver, local: true, url: driver_path(@driver), method: :patch) do |f| %>
+											<div class="ui radio checkbox">
+												<%= f.radio_button :is_active, :true, checked: true %>
+												<%= f.label :有効 %>
+											</div>
+											<div class="ui radio checkbox">
+												<%= f.radio_button :is_active, :false %>
+												<%= f.label :無効 %>
+											</div>
+											<%= f.submit "更新", class: "ui primary button", style: "margin-left:13px" %>
+										<% end %>
+									</td>
+								</tr>
 							<% end %>
-						</table>
+						</tbody>
+					</table>
 				</div>
-				
-  <div class="col-xs-6">
-    <h4>活動地域</h4>
-      <div id ="map"></div>
-        <script>
-          var map;
-          function initMap(){
-            var lat_lng ={ lat: <%= @driver.latitude %>, lng: <%= @driver.longitude %>}
 
-            map = new google.maps.Map(document.getElementById('map'), {
-              center: lat_lng,
-              zoom: 12,
-            });
-            marker = new google.maps.Marker({
-              position: lat_lng,
-              map: map
-            });
-          }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+				<div class="eight wide column">
+					<h4>活動地域</h4>
+					<div id="map"></div>
+					<script>
+						var map;
+						function initMap(){
+							var lat_lng ={ lat: <%= @driver.latitude %>, lng: <%= @driver.longitude %>}
+
+							map = new google.maps.Map(document.getElementById('map'), {
+								center: lat_lng,
+								zoom: 12,
+							});
+							marker = new google.maps.Marker({
+								position: lat_lng,
+								map: map
+							});
+						}
+					</script>
+					<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+				</div>
+
+        <%if check_apply_room.any? %>
+					<div class="sixteen wide column">
+						<h3>車両情報</h3>
+						<table class="ui table">
+							<thead>
+								<tr>
+									<th>メーカー</th>
+									<th>車名</th>
+									<th>ナンバープレート</th>
+									<th>車台番号</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @car_infos.each do |car_info| %>
+									<tr>
+										<td><%= car_info.manufacturer_name %></td>
+										<td><%= car_info.name %></td>
+										<td><%= car_info.license_plate %></td>
+										<td><%= car_info.flame_number %></td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				<% end %>
 			</div>
-
-	<div class="col-xs-12">
-		<table class="table">
-			<h3>車両情報</h3>
-			<thead>
-				<tr>
-					<td>メーカー</td>
-					<td>車名</td>
-					<td>ナンバープレート</td>
-					<td>車台番号</td>
-				</tr>
-			</thead>
-			<tbody>
-			<% @car_infos.each do |car_info| %>
-				<tr>
-					<td><%= car_info.manufacturer_name %></td>
-					<td><%= car_info.name %></td>
-					<td><%= car_info.license_plate %></td>
-					<td><%= car_info.flame_number %></td>
-				</tr>
-			<% end %>
-			</tbody>
-		</table>
-	</div>
+    </div>
+  </div>
 </div>

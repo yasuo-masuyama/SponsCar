@@ -1,5 +1,6 @@
 <div class="ui container">
   <h3>新規口座登録</h3>
+  <div class="ui segment">
   <%= form_with(model: @transfer_info, local: true, url: driver_transfer_infos_path, class: "ui form") do |f| %>
     <div class="field">
       <%= f.label :銀行名 %>
@@ -12,11 +13,17 @@
     </div>
 
     <div class="field">
-      <%= f.label :口座 %>
-      <%= f.radio_button :account_type, :ordinary %>
-      <%= f.label "普通預金" %>
-      <%= f.radio_button :account_type, :checking %>
-      <%= f.label "当座預金" %>
+      <%= f.label :預金口座 %>
+      <div class="inline fields">
+        <div class="field">
+          <%= f.radio_button :account_type, :ordinary %>
+          <%= f.label "普通預金" %>
+        </div>
+        <div class="field">
+          <%= f.radio_button :account_type, :checking %>
+          <%= f.label "当座預金" %>
+        </div>
+      </div>
     </div>
 
     <div class="field">
@@ -31,8 +38,7 @@
 
     <%= f.submit "登 録", class: "ui primary button" %>
   <% end %>
-
-  <%= link_to "前の画面に戻る", dashboard_driver_path(current_driver), class: "ui button" %>
+  </div>
 
   <h3>登録口座一覧</h3>
   <table class="ui celled table">
@@ -55,7 +61,7 @@
           <td><%= t.account_number %></td>
           <td><%= t.account_name %></td>
           <td>
-            <%= link_to "編 集", edit_driver_transfer_info_path(t.driver_id, t.id), class: "ui button primary edit_book_#{t.id}" %>
+            <%= link_to "編 集", edit_driver_transfer_info_path(t.driver_id, t.id), class: "ui green button edit_book_#{t.id}" %>
           </td>
           <td>
             <%= link_to "削 除", driver_transfer_info_path(t.driver_id, t.id), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "ui button negative" %>
@@ -66,3 +72,4 @@
   </table>
 </div>
 
+  <%= link_to "前の画面に戻る", dashboard_driver_path(current_driver), class: "fas fa-angle-left" %>
