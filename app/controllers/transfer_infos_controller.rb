@@ -13,7 +13,7 @@ class TransferInfosController < ApplicationController
     if @transfer_info.save
       redirect_to driver_transfer_infos_path(current_driver)
     else
-      @transfer_info = current_driver.transfer_infos
+      @transfer_infos = current_driver.transfer_infos
       render :index
     end
   end
