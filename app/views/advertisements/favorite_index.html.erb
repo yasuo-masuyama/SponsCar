@@ -1,13 +1,13 @@
-<div class="row">
-	<div class="col-md-3">
+<div class="ui grid">
+	<div class="four wide column">
 		<% if sponsor_signed_in? %>
 			<%= render 'sponsors/profile', sponsor: @sponsor %>
-		<% elsif driver_signed_in?%>
+		<% elsif driver_signed_in? %>
 			<%= render 'drivers/sidebar' , driver: @driver %>
 		<% end %><br>
 			<%= render "advertisements/genre_templete", genres: @genres %>
 		</div>
-	<div class="col-xs-8">
+	<div class="twelve wide column">
 		<%= render 'advertisements/index', advertisements: @advertisements %>
 	</div>
 </div>
