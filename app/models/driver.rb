@@ -10,7 +10,7 @@ class Driver < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :telephone_number, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, length: { maximum: 250 }
 
   has_one_attached :profile_image
   has_one_attached :license_image
