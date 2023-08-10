@@ -1,18 +1,20 @@
 <div class="ui container">
   <h3 class="ui dividing header">プロフィール情報</h3>
-  <%= form_with(model: @driver, local: true, url: driver_path, class: "ui form error") do |f| %>
-    <% if @driver.errors.any? %>
-      <div class="ui negative message">
-        <div class="header">
-          <%= pluralize(@driver.errors.count, "error") %>が発生しました
-        </div>
-        <ul class="list">
-          <% @driver.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+
+  <% if@driver.errors.any? %>
+    <div class="ui negative message">
+      <div class="header">
+        <%= @driver.errors.count %>件のエラーです
       </div>
-    <% end %>
+      <ul class="list">
+        <% @driver.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with(model: @driver, local: true, url: driver_path, class: "ui form error") do |f| %>
 
     <div class="field">
       <%= f.label :プロフィール画像 %>
@@ -27,37 +29,37 @@
     </div>
 
     <div class="field">
-      <%= f.label :名前 %>
-      <%= f.text_field :name, class: "ui input" %>
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: "お名前を入力", class: "ui input" %>
     </div>
 
     <div class="field">
-      <%= f.label :名前カナ %>
-      <%= f.text_field :name_kana, class: "ui input" %>
+      <%= f.label :name_kana %>
+      <%= f.text_field :name_kana, placeholder: "お名前をカナで入力", class: "ui input" %>
     </div>
 
     <div class="field">
-      <%= f.label :郵便番号 %>
-      <%= f.text_field :postal_code, class: "ui input" %>
+      <%= f.label :postal_code %>
+      <%= f.text_field :postal_code, placeholder: "ハイフンなし", class: "ui input" %>
     </div>
 
     <div class="field">
-      <%= f.label :住所 %>
-      <%= f.text_field :address, class: "ui input" %>
+      <%= f.label :address %>
+      <%= f.text_field :address, placeholder: "ご住所を入力", class: "ui input" %>
     </div>
 
     <div class="field">
-      <%= f.label :電話番号 %>
-      <%= f.text_field :telephone_number, class: "ui input" %>
+      <%= f.label :postal_code %>
+      <%= f.text_field :telephone_number, placeholder: "電話番号を入力", class: "ui input" %>
     </div>
 
     <div class="field">
-      <%= f.label :メールアドレス %>
-      <%= f.text_field :email, class: "ui input" %>
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: "メールアドレスを入力", class: "ui input" %>
     </div>
 
     <div class="field">
-      <%= f.label :活動地域 %>
+      <%= f.label :activity_area %>
       <%= f.text_field :activity_area, placeholder: "都道府県と市町村名までを入力", class: "ui input" %>
     </div>
     <%= f.submit "更新する", class: "ui primary button" %>

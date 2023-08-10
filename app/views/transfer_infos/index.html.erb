@@ -1,19 +1,33 @@
 <div class="ui container">
   <h3>新規口座登録</h3>
+
+  <% if @transfer_info.errors.any? %>
+  <div class="ui negative message">
+    <div class="header">
+      <%= @transfer_info.errors.count %>件のエラーです
+    </div>
+    <ul class="list">
+      <% @transfer_info.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
   <div class="ui segment">
   <%= form_with(model: @transfer_info, local: true, url: driver_transfer_infos_path, class: "ui form") do |f| %>
     <div class="field">
-      <%= f.label :銀行名 %>
+      <%= f.label :bank_name %>
       <%= f.text_field :bank_name, autofocus: true, placeholder: "銀行名を入力" %>
     </div>
 
     <div class="field">
-      <%= f.label :支店名 %>
+      <%= f.label :branch_name %>
       <%= f.text_field :branch_name, autofocus: true, placeholder: "支店名を入力" %>
     </div>
 
     <div class="field">
-      <%= f.label :預金口座 %>
+      <%= f.label :account_type %>
       <div class="inline fields">
         <div class="field">
           <%= f.radio_button :account_type, :ordinary %>
@@ -27,12 +41,12 @@
     </div>
 
     <div class="field">
-      <%= f.label :口座番号 %>
+      <%= f.label :account_number %>
       <%= f.text_field :account_number, autofocus: true, placeholder: "口座番号を入力" %>
     </div>
 
     <div class="field">
-      <%= f.label "口座名義人名（カナ）" %>
+      <%= f.label :account_name %>
       <%= f.text_field :account_name, autofocus: true, placeholder: "カタカナで入力" %>
     </div>
 
@@ -46,9 +60,9 @@
       <tr>
         <th>銀行名</th>
         <th>支店名</th>
-        <th>口座</th>
+        <th>口座種別</th>
         <th>口座番号</th>
-        <th>振込先人名</th>
+        <th>口座人名</th>
         <th colspan="2"></th>
       </tr>
     </thead>
