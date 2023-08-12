@@ -1,5 +1,5 @@
 <div class="ui container">
-  <h3>新規口座登録</h3>
+  <h3 class="ui dividing header">新規口座登録</h3>
 
   <% if @transfer_info.errors.any? %>
   <div class="ui negative message">
@@ -17,17 +17,17 @@
   <div class="ui segment">
   <%= form_with(model: @transfer_info, local: true, url: driver_transfer_infos_path, class: "ui form") do |f| %>
     <div class="field">
-      <%= f.label :bank_name %>
+      <%= f.label :bank_name, class: "ui label" %>
       <%= f.text_field :bank_name, autofocus: true, placeholder: "銀行名を入力" %>
     </div>
 
     <div class="field">
-      <%= f.label :branch_name %>
+      <%= f.label :branch_name, class: "ui label" %>
       <%= f.text_field :branch_name, autofocus: true, placeholder: "支店名を入力" %>
     </div>
 
     <div class="field">
-      <%= f.label :account_type %>
+      <%= f.label :account_type, class: "ui label" %>
       <div class="inline fields">
         <div class="field">
           <%= f.radio_button :account_type, :ordinary %>
@@ -41,16 +41,16 @@
     </div>
 
     <div class="field">
-      <%= f.label :account_number %>
+      <%= f.label :account_number, class: "ui label" %>
       <%= f.text_field :account_number, autofocus: true, placeholder: "口座番号を入力" %>
     </div>
 
     <div class="field">
-      <%= f.label :account_name %>
+      <%= f.label :account_name, class: "ui label" %>
       <%= f.text_field :account_name, autofocus: true, placeholder: "カタカナで入力" %>
     </div>
 
-    <%= f.submit "登 録", class: "ui primary button" %>
+    <%= f.submit "登 録", class: "ui fluid primary button" %>
   <% end %>
   </div>
 
