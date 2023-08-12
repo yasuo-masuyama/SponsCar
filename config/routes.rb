@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     sessions: 'drivers/sessions' 
   }
   devise_scope :driver do
-    post 'driver/guest_sign_in', to: 'drivers/sessions#new_guest'
+    post 'driver/guest_sign_in', to: 'drivers/sessions#guest_sign_in'
   end
 
   devise_for :sponsors, controllers:{ 
