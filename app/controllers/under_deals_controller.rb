@@ -25,7 +25,7 @@ class UnderDealsController < ApplicationController
     if @under_deal.save
       redirect_to dashboard_driver_path(current_driver)
     else
-      redirect_back(fallback_locatioln: advertisements_path)
+      redirect_back(fallback_location: advertisements_path)
     end
   end
 

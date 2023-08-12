@@ -62,16 +62,14 @@
 
   <main>
     <div class="ui container">
-      <div class="ui grid">
-        <div class="four wide column">
-          <% if flash.any? %>
-            <div class="ui message <%= 'success' if flash[:notice] || flash[:contact] || flash[:blank] %> <%= 'error' if flash[:alert] || flash[:error] %>">
-              <% flash.each do |type, message| %>
-                <%= message %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+      <div class="four wide column">
+        <% if flash.any? %>
+          <div class="ui message <%= 'success' if flash[:notice] || flash[:contact] || flash[:blank] %> <%= 'error' if flash[:alert] || flash[:error] %>" style="margin-bottom: 20px;">
+            <% flash.each do |type, message| %>
+              <%= message %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <%= yield %>
     </div>

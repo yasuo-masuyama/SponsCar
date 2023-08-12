@@ -10,7 +10,7 @@ class Driver < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :telephone_number, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, length: { maximum: 250 }
 
   has_one_attached :profile_image
   has_one_attached :license_image
@@ -43,4 +43,8 @@ class Driver < ApplicationRecord
 
   geocoded_by :address
 	after_validation :geocode, if: :address_changed?
+
+  def self.guest
+		find_by!( email: 'driver1@example.com')
+	end
 end

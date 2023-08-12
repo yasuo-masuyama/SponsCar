@@ -8,7 +8,7 @@
     <%= render 'layouts/message_from_admin', driver: @driver %>
 
     <div class="current-deal ui segment">
-      <h3 class="ui header">取引中の広告</h3>
+      <h3 class="ui dividing header">取引中の広告</h3>
       <% if @under_deal.present? %>
 
         <%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
@@ -66,7 +66,7 @@
         </div>
       <% end %>
 
-      <h3 class="ui header">過去取引一覧</h3>
+      <h3 class="ui dividing header">過去取引一覧</h3>
       <table class="ui celled table">
         <thead>
           <tr>

@@ -28,6 +28,8 @@ gem 'semantic-ui-sass'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
+  gem 'faker'
+  gem 'gimei'
 end
 
 group :development do

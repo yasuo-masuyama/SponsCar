@@ -3,12 +3,12 @@
     <%= render 'drivers/sidebar', driver: current_driver %>
   </div>
   <div class="twelve wide column">
-    <h4>過去の広告詳細</h4>
+    <h4 class="ui dividing header">過去の広告詳細</h4>
     <%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
     <%= render 'under_deals/flow_driver', under_deal: @under_deal %>
 
 	<div class="ui segment">
-		<h4>メッセージ記録</h4>
+		<h4 class="ui dividing header">メッセージ記録</h4>
 		<% if @deal_messages.blank? %>
 			<h4 class="ui red message">メッセージはありません</h4>
 		<% end %>
