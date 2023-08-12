@@ -1,5 +1,5 @@
 <div class="ui container">
-  <h3>登録車両編集</h3>
+  <h3 class="ui dividing header">登録車両編集</h3>
   
   <% if @car_info.errors.any? %>
   <div class="ui negative message">
@@ -17,32 +17,32 @@
   <div class="ui segment">
     <%= form_with(model: @car_info, local: true, url: driver_car_info_path, class: "ui form") do |f| %>
       <div class="field">
-        <%= f.label :manufacturer_name %>
+        <%= f.label :manufacturer_name, class: "ui label" %>
         <%= f.text_field :manufacturer_name, autofocus: true, placeholder: "車のメーカー名を入力" %>
       </div>
 
       <div class="field">
-        <%= f.label :name %>
+        <%= f.label :name, class: "ui label" %>
         <%= f.text_field :name, autofocus: true, placeholder: "車種名を入力" %>
       </div> 
 
       <div class="field">
-        <%= f.label :flame_number %>
+        <%= f.label :flame_number, class: "ui label" %>
         <%= f.text_field :flame_number, autofocus: true, placeholder: "車両検査表に記載の車台番号を入力" %>
       </div>
 
       <div class="field">
-        <%= f.label :license_plate %>
+        <%= f.label :license_plate, class: "ui label" %>
         <%= f.text_field :license_plate, autofocus: true, placeholder: "登録番号を入力" %>
       </div>
 
       <div class="field">
-        <%= f.label :vehicle_image %>
+        <%= f.label :vehicle_image, class: "ui label" %>
         <%= f.file_field :vehicle_image %>
         <%= image_tag @car_info.vehicle_image.variant(resize_to_fill: [200, 200]) if @car_info.vehicle_image.attached? %>
       </div>
 
-      <%= f.submit "登 録", class: "ui primary button" %>
+      <%= f.submit "登 録", class: "ui fluid primary button" %>
     <% end %>
   </div>
   <%= link_to "前の画面に戻る", driver_car_infos_path(current_driver), class: "fas fa-angle-left" %>
