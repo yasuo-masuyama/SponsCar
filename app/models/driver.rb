@@ -43,4 +43,8 @@ class Driver < ApplicationRecord
 
   geocoded_by :address
 	after_validation :geocode, if: :address_changed?
+
+  def self.guest
+		find_by!( email: 'driver1@example.com')
+	end
 end

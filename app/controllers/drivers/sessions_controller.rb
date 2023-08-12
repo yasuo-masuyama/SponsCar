@@ -11,7 +11,7 @@ class Drivers::SessionsController < Devise::SessionsController
   def guest_sign_in
     driver = Driver.guest
     sign_in driver
-    redirect_to dashboard_driver_path(current_driver)
+    redirect_to dashboard_driver_path(current_driver), notice: 'ゲストユーザーとしてログインしました。'
   end
 
   # POST /resource/sign_in
