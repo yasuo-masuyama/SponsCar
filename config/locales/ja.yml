@@ -64,6 +64,7 @@ ja:
         name: お名前
         name_kana: お名前（カナ）
         password: パスワード
+        password_confirmation: パスワード確認
         email: メールアドレス
         postal_code: 郵便番号
         address: ご住所
@@ -72,6 +73,7 @@ ja:
         terms: 利用規約
         user_status: ステータス
         activity_area: 活動地域
+        profile_image: プロフィール画像
 
       car_info:
         manufacturer_name: メーカー名
