@@ -43,11 +43,7 @@
           </tr>
         </table>
       </div>
-      <div class="ui bottom attached button">
-        <%= link_to edit_sponsor_advertisement_path(@advertisement.sponsor.id, @advertisement.id) do %>
-          編集する <i class="fas fa-angle-double-right"></i>
-        <% end %>
-      </div>
+        <%= link_to "編集する", edit_sponsor_advertisement_path(@advertisement.sponsor.id, @advertisement.id), class: "ui green button" %>
     </div>
     <div>
       <%= link_to sponsor_advertisements_path(current_sponsor) do %>

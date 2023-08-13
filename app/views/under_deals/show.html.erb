@@ -5,9 +5,9 @@
   <div class="twelve wide column bordered-content">
     <div class="deal-area">
       <% if @under_deal.work_status == 'finished' %>
-        <h4>過去の取引詳細</h4>
+        <h4 class="ui dividing header">過去の取引詳細</h4>
       <% else %>
-        <h4>取引中の広告詳細</h4>
+        <h4 class="ui dividing header">取引中の広告詳細</h4>
       <% end %>
       <%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
       <%= render 'under_deals/flow_sponsor', under_deal: @under_deal %>
