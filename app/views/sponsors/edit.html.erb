@@ -1,77 +1,80 @@
-<div style="display: flex; justify-content: space-between;">
+<div class="ui container">
+  <h3 class="ui dividing header">Sponsor情報</h3>
 
-  <div class="four wide column">
-    <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
-  </div>
+  <% if @sponsor.errors.any? %>
+    <div class="ui error message">
+      <div class="header">
+        <%= @sponsor.errors.count %>件のエラーです。
+      </div>
+      <ul class="list">
+        <% @sponsor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <div class="eight wide column" style="flex-grow: 1; margin-left: 2em;">
-    <%= form_with(model: @sponsor, local: true, url: sponsor_path, class: "ui form") do |f| %>
-      <% if @sponsor.errors.any? %>
-        <div class="ui error message">
-          <h3><%= @sponsor.errors.count %> error occurrence</h3>
-          <ul>
-            <% @sponsor.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
+  <%= form_with(model: @sponsor, local: true, url: sponsor_path, class: "ui form") do |f| %>
+    <div class="ui segment">
+      <div class="field">
+        <%= f.label :company_image, class: "ui label" %>
+        <div class="ui medium image">
+          <% if @sponsor.company_image.attached? %>
+            <%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]), class: "ui circular image" %>
+          <% else %>
+            <p>画像がありません</p>
+          <% end %>
         </div>
-      <% end %>
-
-      <div class="field" style="display: flex; flex-direction: column; align-items: right;">
-        <div style="margin-bottom: 20px;">
-          <%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]), class: "ui circular image" %>
-        </div>
-        <%= f.label :会社ロゴ %>
-        <%= f.file_field :company_image, class: "ui input" %>
+      <%= f.file_field :company_image, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= f.label :会社名 %>
+        <%= f.label :company_name, class: "ui label" %>
         <%= f.text_field :company_name, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= f.label :会社名（カナ） %>
+        <%= f.label :company_name_kana, class: "ui label" %>
         <%= f.text_field :company_name_kana, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= f.label :代表取締役名 %>
+        <%= f.label :ceo_name, class: "ui label" %>
         <%= f.text_field :ceo_name, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= f.label :代表取締役名（カナ） %>
+        <%= f.label :ceo_name_kana, class: "ui label" %>
         <%= f.text_field :ceo_name_kana, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= f.label :郵便番号 %>
+        <%= f.label :postal_code, class: "ui label" %>
         <%= f.text_field :postal_code, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= f.label :住所 %>
+        <%= f.label :address, class: "ui label" %>
         <%= f.text_field :address, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= f.label :電話番号 %>
+        <%= f.label :telephone_number, class: "ui label" %>
         <%= f.text_field :telephone_number, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= f.label :メールアドレス %>
+        <%= f.label :email, class: "ui label" %>
         <%= f.text_field :email, class: "ui input" %>
       </div>
 
       <div class="field">
-        <%= button_tag :type => "submit", class: "ui blue button" do %>
+        <%= button_tag :type => "submit", class: "ui fluid blue button" do %>
           <span>更新する</span><i class="fas fa-angle-double-right"></i>
         <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
 
