@@ -13,7 +13,7 @@
         <div class="ui stackable grid">
 
           <div class="eight wide column">
-            <h4 class="ui header">Sponsor情報</h4>
+            <h4 class="ui dividing header">Sponsor情報</h4>
             <%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]) %><br>
             <div id="follow_sponsor_<%= @sponsor.id %>">
               <%= render "relationship_drivers/follow_sponsor", sponsor: @sponsor %>
@@ -66,7 +66,7 @@
           </div>
 
           <div class="four wide column">
-            <h4 class="ui header">所在地</h4>
+            <h4 class="ui dividing header">所在地</h4>
             <div id="map"></div>
             <script>
               var map;

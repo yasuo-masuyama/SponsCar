@@ -6,11 +6,11 @@
       </div>
       <div id="report-driver">
         <%= render 'drivers/profile', driver: under_deal.driver %>
-        <p><%= link_to "プロフィールを確認する", driver_path(under_deal.driver.id), name: 'driver_check', class: "ui button btn05" %></p>
+        <p><%= link_to "プロフィールを確認する", driver_path(under_deal.driver.id), name: 'driver_check', class: "ui green button" %></p>
         <p>取引承認待ちです。こちらのドライバーと広告契約を結びますか？</p>
         <%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch, class: "ui form") do |f| %>
-          <%= f.submit "広告を依頼する", name: 'accept', class: "ui button btn03" %>
-          <%= f.submit "お断りする", name: 'refuse', class: "ui button btn04" %>
+          <%= f.submit "広告を依頼する", name: 'accept', class: "ui blue button" %>
+          <%= f.submit "お断りする", name: 'refuse', class: "ui red button" %>
         <% end %>
       </div>
     </div>

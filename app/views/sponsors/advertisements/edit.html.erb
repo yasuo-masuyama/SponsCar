@@ -1,65 +1,86 @@
-<div class="ui grid">
-  <div class="ten wide column">
-    <h3 class="ui header">広告内容 編集</h3>
+<div class="ten wide column">
+  <h3 class="ui dividing header">広告内容 編集</h3>
 
-    <%= form_with(model: @advertisement, local: true, url: sponsor_advertisement_path, class: "ui form") do |f| %>
-      <div class="field">
-        <%= f.label :広告画像 %><br>
-        <%= f.file_field :image %>
+  <% if @advertisement.errors.any? %>
+    <div class="ui error message">
+      <div class="header">
+        <%= @advertisement.errors.count %>件のエラーです。
       </div>
-
-      <div class="field">
-        <%= f.label :タイトル %>
-        <%= f.text_field :title, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :start_due_on %>
-        <%= f.text_field :start_due_on, data: { date_format: 'YYYY/MM/DD' }, class: 'datetimepicker' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :end_due_on %>
-        <%= f.text_field :end_due_on, data: { date_format: 'YYYY/MM/DD' }, class: 'datetimepicker' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :広告金額 %>
-        <%= f.text_field :amounts, autofocus: true %> 円
-        <p>※こちらの金額とは別に掲載手数料が10%発生します</p>
-      </div>
-
-      <div class="field">
-        <%= f.label :見出し %>
-        <%= f.text_field :heading, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :内容 %>
-        <%= f.text_area :content, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :ジャンル %>
-        <%= f.collection_select(:genre_id, @genres, :id, :name) %>
-      </div>
-
-      <div class="field text-center">
-        <%= f.submit "登録する", class: "ui primary button" %>
-      </div>
-    <% end %>
-
-    <a href="<%= sponsor_advertisements_path %>">
-      <i class="fas fa-angle-left"></i> 前の画面に戻る
-    </a>
-  </div>
-
-  <div class="six wide column">
-    <h3 class="ui header">商品画像プレビュー</h3>
-    <div class="ui centered card">
-      <div class="image">
-        <%= image_tag @advertisement.image.variant(resize_to_fill: [200, 200]) %>
-      </div>
+      <ul class="list">
+        <% @advertisement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-  </div>
+  <% end %>
+
+  <%= form_with(model: @advertisement, local: true, url: sponsor_advertisement_path, class: "ui form") do |f| %>
+    <div class="field">
+      <%= f.label :image, class: "ui label" %>
+      <%= f.file_field :image %>
+    </div>
+
+    <div class="field">
+      <%= f.label :title, class: "ui label" %>
+      <%= f.text_field :title, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :start_due_on, class: "ui label" %>
+      <%= f.text_field :start_due_on, id: "advertisement_start_due_on", data: { date_format: 'YYYY/MM/DD' }, placeholder: '2023/01/01' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :end_due_on, class: "ui label" %>
+      <%= f.text_field :end_due_on, id: "advertisement_end_due_on", data: { date_format: 'YYYY/MM/DD' }, placeholder: '2023/01/01' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :amounts, class: "ui label" %>
+      <%= f.text_field :amounts, autofocus: true %>円
+      <p>※こちらの金額とは別に掲載手数料が10%発生します</p>
+    </div>
+
+    <div class="field">
+      <%= f.label :heading, class: "ui label" %>
+      <%= f.text_field :heading, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :content, class: "ui label" %>
+      <%= f.text_area :content, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :genre, class: "ui label" %>
+      <%= f.collection_select(:genre_id, @genres || [], :id, :name, :prompt => "選択してください", class: "ui dropdown") %>
+    </div>
+
+    <div class="field text-center">
+      <%= f.submit "登録する", class: "ui fluid primary button" %>
+    </div>
+  <% end %>
+
+  <a href="<%= sponsor_advertisements_path %>">
+    <i class="fas fa-angle-left"></i> 前の画面に戻る
+  </a>
 </div>
+
+
+<script>
+  document.addEventListener("turbolinks:load", function() {
+    // カレンダーの初期化
+    var startDateField = document.getElementById('advertisement_start_due_on');
+    var endDateField = document.getElementById('advertisement_end_due_on');
+
+    var startDatePicker = new Pikaday({
+      field: startDateField,
+      format: 'YYYY/MM/DD'
+    });
+
+    var endDatePicker = new Pikaday({
+      field: endDateField,
+      format: 'YYYY/MM/DD'
+    });
+  });
+</script>

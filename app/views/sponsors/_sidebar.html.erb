@@ -3,7 +3,7 @@
     <div class="ui centered circular image">
       <%= image_tag sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
     </div>
-    <div class="center aligned header">
+    <div class="center aligned header" style="text-align: center; margin-top: 20px;">
       <%= sponsor.company_name %> さん
     </div>
   </div>
@@ -11,9 +11,9 @@
     <%= render "relationship_drivers/follow_count_sponsor", sponsor: current_sponsor %>
   </div>
   <% if current_sponsor == sponsor %>
-    <div class="item">
-      <%= link_to new_sponsor_advertisement_path(current_sponsor), class: "btn01", data: { "turbolinks" => false } do %>
-        <span>新規広告依頼</span>
+    <div class="item" style="text-align: center;">
+      <%= link_to new_sponsor_advertisement_path(current_sponsor), class: "ui basic button", data: { "turbolinks" => false } do %>
+        <i class="icon plus"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 新規広告依頼</font></font>
       <% end %>
     </div>
   <% end %>
@@ -21,12 +21,24 @@
   <div class="item">
     <div class="header">メニュー</div>
     <div class="menu">
-      <%= link_to "マイページ", dashboard_sponsor_path(current_sponsor), class: "side-menu item" %>
-      <%= link_to "Driver一覧", drivers_path, class: "side-menu item" %>
-      <%= link_to "Sponsor一覧", sponsors_path, class: "side-menu item" %>
-      <%= link_to "掲載広告一覧", sponsor_advertisements_path(current_sponsor), class: "side-menu item" %>
-      <%= link_to "広告一覧", advertisements_path(current_sponsor), class: "side-menu item" %>
-      <%= link_to "お問い合わせ", new_contact_path, class: "side-menu item" %>
+      <%= link_to dashboard_sponsor_path(current_sponsor), class: "side-menu item" do %>
+        <i class="fas fa-user"></i> マイページ
+      <% end %>
+      <%= link_to drivers_path, class: "side-menu item" do %>
+        <i class="fas fa-car"></i> Driver一覧
+      <% end %>
+      <%= link_to sponsors_path, class: "side-menu item" do %>
+        <i class="fas fa-building"></i> Sponsor一覧
+      <% end %>
+      <%= link_to sponsor_advertisements_path(current_sponsor), class: "side-menu item" do %>
+        <i class="fas fa-list-alt"></i> 掲載広告一覧
+      <% end %>
+      <%= link_to advertisements_path(current_sponsor), class: "side-menu item" do %>
+        <i class="fas fa-bullhorn"></i> 広告一覧
+      <% end %>
+      <%= link_to new_contact_path, class: "side-menu item" do %>
+        <i class="fas fa-envelope"></i> お問い合わせ
+      <% end %>
     </div>
   </div>
 
@@ -34,9 +46,11 @@
     <div class="header">設定</div>
     <div class="menu">
       <%= link_to edit_sponsor_path(current_sponsor), class: "side-menu item", data: { "turbolinks" => false } do %>
-        アカウント
+        <i class="fas fa-cog"></i> アカウント
       <% end %>
-      <%= link_to "ログアウト", destroy_sponsor_session_path, method: :delete, class: "side-menu item" %>
+      <%= link_to destroy_sponsor_session_path, method: :delete, class: "side-menu item" do %>
+        <i class="fas fa-sign-out-alt"></i> ログアウト
+      <% end %>
     </div>
   </div>
 </div>

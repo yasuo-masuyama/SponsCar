@@ -16,7 +16,7 @@ class Sponsors::SessionsController < Devise::SessionsController
   def guest_sign_in
     sponsor = Sponsor.guest
     sign_in sponsor
-    redirect_to dashboard_spnsor_path(current_sponsor)
+    redirect_to dashboard_sponsor_path(current_sponsor), notice: 'ゲストユーザーとしてログインしました。'
   end
 
   # DELETE /resource/sign_out

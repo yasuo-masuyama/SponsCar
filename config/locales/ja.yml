@@ -59,6 +59,7 @@ ja:
         telephone_number: 電話番号
         registry_image: 登記簿藤本の画像
         terms: 利用規約
+        company_image: 会社ロゴ
 
       driver:
         name: お名前
