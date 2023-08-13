@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     registrations: 'sponsors/registrations',
     sessions: 'sponsors/sessions' }
   devise_scope :sponsor do
-    post 'sponsor/guest_sign_in', to: 'sponsor/sessions#guest_sign_in'
+    post 'sponsor/guest_sign_in', to: 'sponsors/sessions#guest_sign_in'
   end
 
   root 'homes#index'
