@@ -45,4 +45,8 @@ class Sponsor < ApplicationRecord
 
   geocoded_by :address
 	after_validation :geocode, if: :address_changed?
+
+  def self.guest
+		Sponsor.find_by!( email: 'sponsor1@example.com')
+	end
 end
