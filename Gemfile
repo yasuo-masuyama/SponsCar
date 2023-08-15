@@ -24,12 +24,13 @@ gem 'image_processing'
 gem 'aws-sdk-s3', require: false
 gem 'font-awesome-sass'
 gem 'semantic-ui-sass'
+gem 'faker'
+gem 'gimei'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
-  gem 'faker'
-  gem 'gimei'
+  gem 'rails-erd'
 end
 
 group :development do
