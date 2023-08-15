@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations',
     sessions: 'admins/sessions' 
   }
+  devise_scope :admin do
+    post 'admin/guest_sign_in', to: 'admins/sessions#guest_sign_in'
+  end
 
   devise_for :drivers, controllers:{ 
     registrations: 'drivers/registrations',

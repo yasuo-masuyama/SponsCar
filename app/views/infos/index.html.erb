@@ -1,4 +1,4 @@
-<h3>お知らせ一覧</h3>
+<h3 class="ui dividing header">お知らせ一覧</h3>
 <table class="ui celled table">
   <thead>
     <tr>
@@ -12,7 +12,7 @@
   <tbody>
     <% @infos.each do |i| %>
       <tr>
-        <td><%= i.viewer_type %></td>
+        <td><%= t("enums.info.viewer_type.#{i.viewer_type}") %></td>
         <td><%= i.title %></td>
         <td><%= i.created_at.strftime("%Y-%m-%d %H:%M") %></td>
         <td><%= i.content %></td>

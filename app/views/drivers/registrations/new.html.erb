@@ -1,99 +1,103 @@
-<div class="ui container">
-  <h2 class="ui dividing header">Driver新規登録</h2>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui form" }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="ui stacked segment">
-      <div class="field">
-        <%= f.label :profile_image, class: "ui label" %>
-        <div class="ui input">
-          <%= f.file_field :profile_image %>
-        </div>
+<h2 class="ui dividing header">Driver新規登録</h2>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui form" }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="ui stacked segment">
+    <div class="field">
+      <%= f.label :profile_image, class: "ui label" %>
+      <div class="ui input">
+        <%= f.file_field :profile_image %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :name, class: "ui label" %>
-        <div class="ui input">
-          <%= f.text_field :name, autofocus: true, autocomplete: "", placeholder: "お名前を入力" %>
-        </div>
+    <div class="field">
+      <%= f.label :name, class: "ui label" %>
+      <div class="ui input">
+        <%= f.text_field :name, autofocus: true, autocomplete: "", placeholder: "お名前を入力" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :name_kana, class: "ui label" %>
-        <div class="ui input">
-          <%= f.text_field :name_kana, autofocus: true, autocomplete: "", placeholder: "お名前のカナを入力" %>
-        </div>
+    <div class="field">
+      <%= f.label :name_kana, class: "ui label" %>
+      <div class="ui input">
+        <%= f.text_field :name_kana, autofocus: true, autocomplete: "", placeholder: "お名前のカナを入力" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :postal_code, class: "ui label" %>
-        <div class="ui input">
-          <%= f.text_field :postal_code, autofocus: true, autocomplete: "", placeholder: "ハイフンなし" %>
-        </div>
+    <div class="field">
+      <%= f.label :postal_code, class: "ui label" %>
+      <div class="ui input">
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "", placeholder: "ハイフンなし" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :address, class: "ui label" %>
-        <div class="ui input">
-          <%= f.text_field :address, autofocus: true, autocomplete: "", placeholder: "ご住所を入力", size: "60" %>
-        </div>
+    <div class="field">
+      <%= f.label :address, class: "ui label" %>
+      <div class="ui input">
+        <%= f.text_field :address, autofocus: true, autocomplete: "", placeholder: "ご住所を入力", size: "60" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :email, class: "ui label" %>
-        <div class="ui input">
-          <%= f.text_field :email, autofocus: true, size: "50", autocomplete: "", placeholder: "メールアドレスを入力" %>
-        </div>
+    <div class="field">
+      <%= f.label :email, class: "ui label" %>
+      <div class="ui input">
+        <%= f.text_field :email, autofocus: true, size: "50", autocomplete: "", placeholder: "メールアドレスを入力" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :telephone_number, class: "ui label" %>
-        <div class="ui input">
-          <%= f.text_field :telephone_number, autofocus: true, autocomplete: "", placeholder: "電話番号を入力" %>
-        </div>
+    <div class="field">
+      <%= f.label :telephone_number, class: "ui label" %>
+      <div class="ui input">
+        <%= f.text_field :telephone_number, autofocus: true, autocomplete: "", placeholder: "電話番号を入力" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :activity_area, class: "ui label" %>
-        <div class="ui input">
-          例）東京都中央区 <%= f.text_field :activity_area, autofocus: true, placeholder: "都道府県と市町村名までを入力" %>
-        </div>
+    <div class="field">
+      <%= f.label :activity_area, class: "ui label" %>
+      <div style="margin-bottom: 5px;">例）東京都中央区</div>
+      <div class="ui input">
+        <%= f.text_field :activity_area, autofocus: true, placeholder: "都道府県と市町村名までを入力" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :license_image, class: "ui label" %>
-        <div class="ui input">
-          <%= f.file_field :license_image %>
-        </div>
+    <div class="field">
+      <%= f.label :license_image, class: "ui label" %>
+      <div class="ui input">
+        <%= f.file_field :license_image %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :password, class: "ui label" %>
-        <% if @minimum_password_length %>
-          <em>( <%= @minimum_password_length %>文字以上 )</em>
-        <% end %>
-        <div class="ui input">
-          <%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
+    <div class="field">
+      <%= f.label :password, class: "ui label" %>
+      <% if @minimum_password_length %>
+        <em>(パスワード <%= @minimum_password_length %>文字以上 )</em>
+      <% end %>
+      <div class="ui input">
+        <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :password_confirmation, class: "ui label" %>
-        <div class="ui input">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
+    <div class="field">
+      <%= f.label :password_confirmation, class: "ui label" %>
+      <div class="ui input">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.check_box :terms, checked: false, as: :boolean, class: "hidden" %>
-        <%= f.label :terms, "利用規約に同意する", class: "inline-label" %>
-        <%= link_to "ご利用規約", "#", class: "terms-link" %> <br>
+    <div class="inline field" style="text-align: center;">
+      <div style="text-align: left; display: inline-block; vertical-align: top;">
+        <%= link_to "ご利用規約", coming_soon_path, class: "terms-link" %><br>
         <small>必ずご一読、ご了承の上でご登録ください</small>
       </div>
-
-      <%= f.submit "新規登録", class: "ui fluid primary button" %>
+      <div style="text-align: left; display: inline-block; vertical-align: bottom;">
+        <%= f.check_box :terms, checked: false, as: :boolean, class: "hidden", style: "vertical-align: middle;" %>  
+        <%= f.label :terms, "利用規約に同意する", class: "inline-label"%>
+      </div>
     </div>
-  <% end %>
-</div>
+
+    <%= f.submit "新規登録", class: "ui fluid primary button" %>
+  </div>
+<% end %>
+
 
 <div class="ui container" style="text-align: center;">
   <p>Driverアカウントはお持ちですか?<%= link_to "ログインする", new_driver_session_path %></p>    

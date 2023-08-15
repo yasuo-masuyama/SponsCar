@@ -1,33 +1,35 @@
-<div class="col-xs-9">
-  <h3>お問い合わせ一覧</h3>
-  <table class="ui celled table">
-    <thead>
-      <tr>
-        <th>お問い合わせ日</th>
-        <th>名前</th>
-        <th>会社名</th>
-        <th>内容</th>
-        <th colspan="2">詳細画面</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% contacts.each do |c| %>
+<div class="ui grid">
+  <div class="sixteen wide column">
+    <table class="ui celled table">
+      <thead>
         <tr>
-          <td><%= c.created_at.strftime("%Y-%m-%d") %></td>
-          <td><%= c.name %></td>
-          <td><%= c.company_name %></td>
-          <td><%= c.content %></td>
-          <td colspan="2">
-            <%= link_to "詳細", contact_path(c.id), class: "ui button small green" %>
-          </td>
+          <th>お問い合わせ日</th>
+          <th>名前</th>
+          <th>会社名</th>
+          <th>内容</th>
+          <th colspan="2">詳細画面</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <% if contacts.blank? %>
-    <div class="message-box">
-      <h4>現在、該当の問い合わせはありません。</h4>
-    </div>
-  <% end %>
-  <h5><%= link_to "▶︎ 前のページへ", admins_path %></h5>
+      </thead>
+      <tbody>
+        <% contacts.each do |c| %>
+          <tr>
+            <td><%= c.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= c.name %></td>
+            <td><%= c.company_name %></td>
+            <td><%= c.content %></td>
+            <td colspan="2">
+              <%= link_to "詳細", contact_path(c.id), class: "ui small green button" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if contacts.blank? %>
+      <div class="ui message">
+        <h4 class="ui header">現在、該当の問い合わせはありません。</h4>
+      </div>
+    <% end %>
+    <h5><%= link_to "▶︎ 前のページへ", admins_path %></h5>
+  </div>
 </div>
+

@@ -1,57 +1,60 @@
 <div class="ui stackable grid">
-  <div class="four wide column">
+  <div class="three wide column">
     <%= render 'drivers/sidebar', driver: current_driver %>
   </div>
   <div class="twelve wide column">
-    <h4 class="ui dividing header">過去の広告詳細</h4>
-    <%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
-    <%= render 'under_deals/flow_driver', under_deal: @under_deal %>
+	  <div class="ui segment">
+			<h4 class="ui dividing header">過去の広告詳細</h4>
+			<%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
+			<%= render 'under_deals/flow_driver', under_deal: @under_deal %>
 
-	<div class="ui segment">
-		<h4 class="ui dividing header">メッセージ記録</h4>
-		<% if @deal_messages.blank? %>
-			<h4 class="ui red message">メッセージはありません</h4>
-		<% end %>
-		<div class="ui comments">
-			<% @deal_messages.each do |message| %>
-				<% if message.user_type == 'driver' %>
-					<div class="comment">
-						<a class="avatar">
-							<%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
-						</a>
-						<div class="content">
-							<div class="text">
-								<%= message.message %>
-							</div>
-							<div class="metadata">
-								<span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
-							</div>
-						</div>
-					</div>
-				<% else %>
-					<div class="comment">
-						<a class="avatar">
-							<%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
-						</a>
-						<div class="content">
-							<div class="text">
-								<%= message.message %>
-							</div>
-							<div class="metadata">
-								<span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
-							</div>
-						</div>
-					</div>
+			<div class="ui segment">
+				<h4 class="ui dividing header">メッセージ記録</h4>
+				<% if @deal_messages.blank? %>
+					<h4 class="ui red message">メッセージはありません</h4>
 				<% end %>
-			<% end %>
-		</div>
-		<div id="chat-templete">
-			<%= form_with(model: @deal_message, local: true, url: under_deal_deal_messages_path(@under_deal)) do |f| %>
-				<div class="flex-container">
-					<%= f.text_area :message, placeholder: "メッセージを入力してください。", class: "chat-message flex-input" %>
-					<%= f.submit "送信", class: "ui button chat-btn teal" %>
+				<div class="ui comments">
+					<% @deal_messages.each do |message| %>
+						<% if message.user_type == 'driver' %>
+							<div class="comment">
+								<a class="avatar">
+									<%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
+								</a>
+								<div class="content">
+									<div class="text">
+										<%= message.message %>
+									</div>
+									<div class="metadata">
+										<span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
+									</div>
+								</div>
+							</div>
+						<% else %>
+							<div class="comment">
+								<a class="avatar">
+									<%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
+								</a>
+								<div class="content">
+									<div class="text">
+										<%= message.message %>
+									</div>
+									<div class="metadata">
+										<span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
+									</div>
+								</div>
+							</div>
+						<% end %>
+					<% end %>
 				</div>
-			<% end %>
+				<div id="chat-templete">
+					<%= form_with(model: @deal_message, local: true, url: under_deal_deal_messages_path(@under_deal)) do |f| %>
+						<div class="flex-container">
+							<%= f.text_area :message, placeholder: "メッセージを入力してください。", class: "chat-message flex-input" %>
+							<%= f.submit "送信", class: "ui button chat-btn teal" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

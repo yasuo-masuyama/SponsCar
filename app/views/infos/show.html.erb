@@ -1,18 +1,23 @@
-<h3>お知らせ詳細</h3>
-  <tbody>
-    <tr>
-      <th>タイトル</th>
-      <td><%= @info.title %></td>
-    </tr>
-    <tr>
-        <th>日時</th>
+<div class="ui segment">
+  <h3 class="ui dividing header">お知らせ詳細</h3>
+  <table class="ui definition table">
+    <tbody>
+      <tr>
+        <td>タイトル</td>
+        <td><%= @info.title %></td>
+      </tr>
+      <tr>
+        <td>日時</td>
         <td><%= @info.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-    </tr>
-    <tr>
-      <th>お知らせ内容</th>
-      <td><%= @info.content %></td>
-    </tr>
-  </tbody>
-</table>
+      </tr>
+      <tr>
+        <td>お知らせ内容</td>
+        <td><%= @info.content %></td>
+      </tr>
+    </tbody>
+  </table>
 
-<%= link_to "編集",edit_info_path(@info) %>
+<% if admin_signed_in? %>
+  <%= link_to "編集", edit_info_path(@info), class: "ui button primary" %>
+<% end %>
+</div>

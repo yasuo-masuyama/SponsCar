@@ -1,0 +1,24 @@
+  <div class="ui segment sponscar_advertisement" >
+    <%= video_tag"/assets/videos/sponscar_advertisement.mp4", playsinline: true, controls: false, autoplay: true, loop: true, muted: true, size: "1100x500" %>
+  </div>
+
+  <div class="ui grid">
+    <div class="two column row" style="text-align: center;">
+      <div class="ui segment column">
+        <%= link_to new_sponsor_registration_path do %>
+          <%= image_tag 'be_sponsor.png', class: "be_sponsor" %>
+        <% end %>
+      </div>
+      <div class="ui segment column">
+        <%= link_to new_driver_registration_path do %>
+          <%= image_tag "be_driver.png", class: "be_driver" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

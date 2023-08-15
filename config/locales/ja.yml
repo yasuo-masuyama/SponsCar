@@ -12,24 +12,35 @@ ja:
         rated: 評価待ち
         finished: 取引完了
         checked_refuse: 契約見送り
+
     contact:
       work_status:
-        new_inquiry: 新規問い合わせ
+        new_inquiry: 新規お問い合わせ
         working_inquiry: 対応中
         past_inquiry: 対応済み
+
     transfer_info:
       account_type:
         ordinary: 普通預金
         checking: 当座預金
+
     deal_detail:
       account_type:
         ordinary: 普通預金
         checking: 当座預金
+
     driver:
       user_status:
         not_check: 本人証明未確認
         checked_indentification: 本人確認済
         checked_car_indentification: 車両情報確認済
+
+    info:
+      viewer_type:
+        both: 全員
+        sponsor: スポンサー
+        driver: ドライバー
+
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>
@@ -107,3 +118,17 @@ ja:
         telephone_number: 電話番号
         email: メールアドレス
         content: 内容
+
+      admin:
+        name: お名前
+        name_kana: お名前（カナ）
+        telephone_number: 電話番号
+        email: メールアドレス
+        password: パスワード
+      
+      info:
+        title: タイトル
+        content: お知らせ内容
+
+      genre:
+        name: ジャンルの名前

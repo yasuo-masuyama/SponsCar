@@ -1,5 +1,5 @@
 <div class="ui grid">
-  <div class="four wide column">
+  <div class="three wide column">
  
     <% if sponsor_signed_in? %>
       <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="extra content">
-          <table class="ui table">
+          <table class="ui definition table">
             <tr>
               <th>Sponsor</th>
               <td><%= @advertisement.sponsor.company_name %></td>
