@@ -12,6 +12,12 @@ class Admins::SessionsController < Devise::SessionsController
     admins_path
   end
 
+  def guest_sign_in
+    admin = Admin.guest
+    sign_in admin
+    redirect_to admins_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   # POST /resource/sign_in
   # def create
   #   super
