@@ -14,8 +14,8 @@
     <div class="wide column">
       <div class="ui message-box">
         <h3>誠に残念ですが、こちらのお申し込みは<br>スポンサーから承認されませんでした。<br>別の広告を探してみましょう！</h3>
-        <%= form_for under_deal, url: under_deal_path(under_deal), method: :patch, class: "ui form" do |f| %>
-          <%= f.submit "了承して、別の広告を探す", name: 'checked_refuse', class: "ui button btn06" %>
+        <%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch, class: "ui form") do |f| %>
+          <%= f.submit "了承して、別の広告を探す", name: 'checked_refuse', class: "ui primary button" %>
         <% end %>
       </div>
     </div>

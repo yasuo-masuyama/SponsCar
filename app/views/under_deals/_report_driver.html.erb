@@ -2,8 +2,21 @@
   <div class="column">
     <div id="report-area" class="ui segment">
       <p class="title ui header">やることリスト</p>
+
+        <% if @under_deal.errors.any? %>
+          <div class="ui error message">
+            <div class="header">
+              <%= @under_deal.errors.count %>件のエラーです。
+            </div>
+            <ul class="list">
+              <% @under_deal.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
       
-      <div class="ui four column grid">
+      <div class="ui two column grid">
         
         <div class="column">
           <table class="ui table">
@@ -74,7 +87,7 @@
                         <% end %>
                       <% end %>
                     <% else %>
-                      <div class="ui disabled button" disabled>作業完了報告済み</div>
+                      <div class="ui disabled button" disabled>作業の完了報告済み</div>
                     <% end %>
                   </div>
                 </td>
@@ -109,7 +122,6 @@
             </tbody>
           </table>
         </div>
-
       </div> 
     </div> 
   </div> 

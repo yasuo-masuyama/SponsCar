@@ -1,0 +1,92 @@
+<div class="ui stackable grid">
+  <div class="sixteen wide column">
+    <div class="ui segment sponscar_advertisement">
+      <%= video_tag"/assets/videos/sponscar_advertisement.mp4", playsinline: true, controls: false, autoplay: true, loop: true, muted: true, size: "1100x500" %>
+    </div>
+  </div>
+
+  <div class="sixteen wide column">
+    <div class="ui three cards">
+      <div class="ui card">
+        <div class="content">
+          <h3>ご利用の流れ</h3>
+          <h4>※現在、準備中です。</h4>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <h3>Q&A よくあるご質問</h3>
+          <h4>※現在、準備中です。</h4>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <h3>ご利用規約</h3>
+          <h4>※現在、準備中です。</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="sixteen wide column">
+    <div class="ui segment two column grid">
+      <div class="column">
+        <h3>会社概要</h3>
+        <table class="ui definition table">
+          <tbody>
+            <tr>
+              <td>会社名</td>
+              <td>株式会社 SponsCar</td>
+            </tr>
+            <tr>
+              <td>本社所在地</td>
+              <td>東京都渋谷区xxxxxx</td>
+            </tr>
+            <tr>
+              <td>代表取締役</td>
+              <td>山田 太郎</td>
+            </tr>
+            <tr>
+              <td>設立</td>
+              <td>2023年8月24日</td>
+            </tr>
+            <tr>
+              <td>資本金</td>
+              <td>x百万円</td>
+            </tr>
+            <tr>
+              <td>連絡先</td>
+              <td>0120-aaa-xxx</td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td>surport@sponscar.jp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="column">
+        <div id="map"></div>
+        <script>
+          var map;
+          function initMap(){
+            var lat_lng = { lat: 35.6645956, lng: 139.6987107 };
+
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: lat_lng,
+              zoom: 12
+            });
+            marker = new google.maps.Marker({
+              position: lat_lng,
+              map: map
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+      </div>
+    </div>
+  </div>
+</div>
+

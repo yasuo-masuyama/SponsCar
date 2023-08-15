@@ -1,30 +1,30 @@
-<div class="ui container">
-  <h2 class="ui header" style="text-align: center;">Driverログイン</h2>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form" }) do |f| %>
-    <div class="ui stacked segment">
-      <div class="field">
-        <%= f.label :メールアドレス %>
-        <div class="ui input">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
+<h2 class="ui header" style="text-align: center;">Driverログイン</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form" }) do |f| %>
+  <div class="ui stacked segment">
+    <div class="field">
+      <%= f.label :メールアドレス %>
+      <div class="ui left icon input">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <i class="user icon"></i>
       </div>
-
-      <div class="field">
-        <%= f.label :パスワード %>
-        <div class="ui input">
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-      </div>
-      <%= f.submit "ログイン", class: "ui fluid primary button" %>
     </div>
-  <% end %>
 
-  <h2 class="ui header" style="text-align: center;">Driver簡単ログイン</h2>
-  <div class="ui segment">
-    <%= link_to driver_guest_sign_in_path, class:"ui fluid teal button", method: :post do %>
-      ゲストログイン（閲覧用）<i class="fas fa-arrow-right"></i>
-    <% end %>
+    <div class="field">
+      <%= f.label :パスワード %>
+      <div class="ui left icon input">
+        <%= f.password_field :password, autocomplete: "current-password" %>
+        <i class="lock icon"></i>
+      </div>
+    </div>
+    <%= f.submit "ログイン", class: "ui fluid primary button" %>
   </div>
+<% end %>
+
+<h2 class="ui header" style="text-align: center;">Driver簡単ログイン</h2>
+<div class="ui segment">
+  <%= link_to driver_guest_sign_in_path, class:"ui fluid teal button", method: :post do %>
+    ゲストログイン（閲覧用）<i class="fas fa-arrow-right"></i>
+  <% end %>
 </div>
 
 

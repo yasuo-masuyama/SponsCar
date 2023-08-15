@@ -1,30 +1,45 @@
-<%= form_with(model: @info, local: true, url: choose_new_or_edit, class: "ui form") do |f| %>
-  <div class="field">
-    <%= f.label :タイトル %>
-    <%= f.text_field :title, autofocus: true, autocomplete:"", placeholder:"タイトルを入力" %>
+<% if @info.errors.any? %>
+  <div class="ui error message">
+    <div class="header">
+      <%= @info.errors.count %>件のエラーです。
+    </div>
+    <ul class="list">
+      <% @info.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
-  
-  <div class="field">
-    <%= f.label :閲覧者タイプ %>
-    <div class="inline fields">
-      <div class="field">
-        <%= f.radio_button :viewer_type, :both %>
-        <%= f.label "全て" %>
-      </div>
-      <div class="field">
-        <%= f.radio_button :viewer_type, :ad_client %>
-        <%= f.label "Sponsor" %>
-      </div>
-      <div class="field">
-        <%= f.radio_button :viewer_type, :driver %>
-        <%= f.label "Driver" %>
+<% end %>
+
+<%= form_with(model: @info, local: true, url: choose_new_or_edit, class: "ui form") do |f| %>
+  <div class="ui segment">
+    <div class="field">
+      <%= f.label :タイトル %>
+      <%= f.text_field :title, autofocus: true, autocomplete:"", placeholder:"タイトルを入力" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :閲覧者タイプ %>
+      <div class="inline fields">
+        <div class="field">
+          <%= f.radio_button :viewer_type, :both %>
+          <%= f.label :"全員" %>
+        </div>
+        <div class="field">
+          <%= f.radio_button :viewer_type, :sponsor %>
+          <%= f.label :"Sponsor" %>
+        </div>
+        <div class="field">
+          <%= f.radio_button :viewer_type, :driver %>
+          <%= f.label :"Driver" %>
+        </div>
       </div>
     </div>
+
+    <div class="field">
+      <%= f.label :内容 %>
+      <%= f.text_area :content, autofocus: true, autocomplete:"", placeholder:"内容を入力", rows: 10 %>
+    </div>
+    <%= f.submit "送信", class: "ui fluid button primary" %>
   </div>
-  
-  <div class="field">
-    <%= f.label :内容 %>
-    <%= f.text_area :content, autofocus: true, autocomplete:"", placeholder:"内容を入力", rows: 10 %>
-  </div>
-  <%= f.submit "送信", class: "ui button primary" %>
 <% end %>

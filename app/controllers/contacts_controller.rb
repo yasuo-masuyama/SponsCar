@@ -1,6 +1,9 @@
 class ContactsController < ApplicationController
-  before_action :authenticate_admin!, except: %i[ new confirm create ]
+  before_action :authenticate_admin!, except: %i[ index new confirm create ]
   before_action :set_contact, only: %i[ update show ]
+
+  def index
+  end
 
   def new
     @contact = Contact.new
@@ -8,14 +11,10 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    if params[:back]
-      render :new
+    if @contact.save
+      redirect_to contacts_path
     else
-      if @contact.save
-        redirect_to contacts_path
-      else
-        render :new
-      end
+      render :new
     end
   end
 

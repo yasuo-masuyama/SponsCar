@@ -1,5 +1,5 @@
 <div class="ui grid">
-  <div class="four wide column">
+  <div class="three wide column">
     <% if sponsor_signed_in? %>
       <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
     <% elsif driver_signed_in? %>
@@ -9,7 +9,7 @@
 
   <div class="twelve wide column">
     <h3 class="ui header">フォロー リスト</h3>
-    <table class="ui table">
+    <table class="ui definition table">
       <thead>
         <tr>
           <th></th>

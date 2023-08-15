@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   def index
-		@ad = Advertisement.includes(:sponsor).find(params[:sponsor_id])
+		@advertisement = Advertisement.includes(:sponsor).find(params[:sponsor_id])
 		room = Room.find_by(advertisement_id: @advertisement.id, driver_id: current_driver.id)
 			if room.nil?
 				room = Room.create(advertisement_id: @advertisement.id, driver_id: current_driver.id, sponsor_id: @advertisement.sponsor_id)

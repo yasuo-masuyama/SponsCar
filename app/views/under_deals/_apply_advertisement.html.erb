@@ -11,9 +11,9 @@
   <br>
   <section class="question">
     <% if room.nil? %>
-      <%= link_to '広告のことで質問する', advertisement_room_path(advertisement.id), class: "ui teal button", method: :POST %>
+      <%= link_to '広告のことで質問する', coming_soon_path, class: "ui teal button" %>
     <% else %>
-      <%= link_to '広告のことで質問する', advertisement_room_path(advertisement.id, room.id), class: "ui teal button" %>
+      <%= link_to '広告のことで質問する', coming_soon_path, class: "ui teal button" %>
     <% end %>
   </section>
   <br>

@@ -1,8 +1,8 @@
 <div class="ui grid">
-  <div class="four wide column">
+  <div class="three wide column">
     <%= render 'sponsors/sidebar', sponsor: current_sponsor %>
   </div>
-  <div class="twelve wide column">
+  <div class="thirteen wide column">
     <%= render 'layouts/message_from_admin', sponsor: @sponsor %>
     <%= render 'rooms/index', rooms: @rooms %>
     <%= render 'under_deals/index_sponsor', under_deals: @under_deals, finish_deals: @finish_deals %>
