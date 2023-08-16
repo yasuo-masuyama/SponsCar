@@ -11,7 +11,6 @@
   address = Gimei.address
 
 Driver.create!(
-  id: i + 1,
   email: "driver#{i + 1}@example.com",
   name: name.kanji,
   name_kana: name.katakana,
@@ -30,7 +29,6 @@ end
 
 5.times do |i|
   CarInfo.create!(
-    id: i + 1,
     driver_id: i + 1,
     manufacturer_name: 'Honda',
     name: ['シビックTypeR', 'ステップワゴン', 'N-BOX', 'ヴェゼル', 'NSX'].sample,
@@ -44,7 +42,6 @@ end
   driver = Driver.find(i + 1)
 
   TransferInfo.create!(
-    id: i + 1,
     driver_id: i + 1,
     bank_name: "三菱UFJ銀行",
     branch_name: ['本店', '丸の内支店', '市ヶ谷支店'].sample, 
@@ -55,7 +52,6 @@ end
 end
 
 Sponsor.create!(
-  id: 1,
   email: 'sponsor1@example.com',
   company_name: "（株）ゲスト広告",
   company_name_kana:"カブゲストコウコク",
@@ -72,7 +68,6 @@ Sponsor.create!(
   )
 
 Sponsor.create!(
-  id: 2,
   email: 'sponsor2@example.com',
   company_name: "(株)ネクストウェーブ",
   company_name_kana:"カブネクストウェーブ",
@@ -89,7 +84,6 @@ Sponsor.create!(
   )
 
 Sponsor.create!(
-  id: 3,
   email: 'sponsor3@example.com',
   company_name: "(株)Lalana",
   company_name_kana:"カブララナ",
@@ -106,7 +100,6 @@ Sponsor.create!(
   )
 
 Sponsor.create!(
-  id: 4,
   email: 'sponsor4@example.com',
   company_name: "(株)共創ソリューションズ",
   company_name_kana:"カブキョウソウソリューションズ",
@@ -123,7 +116,6 @@ Sponsor.create!(
   )
 
 Sponsor.create!(
-  id: 5,
   email: 'sponsor5@example.com',
   company_name: "(株)キッチンオンライン",
   company_name_kana:"カブキッチンオンライン",
@@ -155,7 +147,6 @@ genres = [
 
 genres.each_with_index do |genre_name, i|
   Genre.create!(
-    id: i + 1,
     name: genre_name,
     flag_active: true
   )
@@ -163,7 +154,6 @@ end
 
 5.times do |i|
   Info.create!(
-    id: i + 1,
     title: "テスト",
     content: "テスト",
     viewer_type: ['both', 'sponsor', 'driver'].sample
@@ -174,7 +164,6 @@ end
   name = Gimei.name
 
   Contact.create!(
-    id: i + 1,
     name: name.kanji,
     company_name: "テスト",
     telephone_number: Faker::PhoneNumber.phone_number,
@@ -186,7 +175,6 @@ end
 
 5.times do |i|
   Admin.create!(
-    id: i + 1,
     email: "admin#{i + 1}@example.com",
     name: "マスター#{i + 1}", name_kana:"マスター#{i + 1}",
     password: "admin#{i + 1}",
@@ -195,7 +183,6 @@ end
 end
 
 Advertisement.create!(
-  id: 1,
   sponsor_id: 1,
   genre_id: 9,
   title: "スタッフ募集ポスター",
@@ -209,7 +196,6 @@ Advertisement.create!(
 )
 
 Advertisement.create!(
-  id: 2,
   sponsor_id: 2,
   genre_id: 11,
   title: "正社員募集ポスター",
@@ -223,7 +209,6 @@ Advertisement.create!(
 )
 
 Advertisement.create!(
-  id: 3,
   sponsor_id: 3,
   genre_id: 9,
   title: "マーケティングセミナーポスター",
@@ -237,7 +222,6 @@ Advertisement.create!(
 )
 
 Advertisement.create!(
-  id: 4,
   sponsor_id: 4,
   genre_id: 9,
   title: "経営コンサルセミナーポスター",
@@ -251,7 +235,6 @@ Advertisement.create!(
 )
 
 Advertisement.create!(
-  id: 5,
   sponsor_id: 5,
   genre_id: 3,
   title: "お料理教室ポスター",
@@ -266,7 +249,6 @@ Advertisement.create!(
 
 5.times do |i|
   Favorite.create!(
-    id: i + 1,
     driver_id: i + 1,
     advertisement_id: i + 1
   )
@@ -274,7 +256,6 @@ end
 
 5.times do |i|
   UnderDeal.create!(
-    id: i + 1,
     advertisement_id: i + 1,
     driver_id: i + 1,
     work_status: "approval_pending"
