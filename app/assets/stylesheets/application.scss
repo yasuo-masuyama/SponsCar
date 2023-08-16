@@ -17,7 +17,6 @@
 @import "font-awesome";
 @import "semantic-ui";
 
-/* Google Map*/
 #map {
   width:390px;
   height:480px;
@@ -25,14 +24,14 @@
 }
 
 header {
-  border-bottom: 2px solid #e5e5e5; /* グレーの線 */
-  margin-bottom: 20px; /* 余白を追加して、線と次のコンテンツとの間にスペースを作る */
+  border-bottom: 2px solid #e5e5e5;
+  margin-bottom: 20px;
 }
 
 footer {
-  border-top: 2px solid #e5e5e5; /* グレーの線 */
-  margin-top: 20px; /* 余白を追加して、線と前のコンテンツとの間にスペースを作る */
-  padding-top: 20px; /* 内側の余白を追加して、線とフッダーコンテンツとの間にスペースを作る */
+  border-top: 2px solid #e5e5e5;
+  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .logo {
