@@ -95,5 +95,4 @@ Rails.application.routes.draw do
   post '/relationships/:driver_id',to: 'relationships#create',as:'relationships'
   delete '/relationships/:driver_id',to: 'relationships#destroy'
   
-  mount ActionCable.server => '/cable'
 end
