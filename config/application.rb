@@ -12,6 +12,10 @@ module SponsCar
     config.load_defaults 6.1
     config.i18n.default_locale = :ja
 
+    config.host_configuration = {
+      exclude: ->(request) { request.path == '/health_check' }
+    }
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

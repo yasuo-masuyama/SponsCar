@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'health_check/index'
   devise_for :admins, controllers:{ 
     registrations: 'admins/registrations',
     sessions: 'admins/sessions' 
@@ -94,4 +95,6 @@ Rails.application.routes.draw do
   
   post '/relationships/:driver_id',to: 'relationships#create',as:'relationships'
   delete '/relationships/:driver_id',to: 'relationships#destroy'
+
+  get '/health_check', to: 'health_check#index'
 end
