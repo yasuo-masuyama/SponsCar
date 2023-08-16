@@ -126,6 +126,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.10.3)
       devise (>= 4.8.0)
+    diff-lcs (1.5.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -134,6 +135,11 @@ GEM
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.12.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
@@ -166,6 +172,8 @@ GEM
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
     kgio (2.11.4)
+    launchy (2.5.2)
+      addressable (~> 2.8)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -268,6 +276,23 @@ GEM
     rexml (3.2.5)
     romaji (0.2.4)
       rake (>= 0.8.0)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.0.3)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.12.1)
     ruby-graphviz (1.2.5)
       rexml
     ruby-vips (2.1.4)
@@ -291,6 +316,8 @@ GEM
       sassc
     semantic_range (3.0.0)
     spring (4.1.1)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -357,6 +384,7 @@ DEPENDENCIES
   dotenv-rails
   ed25519
   enum_help
+  factory_bot_rails
   faker
   font-awesome-sass
   geocoder
@@ -364,6 +392,7 @@ DEPENDENCIES
   image_processing
   jbuilder (~> 2.7)
   kaminari
+  launchy
   listen (~> 3.3)
   pg (~> 1.1)
   pry-byebug
@@ -373,10 +402,12 @@ DEPENDENCIES
   rails-erd
   rails-i18n
   rexml
+  rspec-rails
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   semantic-ui-sass
   spring
+  spring-commands-rspec
   turbolinks (~> 5)
   tzinfo-data
   unicorn
