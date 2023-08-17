@@ -13,26 +13,46 @@
       <%= render 'under_deals/advertisement_info', advertisement: @advertisement %>
       <%= render 'under_deals/flow_sponsor', under_deal: @under_deal %>
 
-      <div class="ui comments">
-        <% @deal_messages.each do |message| %>
-          <div class="comment <%= message.user_type %>">
-            <div class="avatar">
-              <% if message.user_type == 'driver' %>
-                <%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
-              <% else %>
-                <%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
-              <% end %>
-            </div>
-            <div class="content">
-              <div class="text <%= message.user_type %>">
-                <%= message.message %>
+
+      <div class="ui segment">
+				<h4 class="ui dividing header">メッセージ記録</h4>
+				<% if @deal_messages.blank? %>
+					<h4 class="ui red message">メッセージはありません</h4>
+				<% end %>
+
+        <div class="ui segment">
+          <% @deal_messages.each do |message| %>
+            <% if message.user_type == 'driver'  %>
+              <div class="comment <%= message.user_type %>" style="text-align: right; display: flex; align-items: start; justify-content: flex-end;">
+                <div class="content" style="display: flex; flex-direction: column; align-items: flex-end;">
+                  <div class="text <%= message.user_type %>">
+                    <%= message.message %>
+                  </div>
+                  <div class="metadata">
+                    <span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
+                  </div>
+                </div>
+                <div class="avatar" style="margin-left: 10px;">
+                  <%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [50, 50]) %>
+                </div>
               </div>
-              <div class="metadata">
-                <span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
+            <% else %>
+              <div class="comment <%= message.user_type %>"style="display: flex;">
+                <div class="avatar">
+                  <%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [50, 50]) %>
+                </div>
+                <div class="content">
+                  <div class="text <%= message.user_type %>">
+                    <%= message.message %>
+                  </div>
+                  <div class="metadata">
+                    <span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        <% end %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
 
       <div id="chat-templete">

@@ -13,29 +13,30 @@
 				<% if @deal_messages.blank? %>
 					<h4 class="ui red message">メッセージはありません</h4>
 				<% end %>
-				<div class="ui comments">
+				
+				<div class="ui segment">
 					<% @deal_messages.each do |message| %>
-						<% if message.user_type == 'driver' %>
-							<div class="comment">
-								<a class="avatar">
-									<%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [200, 200]) %>
-								</a>
-								<div class="content">
-									<div class="text">
+						<% if message.user_type == 'sponsor'  %>
+							<div class="comment <%= message.user_type %>" style="text-align: right; display: flex; align-items: start; justify-content: flex-end;">
+								<div class="content" style="display: flex; flex-direction: column; align-items: flex-end;">
+									<div class="text <%= message.user_type %>">
 										<%= message.message %>
 									</div>
 									<div class="metadata">
 										<span class="date"><%= message.created_at.to_s(:datetime_jp) %></span>
 									</div>
 								</div>
+								<div class="avatar" style="margin-left: 10px;">
+									<%= image_tag @under_deal.driver.profile_image.variant(resize_to_fill: [50, 50]) %>
+								</div>
 							</div>
 						<% else %>
-							<div class="comment">
-								<a class="avatar">
-									<%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [200, 200]) %>
-								</a>
+							<div class="comment <%= message.user_type %>"style="display: flex;">
+								<div class="avatar">
+									<%= image_tag @under_deal.advertisement.sponsor.company_image.variant(resize_to_fill: [50, 50]) %>
+								</div>
 								<div class="content">
-									<div class="text">
+									<div class="text <%= message.user_type %>">
 										<%= message.message %>
 									</div>
 									<div class="metadata">
@@ -46,6 +47,7 @@
 						<% end %>
 					<% end %>
 				</div>
+
 				<div id="chat-templete">
 					<%= form_with(model: @deal_message, local: true, url: under_deal_deal_messages_path(@under_deal)) do |f| %>
 						<div class="flex-container">
