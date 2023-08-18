@@ -7,7 +7,7 @@ FactoryBot.define do
     postal_code { "1111111" }
     address { "東京都中央区" }
     telephone_number { "07011112222" }
-    email { "test@example.com" }
+    sequence(:email) { |n| "sponsor_test#{n}@example.com" }
     password { "password" }
     terms { "true" }
 
