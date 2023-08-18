@@ -1,4 +1,3 @@
-# spec/models/info_spec.rb
 require 'rails_helper'
 
 RSpec.describe Info, type: :model do

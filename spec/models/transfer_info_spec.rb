@@ -1,4 +1,3 @@
-# spec/models/transfer_info_spec.rb
 require 'rails_helper'
 
 RSpec.describe TransferInfo, type: :model do
