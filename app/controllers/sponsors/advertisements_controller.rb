@@ -7,8 +7,14 @@ class Sponsors::AdvertisementsController < ApplicationController
     @advertisements = @sponsor.advertisements.page(params[:page]).per(9)
   end
 
+  def show
+  end
+
   def new
     @advertisement = Advertisement.new
+  end
+
+  def edit
   end
 
   def create
@@ -19,12 +25,6 @@ class Sponsors::AdvertisementsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-  end
-
-  def edit
   end
 
   def update

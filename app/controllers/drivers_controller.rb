@@ -20,13 +20,13 @@ class DriversController < ApplicationController
     @drivers = Driver.page(params[:page]).per(9)
   end
 
-  def edit
-  end
-
   def show
     @genres = Genre.all
     @car_infos = @driver.car_infos
     @current_driver = current_driver
+  end
+
+  def edit
   end
 
   def update

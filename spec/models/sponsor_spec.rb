@@ -20,13 +20,13 @@ RSpec.describe Sponsor, type: :model do
     )
   
     sponsor.company_image.attach(
-      io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')),
+      io: File.open(Rails.root.join("spec/fixtures/test.png")),
       filename: 'test.jpg',
       content_type: 'image/png'
     )
   
     sponsor.registry_image.attach(
-      io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')),
+      io: File.open(Rails.root.join("spec/fixtures/test.png")),
       filename: 'test.jpg',
       content_type: 'image/png'
     )

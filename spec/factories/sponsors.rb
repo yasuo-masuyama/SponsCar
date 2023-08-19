@@ -13,12 +13,12 @@ FactoryBot.define do
 
     after(:build) do |sponsor|
       sponsor.company_image.attach(
-        io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')),
+        io: File.open(Rails.root.join("spec/fixtures/test.png")),
         filename: 'test.png',
         content_type: 'image/png'
       )
       sponsor.registry_image.attach(
-        io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')),
+        io: File.open(Rails.root.join("spec/fixtures/test.png")),
         filename: 'test.png',
         content_type: 'image/jpeg'
       )
@@ -39,12 +39,12 @@ FactoryBot.define do
 
     after(:build) do |sponsor|
       sponsor.company_image.attach(
-        io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')),
+        io: File.open(Rails.root.join("spec/fixtures/test.png")),
         filename: 'test.png',
         content_type: 'image/png'
       )
       sponsor.registry_image.attach(
-        io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')),
+        io: File.open(Rails.root.join("spec/fixtures/test.png")),
         filename: 'test.png',
         content_type: 'image/jpeg'
       )

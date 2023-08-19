@@ -6,6 +6,9 @@ class Admins::GenresController < ApplicationController
     @genre = Genre.new
   end
 
+  def edit
+  end
+
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
@@ -14,9 +17,6 @@ class Admins::GenresController < ApplicationController
       @genres = Genre.all
       render :index
     end
-  end
-
-  def edit
   end
 
   def update

@@ -7,6 +7,9 @@ class TransferInfosController < ApplicationController
     @transfer_infos = current_driver.transfer_infos
   end
 
+  def edit
+  end
+
   def create
     @transfer_info = TransferInfo.new(transfer_info_params)
     @transfer_info.driver_id = current_driver.id
@@ -16,9 +19,6 @@ class TransferInfosController < ApplicationController
       @transfer_infos = current_driver.transfer_infos
       render :index
     end
-  end
-
-  def edit
   end
 
   def update

@@ -12,7 +12,7 @@ RSpec.describe "車両情報機能", type: :system do
       fill_in "car_info[name]", with: "テスト"
       fill_in "car_info[flame_number]", with: "1111111"
       fill_in "car_info[license_plate]", with: "11111111"
-      path_to_image = Rails.root.join('spec', 'fixtures', 'test.png')
+      path_to_image = Rails.root.join("spec/fixtures/test.png")
       attach_file 'car_info[vehicle_image]', path_to_image
       click_on "登 録"
       expect(page).to have_content "テスト"
@@ -32,7 +32,7 @@ RSpec.describe "車両情報機能", type: :system do
       fill_in "car_info[name]", with: "テスト"
       fill_in "car_info[flame_number]", with: "1111111"
       fill_in "car_info[license_plate]", with: "11111111"
-      path_to_image = Rails.root.join('spec', 'fixtures', 'test.png')
+      path_to_image = Rails.root.join("spec/fixtures/test.png")
       attach_file 'car_info[vehicle_image]', path_to_image
       click_on "登 録"
       expect(page).to have_content "更新テスト"

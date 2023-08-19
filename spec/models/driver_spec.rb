@@ -19,13 +19,13 @@ RSpec.describe Driver, type: :model do
     )
   
     driver.profile_image.attach(
-      io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')),
+      io: File.open(Rails.root.join("spec/fixtures/test.png")),
       filename: 'test.jpg',
       content_type: 'image/png'
     )
   
     driver.license_image.attach(
-      io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')),
+      io: File.open(Rails.root.join("spec/fixtures/test.png")),
       filename: 'test.jpg',
       content_type: 'image/png'
     )

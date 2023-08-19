@@ -4,7 +4,7 @@ class Sponsor < ApplicationRecord
   devise  :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable
 
-  validates_acceptance_of :terms, allow_nil: false, message: "※会員登録には利用規約への同意が必要です。", on: :create
+  validates :terms, acceptance: { allow_nil: false, message: "※会員登録には利用規約への同意が必要です。", on: :create }
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :company_name, presence: true

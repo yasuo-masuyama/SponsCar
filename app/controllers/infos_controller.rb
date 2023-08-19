@@ -5,8 +5,14 @@ class InfosController < ApplicationController
     @infos = Info.all
   end
 
+  def show
+  end
+
   def new
     @info = Info.new
+  end
+
+  def edit
   end
 
   def create
@@ -20,12 +26,6 @@ class InfosController < ApplicationController
         render :new
       end
     end
-  end
-
-  def show
-  end
-
-  def edit
   end
 
   def update
