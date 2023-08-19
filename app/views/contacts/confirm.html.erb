@@ -1,40 +1,44 @@
-<div class="ui container">
-  <h3 class="ui dividing header">お問い合わせ内容確認画面</h3>
-  <table class="ui definition table">
-    <tbody>
-      <tr>
-        <td>お名前</td>
-        <td><%= @contact.name %></td>
-      </tr>
-      <tr>
-        <td>会社名</td>
-        <td><%= @contact.company_name %></td>
-      </tr>
-      <tr>
-        <td>電話番号</td>
-        <td><%= @contact.telephone_number %></td>
-      </tr>
-      <tr>
-        <td>メールアドレス</td>
-        <td><%= @contact.email %></td>
-      </tr>
-      <tr>
-        <td>お問い合わせ内容</td>
-        <td><%= @contact.content %></td>
-      </tr>
-      <tr>
+<h3 class="ui dividing header">お問い合わせ内容確認画面</h3>
+  <div class="ui segment">
+    <table class="ui definition table">
+      <tbody>
+        <tr>
+          <td>お名前</td>
+          <td><%= @contact.name %></td>
+        </tr>
+
+        <tr>
+          <td>会社名</td>
+          <td><%= @contact.company_name %></td>
+        </tr>
+
+        <tr>
+          <td>電話番号</td>
+          <td><%= @contact.telephone_number %></td>
+        </tr>
+
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @contact.email %></td>
+        </tr>
+
+        <tr>
+          <td>お問い合わせ内容</td>
+          <td><%= @contact.content %></td>
+        </tr>
+
+        <tr>
           <%= form_with(model: @contact, local: true, url: contacts_path, method: :post ) do |f| %>
             <%= f.hidden_field :name %>
             <%= f.hidden_field :company_name %>
             <%= f.hidden_field :telephone_number %>
             <%= f.hidden_field :email %>
             <%= f.hidden_field :content %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <%= f.button "送信する", class: "ui button primary" %>
-<% end %>
-</div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <%= f.button "送信する", class: "ui button fluid primary" %>
+  <% end %>
 
 <%= link_to "前の画面に戻る", new_contact_path, class: "fas fa-angle-left" %>

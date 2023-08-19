@@ -1,7 +1,7 @@
 <% if under_deal.work_status == 'approval_pending' %>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>広告に応募がありました!</h3>
       </div>
       <div id="report-driver">
@@ -20,7 +20,7 @@
 <% if under_deal.work_status == 'refuse'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>ドライバーからの申し込みをお断りしました。</h3>
       </div>
     </div>
@@ -30,7 +30,7 @@
 <% if under_deal.work_status == 'waiting_kit'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>ドライバーへ広告キットを発送してください</h3>
       </div>
     </div>
@@ -41,7 +41,7 @@
 <% if under_deal.work_status == 'sent_kit'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>発送通知をしました!<br>ドライバーからの広告キット取り付け完了連絡をお待ちください。</h3>
       </div>
     </div>
@@ -52,7 +52,7 @@
 <% if under_deal.work_status == 'advertising'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h4>ドライバーから広告キット取付け完了の報告がきました。<br>これからドライバーが広告作業を行います。作業完了の報告をお待ちください。</h4>
       </div>
     </div>
@@ -63,7 +63,7 @@
 <% if under_deal.work_status == 'completed'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>広告作業が完了しました！</h3>
         <h4>広告作業代の振り込み作業を行ってください。お振込み完了後、評価をしてドライバーに報告をしてください。</h4>
       </div>
@@ -75,7 +75,7 @@
 <% if under_deal.work_status == 'transferred'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>振り込み報告が完了しました！</h3>
         <h4>ドライバーからの受け取り連絡待ちです。</h4>
       </div>
@@ -87,7 +87,7 @@
 <% if under_deal.work_status == 'rated'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>ドライバーから振り込み確認の連絡がきました！</h3>
         <h4>ドライバーの評価をして取引を終了させてください。</h4>
       </div>
@@ -99,7 +99,7 @@
 <% if under_deal.work_status == 'finished'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>お疲れ様でした！</h3>
         <h4>お取引きが完了しました。宣伝したい広告はありませんか？</h4>
       </div>
