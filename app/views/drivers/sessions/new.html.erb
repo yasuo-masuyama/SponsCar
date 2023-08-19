@@ -1,18 +1,18 @@
 <h2 class="ui header" style="text-align: center;">Driverログイン</h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form", autocomplete: "off"}) do |f| %>
   <div class="ui stacked segment">
     <div class="field">
-      <%= f.label :メールアドレス %>
+      <%= f.label :email %>
       <div class="ui left icon input">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "" %>
         <i class="user icon"></i>
       </div>
     </div>
 
     <div class="field">
-      <%= f.label :パスワード %>
+      <%= f.label :password %>
       <div class="ui left icon input">
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.password_field :password, autocomplete: "" %>
         <i class="lock icon"></i>
       </div>
     </div>

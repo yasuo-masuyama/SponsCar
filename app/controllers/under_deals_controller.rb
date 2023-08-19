@@ -52,7 +52,6 @@ class UnderDealsController < ApplicationController
         redirect_back(fallback_location: under_deal_path(@under_deal), alert: '画像が登録されてません')
       end
     elsif params[:completed]
-      # deal_detail(取引情報)のテーブルへ振込先の情報保存
       @deal_detail = DealDetail.new(deal_detail_params)
       @transfer_info = TransferInfo.find(params[:detail][:transfer_info_id])
       @deal_detail.under_deal_id = @under_deal.id
@@ -71,7 +70,6 @@ class UnderDealsController < ApplicationController
     elsif params[:transferred]
       @under_deal.work_status = 'transferred'
       @under_deal.save
-      # deal_detail(取引情報)の広告料とテーブルへ振込の情報保存
       @deal_detail = @under_deal.deal_detail
       @deal_detail.transfer_status = 'transferred'
       @advertisement = UnderDeal.includes(:advertisement).find(params[:id])

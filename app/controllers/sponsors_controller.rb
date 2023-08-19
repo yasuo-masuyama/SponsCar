@@ -6,7 +6,7 @@ class SponsorsController < ApplicationController
 
   def dashboard
     deal_all = UnderDeal.includes(:advertisement).where(advertisements: {sponsor_id: current_sponsor} )
-    @under_deals = deal_all.includes(:advertisement).where.not(work_status: 'finished')
+    @under_deals = deal_all.includes(:advertisement).where.not(work_status: ['finished', 'checked_refuse'])
     @finish_deals = deal_all.where(work_status: 'finished').or(deal_all.where(work_status: 'refuse')).or(deal_all.where(work_status: 'checked_refuse'))
     @rooms = Room.includes(:advertisement).where(sponsor: @sponsor)
   end

@@ -1,81 +1,80 @@
-<div class="ui container">
-  <h3 class="ui dividing header">Sponsor情報</h3>
+<h3 class="ui dividing header">Sponsor情報</h3>
 
-  <% if @sponsor.errors.any? %>
-    <div class="ui error message">
-      <div class="header">
-        <%= @sponsor.errors.count %>件のエラーです。
-      </div>
-      <ul class="list">
-        <% @sponsor.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<% if @sponsor.errors.any? %>
+  <div class="ui error message">
+    <div class="header">
+      <%= @sponsor.errors.count %>件のエラーです。
     </div>
-  <% end %>
+    <ul class="list">
+      <% @sponsor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-  <%= form_with(model: @sponsor, local: true, url: sponsor_path, class: "ui form") do |f| %>
-    <div class="ui segment">
-      <div class="field">
-        <%= f.label :company_image, class: "ui label" %>
-        <div class="ui medium image">
-          <% if @sponsor.company_image.attached? %>
-            <%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]), class: "ui circular image" %>
-          <% else %>
-            <p>画像がありません</p>
-          <% end %>
-        </div>
-      <%= f.file_field :company_image, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :company_name, class: "ui label" %>
-        <%= f.text_field :company_name, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :company_name_kana, class: "ui label" %>
-        <%= f.text_field :company_name_kana, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :ceo_name, class: "ui label" %>
-        <%= f.text_field :ceo_name, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :ceo_name_kana, class: "ui label" %>
-        <%= f.text_field :ceo_name_kana, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :postal_code, class: "ui label" %>
-        <%= f.text_field :postal_code, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :address, class: "ui label" %>
-        <%= f.text_field :address, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :telephone_number, class: "ui label" %>
-        <%= f.text_field :telephone_number, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :email, class: "ui label" %>
-        <%= f.text_field :email, class: "ui input" %>
-      </div>
-
-      <div class="field">
-        <%= button_tag :type => "submit", class: "ui fluid blue button" do %>
-          <span>更新する</span><i class="fas fa-angle-double-right"></i>
+<%= form_with(model: @sponsor, local: true, url: sponsor_path, class: "ui form") do |f| %>
+  <div class="ui segment">
+    <div class="field">
+      <%= f.label :company_image, class: "ui label" %>
+      <div class="ui medium image">
+        <% if @sponsor.company_image.attached? %>
+          <%= image_tag @sponsor.company_image.variant(resize_to_fill: [200, 200]), class: "ui circular image" %>
+        <% else %>
+          <p>画像がありません</p>
         <% end %>
       </div>
+    <%= f.file_field :company_image, class: "ui input" %>
     </div>
-  <% end %>
-</div>
+
+    <div class="field">
+      <%= f.label :company_name, class: "ui label" %>
+      <%= f.text_field :company_name, class: "ui input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :company_name_kana, class: "ui label" %>
+      <%= f.text_field :company_name_kana, class: "ui input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :ceo_name, class: "ui label" %>
+      <%= f.text_field :ceo_name, class: "ui input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :ceo_name_kana, class: "ui label" %>
+      <%= f.text_field :ceo_name_kana, class: "ui input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :postal_code, class: "ui label" %>
+      <%= f.text_field :postal_code, class: "ui input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :address, class: "ui label" %>
+      <%= f.text_field :address, class: "ui input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :telephone_number, class: "ui label" %>
+      <%= f.text_field :telephone_number, class: "ui input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, class: "ui label" %>
+      <%= f.text_field :email, class: "ui input" %>
+    </div>
+
+    <div class="field">
+      <%= button_tag :type => "submit", class: "ui fluid blue button" do %>
+        <span>更新する</span><i class="fas fa-angle-double-right"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 
 
 

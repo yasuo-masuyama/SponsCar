@@ -1,44 +1,43 @@
-<div class="ui container">
-  <div class="ui grid">
-    <div class="sixteen wide column">
-      <h3 class="ui dividing header">ジャンル編集画面</h3>
-      <div class="create-genres">
+<div class="ui grid">
+  <div class="sixteen wide column">
+    <h3 class="ui dividing header">ジャンル編集画面</h3>
+    <div class="create-genres">
 
-        <% if @genre.errors.any? %>
-          <div class="ui error message">
-            <div class="header">
-              <%= @genre.errors.count %>件のエラーです。
-            </div>
-            <ul class="list">
-              <% @genre.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+      <% if @genre.errors.any? %>
+        <div class="ui error message">
+          <div class="header">
+            <%= @genre.errors.count %>件のエラーです。
           </div>
-        <% end %>
+          <ul class="list">
+            <% @genre.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-        <%= form_with(model: @genre, local: true, url: admins_genre_path, class: "ui form") do |f| %>
-          <div class="ui segment">
-            <div class="inline fields">
-              <div class="field">
-                <%= f.label :name, "ジャンル" %>
-                <%= f.text_field :name, class: "form-control edit-form" %>
-              </div>
-              <div class="field">
-                <%= f.radio_button :flag_active, :true, class: "hidden" %>
-                <label>有効</label>
-              </div>
-              <div class="field">
-                <%= f.radio_button :flag_active, :false, class: "hidden" %>
-                <label>無効</label>
-              </div>
+      <%= form_with(model: @genre, local: true, url: admins_genre_path, class: "ui form") do |f| %>
+        <div class="ui segment">
+          <div class="inline fields">
+            <div class="field">
+              <%= f.label :name, "ジャンル" %>
+              <%= f.text_field :name, class: "form-control edit-form" %>
             </div>
-            <%= f.submit "登録する", class: "ui primary button" %>
+            <div class="field">
+              <%= f.radio_button :flag_active, :true, class: "hidden" %>
+              <label>有効</label>
+            </div>
+            <div class="field">
+              <%= f.radio_button :flag_active, :false, class: "hidden" %>
+              <label>無効</label>
+            </div>
           </div>
-        <% end %>
-      </div>
-      <br>
-      <%= link_to "前の画面に戻る", admins_genres_path, class: "fas fa-angle-left" %>
+          <%= f.submit "登録する", class: "ui primary button" %>
+        </div>
+      <% end %>
     </div>
+    <br>
+    <%= link_to "前の画面に戻る", admins_genres_path, class: "fas fa-angle-left" %>
   </div>
 </div>
+

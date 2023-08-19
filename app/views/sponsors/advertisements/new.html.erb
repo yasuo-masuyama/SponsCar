@@ -17,7 +17,7 @@
   </div>
 <% end %>
 
-<%= form_with(model: @advertisement, local: true, url: sponsor_advertisements_path(current_sponsor), class: "ui form") do |f| %>
+<%= form_with(model: @advertisement, local: true, url: sponsor_advertisements_path(current_sponsor), class: "ui form", html: { autocomplete: "off"} ) do |f| %>
   <div class="ui segment">
     <div class="field">
       <%= f.label :image, class: "ui label" %>

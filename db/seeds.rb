@@ -6,26 +6,92 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-5.times do |i|
-  name = Gimei.name
-  address = Gimei.address
+Admin.create!(
+  email: "admin1@example.com",
+  name: "管理者", name_kana:"カンリシャ",
+  password: "admin_user",
+  password_confirmation: "admin_user",
+)
 
 Driver.create!(
-  email: "driver#{i + 1}@example.com",
-  name: name.kanji,
-  name_kana: name.katakana,
+  email: "driver1@example.com",
+  name: "Mr.インクレディブル",
+  name_kana: "ミスターインクレディブル",
   postal_code: Faker::Address.zip_code,
-  address: address.prefecture.kanji + address.city.kanji,
+  address: Gimei.prefecture.kanji + Gimei.city.kanji,
   telephone_number: Faker::PhoneNumber.phone_number,
-  profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/drivers/driver#{i + 1}.png")), filename: "driver#{i + 1}.png"),
+  profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/drivers/driver1.png")), filename: "driver1.png"),
   license_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/license_image.png")), filename: 'license_image.png'),
   is_active: true,
   terms: true,
-  activity_area: address.prefecture.kanji + address.city.kanji,
-  password: "driver#{i + 1}",
-  password_confirmation: "driver#{i + 1}"
+  activity_area: Gimei.prefecture.kanji + Gimei.city.kanji,
+  password: "driver1",
+  password_confirmation: "driver1"
 )
-end
+
+Driver.create!(
+  email: "driver2@example.com",
+  name: "イラスティガール",
+  name_kana: "イラスティガール",
+  postal_code: Faker::Address.zip_code,
+  address: Gimei.prefecture.kanji + Gimei.city.kanji,
+  telephone_number: Faker::PhoneNumber.phone_number,
+  profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/drivers/driver2.png")), filename: "driver2.png"),
+  license_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/license_image.png")), filename: 'license_image.png'),
+  is_active: true,
+  terms: true,
+  activity_area: Gimei.prefecture.kanji + Gimei.city.kanji,
+  password: "driver2",
+  password_confirmation: "driver2"
+)
+
+Driver.create!(
+  email: "driver3@example.com",
+  name: "ヴァイオレット",
+  name_kana: "ヴァイオレット",
+  postal_code: Faker::Address.zip_code,
+  address: Gimei.prefecture.kanji + Gimei.city.kanji,
+  telephone_number: Faker::PhoneNumber.phone_number,
+  profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/drivers/driver3.png")), filename: "driver3.png"),
+  license_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/license_image.png")), filename: 'license_image.png'),
+  is_active: true,
+  terms: true,
+  activity_area: Gimei.prefecture.kanji + Gimei.city.kanji,
+  password: "driver3",
+  password_confirmation: "driver3"
+)
+
+Driver.create!(
+  email: "driver4@example.com",
+  name: "ダッシュ",
+  name_kana: "ダッシュ",
+  postal_code: Faker::Address.zip_code,
+  address: Gimei.prefecture.kanji + Gimei.city.kanji,
+  telephone_number: Faker::PhoneNumber.phone_number,
+  profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/drivers/driver4.png")), filename: "driver4.png"),
+  license_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/license_image.png")), filename: 'license_image.png'),
+  is_active: true,
+  terms: true,
+  activity_area: Gimei.prefecture.kanji + Gimei.city.kanji,
+  password: "driver4",
+  password_confirmation: "driver4"
+)
+
+Driver.create!(
+  email: "driver5@example.com",
+  name: "ジャック・ジャック",
+  name_kana: "ジャックジャック",
+  postal_code: Faker::Address.zip_code,
+  address: Gimei.prefecture.kanji + Gimei.city.kanji,
+  telephone_number: Faker::PhoneNumber.phone_number,
+  profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/drivers/driver5.png")), filename: "driver5.png"),
+  license_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/license_image.png")), filename: 'license_image.png'),
+  is_active: true,
+  terms: true,
+  activity_area: Gimei.prefecture.kanji + Gimei.city.kanji,
+  password: "driver5",
+  password_confirmation: "driver5"
+)
 
 5.times do |i|
   CarInfo.create!(
@@ -44,7 +110,7 @@ end
   TransferInfo.create!(
     driver_id: i + 1,
     bank_name: "三菱UFJ銀行",
-    branch_name: ['本店', '丸の内支店', '市ヶ谷支店'].sample, 
+    branch_name: ['本店', '丸の内支店', '市ヶ谷支店', '松戸支店', '柏市店'].sample, 
     account_number: Faker::Bank.account_number(digits: 9),
     account_type: ['ordinary', 'checking'].sample,
     account_name: driver.name_kana
@@ -66,6 +132,7 @@ Sponsor.create!(
   password: "sponsor1",
   password_confirmation: "sponsor1",
   )
+  
 
 Sponsor.create!(
   email: 'sponsor2@example.com',
@@ -145,40 +212,10 @@ genres = [
   "求人・転職"
 ]
 
-genres.each_with_index do |genre_name, i|
+genres.each do |genre_name|
   Genre.create!(
     name: genre_name,
     flag_active: true
-  )
-end
-
-5.times do |i|
-  Info.create!(
-    title: "テスト",
-    content: "テスト",
-    viewer_type: ['both', 'sponsor', 'driver'].sample
-  )
-end
-
-5.times do |i|
-  name = Gimei.name
-
-  Contact.create!(
-    name: name.kanji,
-    company_name: "テスト",
-    telephone_number: Faker::PhoneNumber.phone_number,
-    email: "contact#{i + 1}@example.com",
-    content: "テスト",
-    work_status: ["new_inquiry", "working_inquiry", "past_inquiry"].sample
-  )
-end
-
-5.times do |i|
-  Admin.create!(
-    email: "admin#{i + 1}@example.com",
-    name: "マスター#{i + 1}", name_kana:"マスター#{i + 1}",
-    password: "admin#{i + 1}",
-    password_confirmation: "admin#{i + 1}",
   )
 end
 
@@ -246,26 +283,3 @@ Advertisement.create!(
   start_due_on: "2023-09-01",
   end_due_on: "2023-09-15"
 )
-
-5.times do |i|
-  Favorite.create!(
-    driver_id: i + 1,
-    advertisement_id: i + 1
-  )
-end
-
-5.times do |i|
-  UnderDeal.create!(
-    advertisement_id: i + 1,
-    driver_id: i + 1,
-    work_status: "approval_pending"
-  )
-end
-
-5.times do |i|
-  DealMessage.create!(
-    under_deal_id: 1,
-    message: "テスト",
-    user_type: ['sponsor', 'driver'].sample
-  )
-end

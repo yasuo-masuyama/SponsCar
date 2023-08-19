@@ -1,7 +1,7 @@
 <% if under_deal.work_status == 'approval_pending' %>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>お申し込みが完了しました！</h3>
         <h4>スポンサーの承認待ちです。<br>何か質問があったら、メッセージしてみよう</h4>
       </div>
@@ -12,8 +12,8 @@
 <% if under_deal.work_status == 'refuse'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
-        <h3>誠に残念ですが、こちらのお申し込みは<br>スポンサーから承認されませんでした。<br>別の広告を探してみましょう！</h3>
+      <div class="ui negative big message" style="text-align: center;">
+        <h3>誠に残念ですが、こちらのお申し込みはスポンサーから承認されませんでした。<br>別の広告を探してみましょう！</h3>
         <%= form_with(model: under_deal, local: true, url: under_deal_path(under_deal), method: :patch, class: "ui form") do |f| %>
           <%= f.submit "了承して、別の広告を探す", name: 'checked_refuse', class: "ui primary button" %>
         <% end %>
@@ -25,7 +25,7 @@
 <% if under_deal.work_status == 'waiting_kit'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>おめでとうございます！<br>お申し込みが承認されました</h3>
         <h4>広告キットの発送準備中です。<br>発送後、スポンサーから連絡が入ります。<br>今しばらくお待ちください。</h4>
       </div>
@@ -36,9 +36,9 @@
 <% if under_deal.work_status == 'sent_kit'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
-        <h3>広告キットが発送されました</h3>
-        <h4>到着後、お車へ設置をお願いします。<br>設置完了後、証明写真を送ってください。取り付け方法に関してはコチラをご確認ください。</h4>
+      <div class="ui success big message" style="text-align: center;">
+        <h3>広告キットが発送されました！</h3>
+        <h4>到着後、お車へ設置をお願いします。設置完了後、証明写真を送ってください。</h4>
         <h5><%= link_to "広告キットの取り付けについて", coming_soon_path %></h5>
       </div>
     </div>
@@ -49,7 +49,7 @@
 <% if under_deal.work_status == 'advertising'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>準備完了です！</h3>
         <h4>広告作業をしながらドライブを楽しみましょう。<br>広告作業が完了したら、作業完了の報告を送ってください。</h4>
       </div>
@@ -61,7 +61,7 @@
 <% if under_deal.work_status == 'completed'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>お疲れ様でした！</h3>
         <h4>広告作業代の振り込み完了後、スポンサーから連絡が入ります。最後に評価をして広告作業を完了してください。</h4>
       </div>
@@ -73,7 +73,7 @@
 <% if under_deal.work_status == 'transferred'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
+      <div class="ui success big message" style="text-align: center;">
         <h3>振り込み完了の連絡が来ました！</h3>
         <h4>入金確認をしたら、最後に評価をして広告作業を完了してください。</h4>
       </div>
@@ -85,8 +85,8 @@
 <% if under_deal.work_status == 'rated'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
-        <h3>お疲れ様でした。お取引き完了です。<br>さぁ次の広告を探しにいきましょう！</h3>
+      <div class="ui success big message" style="text-align: center;">
+        <h3>お疲れ様でした。<br>次の広告を探しにいきましょう！</h3>
       </div>
     </div>
   </div>
@@ -96,8 +96,8 @@
 <% if under_deal.work_status == 'finished'%>
   <div class="ui stackable grid">
     <div class="wide column">
-      <div class="ui message-box">
-        <h3>この取引きは完了しています。<br>さぁ次の広告を探しにいきましょう！</h3>
+      <div class="ui success big message" style="text-align: center;">
+        <h3>この取引きは完了しています。<br>次の広告を探しにいきましょう！</h3>
       </div>
     </div>
   </div>
