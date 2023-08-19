@@ -10,7 +10,7 @@ FactoryBot.define do
     password { "password" }
 		terms { "true" }
 		after(:build) do |driver|
-			driver.profile_image.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'test.png')), filename: 'test.png', content_type: 'image/png')
+			driver.profile_image.attach(io: File.open(Rails.root.join("spec/fixtures/test.png")), filename: 'test.png', content_type: 'image/png')
 		end		
   end
 end

@@ -7,6 +7,9 @@ class CarInfosController < ApplicationController
     @car_infos = current_driver.car_infos
   end
 
+  def edit
+  end
+
   def create
     @car_info = CarInfo.new(car_info_params)
     @car_info.driver_id = current_driver.id
@@ -16,9 +19,6 @@ class CarInfosController < ApplicationController
       @car_infos = current_driver.car_infos
       render :index    
     end
-  end
-
-  def edit
   end
 
   def update

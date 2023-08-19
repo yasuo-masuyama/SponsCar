@@ -18,7 +18,7 @@ RSpec.describe Contact, type: :model do
     end
 
     it 'メールが255文字を超える場合は無効であること' do
-      contact = Contact.new(email: 'a' * 256 + '@example.com')
+      contact = Contact.new(email: ('a' * 256) + '@example.com')
       expect(contact).not_to be_valid
     end
 

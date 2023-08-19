@@ -4,7 +4,7 @@ class Driver < ApplicationRecord
   devise  :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable
   
-  validates_acceptance_of :terms, allow_nil: false, message: "※会員登録には利用規約への同意が必要です。", on: :create
+  # validates :terms, acceptance: { allow_nil: false, message: "※会員登録には利用規約への同意が必要です。", on: :create }
   validates :name, presence: true
   validates :name_kana, presence: true,format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   validates :postal_code, presence: true
