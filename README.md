@@ -38,3 +38,7 @@ https://cacoo.com/diagrams/xDgSzMB6Nu9BdHyR/DCD65
 ## 画面遷移図
 
 ![画面遷移図](app/assets/images/Screen_transition_diagram.png)
+
+## インフラ構成図
+
+![インフラ構成図](app/assets/images/Infrastructure_Configuration_Chart.png)
