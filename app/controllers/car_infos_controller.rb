@@ -7,17 +7,15 @@ class CarInfosController < ApplicationController
     @car_infos = current_driver.car_infos
   end
 
-  def edit
+  def edit 
   end
 
   def create
-    @car_info = CarInfo.new(car_info_params)
-    @car_info.driver_id = current_driver.id
+    @car_info = current_driver.car_infos.build(car_info_params)
     if @car_info.save
       redirect_to driver_car_infos_path(current_driver)
     else
-      @car_infos = current_driver.car_infos
-      render :index    
+      render :index
     end
   end
 
@@ -37,10 +35,10 @@ class CarInfosController < ApplicationController
   private
 
   def set_car_info
-    @car_info = CarInfo.find(params[:id])
+    @car_info = current_driver.car_infos.find(params[:id])
   end
 
   def car_info_params
-    params.require(:car_info).permit(:driver_id, :manufacturer_name, :name, :flame_number, :license_plate, :vehicle_image)
+    params.require(:car_info).permit(:manufacturer_name, :name, :flame_number, :license_plate, :vehicle_image)
   end
 end

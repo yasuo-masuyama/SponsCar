@@ -1,41 +1,38 @@
 class AdvertisementsController < ApplicationController
-  before_action :get_all_genre_records, only: %i[ index show genre_index favorite_index ]
-  before_action :set_current_driver, only: %i[ index show favorite_index ]
-  before_action :set_current_sponsor, only: %i[ index show ]
+  before_action :set_genres, only: %i[ index show genre_index favorite_index ]
+  before_action :set_current_user, only: %i[ index show favorite_index ]
 
   def index
-    @advertisements = Advertisement.page(params[:page]).per(9)
+    @advertisements = Advertisement.paginate(params[:page])
   end
 
   def show
-    @advertisement = Advertisement.includes(:sponsor, :genre).find(params[:id])
-    @room = Room.find_by(advertisement_id: @advertisement.id, driver_id: current_driver)
-
+    @advertisement = find_advertisement_with_associations
+    @room = Room.find_by(advertisement_id: @advertisement.id, driver_id: current_driver.id)
     @under_deal = UnderDeal.new
   end
 
   def genre_index
-    advertisements = Advertisement.where(genre_id: params[:id])
-    @advertisements = advertisements.page(params[:page]).per(9)
+    @advertisements = Advertisement.of_genre(params[:id]).paginate(params[:page])
     @genre = Genre.find(params[:id])
   end
 
   def favorite_index
-    advertisements = Advertisement.joins(:favorites).where(favorites: { driver: @driver })
-    @advertisements = advertisements.page(params[:page]).per(9) 
+    @advertisements = Advertisement.favorites_of(@driver).paginate(params[:page])
   end
 
   private
 
-  def get_all_genre_records
+  def set_genres
     @genres = Genre.all
   end
 
-  def set_current_driver
+  def set_current_user
     @driver = current_driver
+    @sponsor = current_sponsor if action_name.in?(['index', 'show'])
   end
 
-  def set_current_sponsor
-    @sponsor = current_sponsor
+  def find_advertisement_with_associations
+    Advertisement.includes(:sponsor, :genre).find(params[:id])
   end
 end

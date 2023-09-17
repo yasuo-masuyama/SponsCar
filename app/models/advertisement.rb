@@ -22,4 +22,7 @@ class Advertisement < ApplicationRecord
 		favorites.where(driver_id: driver.id).exists?
 	end
 
+  scope :of_genre, ->(genre_id) { where(genre_id: genre_id) }
+  scope :favorites_of, ->(driver) { joins(:favorites).where(favorites: { driver: driver }) }
+  scope :paginate, ->(page_number) { page(page_number).per(9) }
 end

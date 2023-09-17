@@ -17,14 +17,10 @@ class InfosController < ApplicationController
 
   def create
     @info = Info.new(info_params)
-    if params[:back]
-      render :new
+    if @info.save
+      redirect_to infos_path
     else
-      if @info.save
-        redirect_to infos_path
-      else
-        render :new
-      end
+      render :new
     end
   end
 
