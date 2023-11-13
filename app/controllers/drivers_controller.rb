@@ -4,20 +4,12 @@ class DriversController < ApplicationController
   before_action :set_current_sponsor, only: %i[ index show ]
 
   def dashboard
-    @under_deals = UnderDeal.includes(:advertisement,:deal_messages).references(:advertisement,:deal_messages).where(driver_id: @driver.id)
-    @under_deal = @under_deals.includes(:advertisement,:deal_messages).references(:advertisement,:deal_messages).where.not(work_status: 'finished').where.not(work_status:'checked_refuse').first
-    @finish_deals = @under_deals.where(work_status: 'finished').or(@under_deals.where(work_status:'checked_refuse'))
-    if @under_deal.present?
-      @advertisement = @under_deal.advertisement
-      @deal_messages = @under_deal.deal_messages
-      @deal_message = DealMessage.new()
-      @deal_detail = DealDetail.new(deal_detail_params)
-    end
+    set_dashboard_data
   end
 
   def index
     @driver = current_driver
-    @drivers = Driver.page(params[:page]).per(9)
+    @drivers = Driver.with_attached_profile_image.page(params[:page]).per(9)
   end
 
   def show
@@ -47,6 +39,27 @@ class DriversController < ApplicationController
 
   private
 
+  def set_dashboard_data
+    @under_deals = @driver.under_deals.includes(:advertisement)
+    @under_deal = active_deal(@under_deals)
+    @finish_deals = finished_deals(@under_deals)
+
+    if @under_deal.present?
+      @advertisement = @under_deal.advertisement
+      @deal_messages = @under_deal.deal_messages
+      @deal_message = DealMessage.new
+      @deal_detail = DealDetail.new(deal_detail_params)
+    end
+  end
+
+  def active_deal(deals)
+    deals.where.not(work_status: %w[finished checked_refuse]).first
+  end
+
+  def finished_deals(deals)
+    deals.where(work_status: %w[finished checked_refuse])
+  end
+
   def set_current_sponsor
     @sponsor = current_sponsor
   end
@@ -56,7 +69,7 @@ class DriversController < ApplicationController
   end
 
   def driver_params
-    params.require(:driver).permit(:name, :name_kana, :postal_code, :address, :telephone_number, :is_active, :activity_area, :profile_image, :license_image) 
+    params.require(:driver).permit(:name, :name_kana, :postal_code, :address, :telephone_number, :is_active, :activity_area, :profile_image, :license_image)
   end
 
   def deal_detail_params

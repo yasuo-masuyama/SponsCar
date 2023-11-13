@@ -6,7 +6,6 @@ class UnderDeal < ApplicationRecord
 
 	has_many :deal_messages
 
-	#入金確認のチェックボックスに対するバリデーション
 	validates :agreement, acceptance: { allow_nil: false, on: :updata }
 
 	enum work_status: {approval_pending: 0, refuse: 1, waiting_kit: 2, sent_kit: 3, advertising: 4, completed: 5, transferred: 6, rated: 7, finished: 8, checked_refuse: 9 }

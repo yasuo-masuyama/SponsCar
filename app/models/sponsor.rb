@@ -18,18 +18,17 @@ class Sponsor < ApplicationRecord
 	validates :telephone_number, presence: true
   validates :registry_image, presence: true, blob: { content_type: :image }
 
-
   has_one_attached :company_image
   has_one_attached :registry_image
 
   has_many :advertisements
   has_many :rooms
 
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy 
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
 	has_many :followed, class_name: "RelationshipDriver", foreign_key: "followed_id", dependent: :destroy
 
-  has_many :following_driver, through: :follower, source: :followed 
-	has_many :follower_driver, through: :followed, source: :follower 
+  has_many :following_driver, through: :follower, source: :followed
+	has_many :follower_driver, through: :followed, source: :follower
 
   def follow(driver_id)
 		follower.create(followed_id: driver_id)

@@ -4,7 +4,7 @@ class Sponsors::AdvertisementsController < ApplicationController
 
   def index
     @sponsor = current_sponsor
-    @advertisements = @sponsor.advertisements.page(params[:page]).per(9)
+    @advertisements = @sponsor.advertisements.with_attached_image.page(params[:page]).per(9)
   end
 
   def show
