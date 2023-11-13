@@ -1,2 +1,0 @@
-module Sponsors::AdvertisementsHelper
-end

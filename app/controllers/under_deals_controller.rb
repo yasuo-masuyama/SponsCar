@@ -14,7 +14,7 @@ class UnderDealsController < ApplicationController
   end
 
   def show_driver
-    @under_deal = UnderDeal.includes(:advertisement, :driver).includes(advertisement: :sponsor).find(params[:id])
+    @under_deal = UnderDeal.includes(advertisement: :sponsor).find(params[:id])
     @advertisement = @under_deal.advertisement
     @deal_messages = @under_deal.deal_messages
     @deal_detail = DealDetail.new(deal_detail_params)

@@ -12,7 +12,7 @@ class SponsorsController < ApplicationController
   end
 
   def index
-    @sponsors = Sponsor.page(params[:page]).per(9)
+    @sponsors = Sponsor.with_attached_company_image.page(params[:page]).per(9)
   end
 
   def show

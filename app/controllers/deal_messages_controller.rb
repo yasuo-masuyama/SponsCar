@@ -10,7 +10,8 @@ class DealMessagesController < ApplicationController
 
   def determine_user_type
     return 'driver' if driver_signed_in?
-    return 'sponsor' if sponsor_signed_in?
+
+    'sponsor' if sponsor_signed_in?
   end
 
   def deal_message_params

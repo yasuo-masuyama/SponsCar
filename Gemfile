@@ -53,6 +53,8 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
+  gem 'bullet'
+  gem 'metrics-rails'
 end
 
 group :test do
@@ -60,6 +62,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 4.0'
   gem 'webdrivers', '5.2.0'
+  gem 'simplecov', require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

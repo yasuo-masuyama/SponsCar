@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
   before_action :set_driver, only: %i[ create destroy ]
-  
+
   def create
     current_sponsor.follow(params[:driver_id])
   end

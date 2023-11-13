@@ -3,7 +3,7 @@ class AdvertisementsController < ApplicationController
   before_action :set_current_user, only: %i[ index show favorite_index ]
 
   def index
-    @advertisements = Advertisement.paginate(params[:page])
+    @advertisements = Advertisement.with_attached_image.paginate(params[:page])
   end
 
   def show
@@ -29,7 +29,7 @@ class AdvertisementsController < ApplicationController
 
   def set_current_user
     @driver = current_driver
-    @sponsor = current_sponsor if action_name.in?(['index', 'show'])
+    @sponsor = current_sponsor if action_name.in?(%w[index show])
   end
 
   def find_advertisement_with_associations

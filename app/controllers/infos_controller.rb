@@ -1,6 +1,6 @@
 class InfosController < ApplicationController
   before_action :set_info, only: %i[ show edit update ]
-  
+
   def index
     @infos = Info.all
   end

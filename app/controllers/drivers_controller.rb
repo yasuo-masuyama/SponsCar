@@ -9,7 +9,7 @@ class DriversController < ApplicationController
 
   def index
     @driver = current_driver
-    @drivers = Driver.page(params[:page]).per(9)
+    @drivers = Driver.with_attached_profile_image.page(params[:page]).per(9)
   end
 
   def show
@@ -40,7 +40,7 @@ class DriversController < ApplicationController
   private
 
   def set_dashboard_data
-    @under_deals = @driver.under_deals.includes(:advertisement, :deal_messages)
+    @under_deals = @driver.under_deals.includes(:advertisement)
     @under_deal = active_deal(@under_deals)
     @finish_deals = finished_deals(@under_deals)
 
@@ -53,11 +53,11 @@ class DriversController < ApplicationController
   end
 
   def active_deal(deals)
-    deals.where.not(work_status: ['finished', 'checked_refuse']).first
+    deals.where.not(work_status: %w[finished checked_refuse]).first
   end
 
   def finished_deals(deals)
-    deals.where(work_status: ['finished', 'checked_refuse'])
+    deals.where(work_status: %w[finished checked_refuse])
   end
 
   def set_current_sponsor
@@ -69,11 +69,10 @@ class DriversController < ApplicationController
   end
 
   def driver_params
-    params.require(:driver).permit(:name, :name_kana, :postal_code, :address, :telephone_number, :is_active, :activity_area, :profile_image, :license_image) 
+    params.require(:driver).permit(:name, :name_kana, :postal_code, :address, :telephone_number, :is_active, :activity_area, :profile_image, :license_image)
   end
 
   def deal_detail_params
     params.permit(:transfer_status, :bank_name, :branch_name, :account_type, :account_number, :account_name)
   end
 end
-
